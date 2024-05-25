@@ -4,12 +4,14 @@ import App from "./App.jsx";
 import { Provider } from "react-redux";
 import store from "./store/store.js";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Menu from "./components/Menu.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/menu" element={<Menu />} />
       </Routes>
     </BrowserRouter>
   </Provider>
