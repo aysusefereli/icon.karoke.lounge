@@ -1,21 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles/MainPage.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-regular-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 export default function MainPage({ switchTheme, theme }) {
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <div className="mainPage" data-theme={theme}>
       <div>
         <div>
           <div className="header">
             <div className="az_moon">
-              <button className="az">AZ</button>
-              <button className="mode" onClick={switchTheme}>
+              <button className="az" onClick={openModal}>
+                AZ
+              </button>
+              <button className="mode" id="moon" onClick={switchTheme}>
                 <FontAwesomeIcon className="moonIcon" icon={faMoon} />
               </button>
-              <button className="mode" onClick={switchTheme}>
+              <button className="mode" id="sun" onClick={switchTheme}>
                 <FontAwesomeIcon className="sunIcon" icon={faSun} />
               </button>
             </div>
@@ -44,6 +56,32 @@ export default function MainPage({ switchTheme, theme }) {
         <div></div>
         <div></div>
       </div>
+
+      {isModalOpen && (
+        <div id="myModal" className="modal">
+          <div className="modal-content">
+            <div className="l flex justify-center z-10 vaul-scrollable">
+              <div className="rounded-top"></div>
+            </div>
+            <span className="close" onClick={closeModal}>
+              &times;
+            </span>
+            <div className="modal_info">
+              <div className="choice">Dil seçimi</div>
+              <div>
+                <button className="flag">
+                  <img
+                    className="flagIcon"
+                    src="assets/azerbaijan.png"
+                    alt="Azerbaijan Flag"
+                  />
+                  <span className="language">Azərbaycanca</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

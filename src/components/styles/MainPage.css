@@ -16,7 +16,7 @@ body {
 .header {
   display: flex;
   justify-content: space-between;
-  padding-top: 10px;
+  padding-top: 16px;
   padding-bottom: 16px;
 }
 
@@ -97,6 +97,14 @@ body {
   background-color: #1e293b;
 }
 
+#moon {
+  display: block;
+}
+
+[data-theme="dark"] #moon {
+  display: none;
+}
+
 .sunIcon {
   width: 25px;
   height: 22px;
@@ -111,6 +119,14 @@ body {
 [data-theme="dark"] .sunIcon:hover {
   color: white;
   background-color: #1e293b;
+}
+
+#sun {
+  display: none;
+}
+
+[data-theme="dark"] #sun {
+  display: block;
 }
 
 .user {
@@ -197,5 +213,104 @@ body {
 .icon_name {
   font-weight: 700;
   font-size: 20px;
+  margin-left: 18px;
+}
+
+[data-theme="dark"] .icon_name {
+  color: white;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 50;
+  transition: transform 0.5s ease-in-out;
+}
+
+.modal-content {
+  background-color: hsl(0 0% 100%);
+  width: 512px;
+  height: 90px;
+  border-radius: 10px 10px 0 0;
+  padding: 20px;
+  position: relative;
+  animation: slideDown 0.5s forwards, slideUp 0.5s forwards;
+  overflow-y: auto;
+}
+
+/* .l {
+  margin-top: 0;
+  display: flex;
+
+} */
+
+.rounded-top {
+  border: 1px solid;
+  border-radius: 10px;
+  color: hsl(210 40% 96.1%);
+  width: 100px;
+  height: 8px;
+  background-color: hsl(210 40% 96.1%);
+  /* margin-left: 190px; */
+}
+
+.close {
+  background-color: hsl(210 40% 96.1%);
+  padding: 8px;
+  z-index: 30;
+  border: 1px solid hsl(210 40% 96.1%);
+  border-radius: 100%;
+  float: right;
+  cursor: pointer;
+}
+
+.choice {
+  margin-left: 15px;
+}
+
+.flag {
+  border: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-top: 25px;
+}
+
+.flag:hover {
+  background-color: hsl(210 40% 96.1%);
+}
+
+.flagIcon {
+  height: 24px;
+  width: 32px;
+}
+
+.language {
   margin-left: 18px;
 }
