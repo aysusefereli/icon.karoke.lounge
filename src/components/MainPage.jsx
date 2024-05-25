@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "./styles/MainPage.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-regular-svg-icons";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight, faPhone, faUser } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 export default function MainPage({ switchTheme, theme }) {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -50,11 +51,24 @@ export default function MainPage({ switchTheme, theme }) {
             <span className="icon_name">Icon Karaoke & Lounge</span>
           </div>
         </div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div>
+        <button className='menu-link' >
+          <div className="menu-link-left-side">
+            <img src="menu-icon.png" />
+            <p> Menyu</p>
+            </div>
+            <FontAwesomeIcon className="faChevronRight" icon={faChevronRight} />
+          </button>
+        </div>
+        <hr />
+        <div>
+        <button className='connect-link' >
+          <FontAwesomeIcon className="faPhone" icon={faPhone} />
+            <p> Əlaqə</p>
+          </button>
+        </div>
+        <hr />
+        <span className="footer">Powered by <Link target="_blank" to="https://www.clopos.com/az"> Clopos</Link></span>
       </div>
 
       {isModalOpen && (
