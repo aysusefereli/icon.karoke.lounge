@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 
 export default function MainPage({ switchTheme, theme }) {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isModal2Open, setModal2Open] = useState(false);
 
   const openModal = () => {
     setModalOpen(true);
@@ -18,6 +19,14 @@ export default function MainPage({ switchTheme, theme }) {
 
   const closeModal = () => {
     setModalOpen(false);
+  };
+
+  const open2Modal = () => {
+    setModal2Open(true);
+  };
+
+  const close2Modal = () => {
+    setModal2Open(false);
   };
 
   return (
@@ -36,7 +45,7 @@ export default function MainPage({ switchTheme, theme }) {
                 <FontAwesomeIcon className="sunIcon" icon={faSun} />
               </button>
             </div>
-            <button className="user">
+            <button className="user" onClick={open2Modal}>
               <FontAwesomeIcon className="userIcon" icon={faUser} />
               <span className="giris">Giriş et</span>
             </button>
@@ -101,6 +110,22 @@ export default function MainPage({ switchTheme, theme }) {
                   />
                   <span className="language">Azərbaycanca</span>
                 </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {isModal2Open && (
+        <div id="myModal" className="modal2">
+          <div className="modal-content2">
+            <span className="close" onClick={close2Modal}>
+              &times;
+            </span>
+            <div className="modal_info">
+              <div className="choice">Giriş et</div>
+              <p>Telefon nömrənizi doğrulamaq üçün kod göndərəcəyik</p>
+              <div>
+                <button className="flag">Davam et</button>
               </div>
             </div>
           </div>
