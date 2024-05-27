@@ -11,7 +11,6 @@ body {
 .mainPage {
   display: flex;
   justify-content: center;
-
 }
 
 .header {
@@ -30,7 +29,6 @@ body {
   flex-direction: row;
   justify-content: space-around;
   gap: 8px;
-  
 }
 
 .az {
@@ -127,7 +125,7 @@ body {
   display: none;
 }
 
-.sun-svg{
+.sun-svg {
   background-color: #1e293b;
 }
 [data-theme="dark"] #sun {
@@ -259,7 +257,6 @@ body {
 
 .modal2 {
   position: fixed;
-
   width: 100%;
   height: 100%;
   display: flex;
@@ -268,6 +265,10 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 50;
   transition: 0.5s;
+}
+
+[data-theme="dark"] .modal-content2 {
+  background-color: hsl(222.2 84% 4.9%);
 }
 
 .modal-content {
@@ -284,9 +285,13 @@ body {
 .modal-content2 {
   background-color: hsl(0 0% 100%);
   width: 512px;
-  height: 90px;
+  height: 210px;
   border-radius: 10px;
   padding: 20px;
+}
+
+[data-theme="dark"] .modal_info2 {
+  background-color: hsl(222.2 84% 4.9%);
 }
 
 .modal.open {
@@ -304,6 +309,17 @@ body {
   width: 100px;
   height: 8px;
   background-color: hsl(210 40% 96.1%);
+  margin: 0 auto;
+  position: sticky;
+}
+
+[data-theme="dark"] .rounded-top {
+  background-color: hsl(217.2 32.6% 17.5%);
+  color: hsl(217.2 32.6% 17.5%);
+}
+
+[data-theme="dark"] .vaul-scrollable {
+  background-color: hsl(222.2 84% 4.9%);
 }
 
 .close {
@@ -312,12 +328,84 @@ body {
   z-index: 30;
   border: 1px solid hsl(210 40% 96.1%);
   border-radius: 100%;
+  height: 22px;
   float: right;
   cursor: pointer;
+  position: relative;
+  top: 1px;
+}
+
+.close2 {
+  background-color: hsl(210 40% 96.1%);
+  padding: 8px;
+  z-index: 30;
+  border: 1px solid hsl(210 40% 96.1%);
+  border-radius: 100%;
+  float: right;
+  cursor: pointer;
+  position: relative;
+  top: 1px;
 }
 
 .choice {
   margin-left: 15px;
+}
+
+[data-theme="dark"] .choice {
+  background-color: hsl(222.2 84% 4.9%);
+}
+
+[data-theme="dark"] .close2 {
+  background-color: hsl(217.2 32.6% 17.5%);
+  border: none;
+  color: white;
+}
+
+[data-theme="dark"] .close {
+  background-color: hsl(217.2 32.6% 17.5%);
+  border: none;
+  color: white;
+}
+
+.choice2 {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+[data-theme="dark"] .choice2 {
+  background-color: hsl(222.2 84% 4.9%);
+  color: white;
+}
+
+.phoneNumber {
+  font-size: 14px;
+  color: hsl(215.4 16.3% 46.9%);
+  margin-top: 15px;
+}
+
+[data-theme="dark"] .phoneNumber {
+  background-color: hsl(222.2 84% 4.9%);
+  color: hsl(215 20.2% 65.1%);
+}
+
+.continueBtn {
+  font-size: 14px;
+  font-weight: 300;
+  border-radius: 12px;
+  background-color: hsl(0 0% 0%);
+  color: white;
+  width: 100%;
+  height: 48px;
+  margin-top: 15px;
+}
+
+[data-theme="dark"] .continueBtn {
+  background-color: hsl(0 0% 35%);
+  color: white;
+}
+
+[data-theme="dark"] .continue {
+  background-color: hsl(222.2 84% 4.9%);
 }
 
 .flag {
@@ -329,13 +417,38 @@ body {
   margin-top: 25px;
 }
 
-.flag:hover {
-  background-color: hsl(210 40% 96.1%);
+[data-theme="dark"] .flag {
+  background-color: hsl(222.2 84% 4.9%);
+}
+
+[data-theme="dark"] .flag:hover {
+  background-color: hsl(222.2 84% 4.9%);
 }
 
 .flagIcon {
   height: 24px;
   width: 32px;
+}
+
+.country {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wpIcon {
+  width: 20px;
+  height: 20px;
+  margin-top: 30px;
+}
+
+[data-theme="dark"] .wp {
+  background-color: hsl(222.2 84% 4.9%);
+}
+
+[data-theme="dark"] .country {
+  background-color: hsl(222.2 84% 4.9%);
 }
 
 .language {
@@ -455,36 +568,34 @@ hr {
 [data-theme="dark"] .footer a {
   color: #59595999;
 }
-[data-theme="dark"] .modal{
+[data-theme="dark"] .modal {
   color: #f8fafc;
-  background-color: #000000;
 }
 
-[data-theme="dark"] .modal-content{
+[data-theme="dark"] .modal-content {
   color: #f8fafc;
-  background-color: #000000;
+  background-color: hsl(222.2 84% 4.9%);
 }
 
-[data-theme="dark"] .rounded-top{
-  color: #f8fafc;
-  background-color: #000000;
+[data-theme="dark"] .modal_info {
+  background-color: hsl(222.2 84% 4.9%);
 }
 
-[data-theme="dark"]  .language{
+[data-theme="dark"] .language {
   color: #f8fafc;
-  background-color: #000000;
+  background-color: hsl(222.2 84% 4.9%);
 }
-[data-theme="dark"] .close {
-  color: #e5e5e5;
-  background-color: #1e293b;
-  border: none;
-}[data-theme="dark"] .menu-link:hover {
-  .menu-link, .menu-link-left-side p, .menu-link-left-side img, .faChevronRight{
+
+[data-theme="dark"] .menu-link:hover {
+  .menu-link,
+  .menu-link-left-side p,
+  .menu-link-left-side img,
+  .faChevronRight {
     background-color: #505152;
   }
 }
 [data-theme="dark"] .menu-link:hover {
-    background-color: #505152;
+  background-color: #505152;
 }
 @media only screen and (max-width: 768px) {
   .icon_img {
@@ -493,7 +604,7 @@ hr {
   }
 
   .menu-link,
-  .connect-link{
+  .connect-link {
     width: 100%;
     max-width: none;
     box-sizing: border-box;
@@ -507,4 +618,37 @@ hr {
   .footer a {
     margin: 5px 0;
   }
+}
+
+.phoneInput {
+  border: 1px solid;
+  padding: 15px;
+  font-size: 16px;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+  background: #fff;
+  border: 1px solid #cacaca;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+[data-theme="dark"] .phoneInput {
+  background-color: hsl(222.2 84% 4.9%);
+}
+
+.PhoneInputInput {
+  border: none;
+}
+
+[data-theme="dark"] .PhoneInputInput {
+  background-color: hsl(222.2 84% 4.9%);
+  color: white;
+}
+
+[data-theme="dark"] .PhoneInputCountry {
+  background-color: hsl(222.2 84% 4.9%);
+  color: white;
+}
+
+[data-theme="dark"] option {
+  background-color: white;
 }
