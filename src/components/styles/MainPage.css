@@ -11,6 +11,7 @@ body {
 .mainPage {
   display: flex;
   justify-content: center;
+
 }
 
 .header {
@@ -29,6 +30,7 @@ body {
   flex-direction: row;
   justify-content: space-around;
   gap: 8px;
+  
 }
 
 .az {
@@ -125,6 +127,9 @@ body {
   display: none;
 }
 
+.sun-svg{
+  background-color: #1e293b;
+}
 [data-theme="dark"] #sun {
   display: block;
 }
@@ -352,6 +357,7 @@ body {
   justify-content: space-between;
   align-items: center;
   text-decoration: none;
+  overflow: hidden;
 }
 
 .menu-link:hover {
@@ -449,7 +455,37 @@ hr {
 [data-theme="dark"] .footer a {
   color: #59595999;
 }
+[data-theme="dark"] .modal{
+  color: #f8fafc;
+  background-color: #000000;
+}
 
+[data-theme="dark"] .modal-content{
+  color: #f8fafc;
+  background-color: #000000;
+}
+
+[data-theme="dark"] .rounded-top{
+  color: #f8fafc;
+  background-color: #000000;
+}
+
+[data-theme="dark"]  .language{
+  color: #f8fafc;
+  background-color: #000000;
+}
+[data-theme="dark"] .close {
+  color: #e5e5e5;
+  background-color: #1e293b;
+  border: none;
+}[data-theme="dark"] .menu-link:hover {
+  .menu-link, .menu-link-left-side p, .menu-link-left-side img, .faChevronRight{
+    background-color: #505152;
+  }
+}
+[data-theme="dark"] .menu-link:hover {
+    background-color: #505152;
+}
 @media only screen and (max-width: 768px) {
   .icon_img {
     width: 100%;
@@ -457,9 +493,10 @@ hr {
   }
 
   .menu-link,
-  .connect-link {
+  .connect-link{
     width: 100%;
     max-width: none;
+    box-sizing: border-box;
   }
 
   .footer {
