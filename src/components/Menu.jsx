@@ -1,6 +1,3 @@
-
-import React, { useEffect, useState } from "react";
-
 import React, { useState } from "react";
 import "./styles/Menu.css";
 import { Link } from "react-router-dom";
@@ -33,15 +30,15 @@ export default function Menu() {
 
   const close4Modal = () => {
     setModal4Open(false);
+  };
 
   const [isModalSearchOpen, setModalSearchOpen] = useState(false);
-  const openSearchModal= () => {
+  const openSearchModal = () => {
     setModalSearchOpen(true);
   };
 
   const closeSearchModal = () => {
     setModalSearchOpen(false);
-
   };
 
   return (
@@ -160,26 +157,37 @@ export default function Menu() {
         </div>
         {isModalSearchOpen && (
           <div id="mySearchModal" className="search-modal">
-          <div className="modal-search-content">
-          <span  onClick={closeSearchModal}> <Link to="/menu" className="back"> 
-              <div className="back-container">
-                <div className="back-modal"> <FontAwesomeIcon className="back-arrow-modal" icon={faArrowLeft} /></div>
-               
-                <p className="back-text">Geri qayit</p>
-              </div>
-              </Link></span>
-            <button className="search-modal-input">
-            <FontAwesomeIcon
+            <div className="modal-search-content">
+              <span onClick={closeSearchModal}>
+                {" "}
+                <Link to="/menu" className="back">
+                  <div className="back-container">
+                    <div className="back-modal">
+                      {" "}
+                      <FontAwesomeIcon
+                        className="back-arrow-modal"
+                        icon={faArrowLeft}
+                      />
+                    </div>
+
+                    <p className="back-text">Geri qayit</p>
+                  </div>
+                </Link>
+              </span>
+              <button className="search-modal-input">
+                <FontAwesomeIcon
                   className="searchIconModal"
                   icon={faMagnifyingGlass}
                 />
-            <input className="main-search-input" type="text" placeholder="Axtardığınız qidanın adını yazın" />
-            
-            </button>
+                <input
+                  className="main-search-input"
+                  type="text"
+                  placeholder="Axtardığınız qidanın adını yazın"
+                />
+              </button>
+            </div>
           </div>
-        </div>
-  
-      )}
+        )}
       </div>
 
       {isModal4Open && (
