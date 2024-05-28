@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./styles/Menu.css";
 import { Link } from "react-router-dom";
 import useLocalStorage from "use-local-storage";
@@ -8,8 +8,11 @@ import {
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import ProductsList from "../components/ProductsList.jsx";
+import { Dropdown } from "rsuite";
+import "rsuite/dist/rsuite.css";
 
 export default function Menu() {
+  const [isModal4Open, setModal4Open] = useState(false);
   const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   const [theme, setTheme] = useLocalStorage(
     "theme",
@@ -20,6 +23,15 @@ export default function Menu() {
     setTheme(newTheme);
     console.log(newTheme);
   };
+
+  const open4Modal = () => {
+    setModal4Open(true);
+  };
+
+  const close4Modal = () => {
+    setModal4Open(false);
+  };
+
   return (
     <div className="main-container" data-theme={theme}>
       <div className="container">
@@ -54,7 +66,7 @@ export default function Menu() {
               </button>
             </div>
             <div className="filter_search">
-              <button className="filter">
+              <button className="filter" onClick={open4Modal}>
                 <svg
                   className="filterIcon"
                   xmlns="http://www.w3.org/2000/svg"
@@ -135,6 +147,97 @@ export default function Menu() {
           <ProductsList />
         </div>
       </div>
+
+      {isModal4Open && (
+        <div id="myModal" className="modal">
+          <div className="modal-content4">
+            <span className="close" onClick={close4Modal}>
+              &times;
+            </span>
+            <div className="vaul-scrollable">
+              <div className="rounded-top"></div>
+            </div>
+            <div className="modal_info">
+              <div className="choice">Filterler</div>
+              <div className="filters">
+                <button className="filtersBtn">
+                  <img src="./assets/halal-sign.png" />
+                  <span>Halal</span>
+                </button>
+                <button className="filtersBtn">
+                  <img src="./assets/kosher.png" />
+                  <span>Kosher</span>
+                </button>
+                <button className="filtersBtn">
+                  <img src="./assets/vegan.png" />
+                  <span>Vegetarian</span>
+                </button>
+                <button className="filtersBtn">
+                  <img src="./assets/salad.png" />
+                  <span>Vegan</span>
+                </button>
+                <button className="filtersBtn">
+                  <img src="./assets/chili-pepper.png" />
+                  <span>Acılı</span>
+                </button>
+              </div>
+              <div className="allergies">Allergiyalar</div>
+              <div className="choiceAllergie">
+                <Dropdown title="Allergiyalar seç" className="dropdown">
+                  <Dropdown.Item className="dropdownitem" value="fruit">
+                    Qabıqli balıqlar
+                  </Dropdown.Item>
+                  <Dropdown.Item className="dropdownitem" value="vegetable">
+                    Yumurta
+                  </Dropdown.Item>
+                  <Dropdown.Item className="dropdownitem" value="meat">
+                    Balıq
+                  </Dropdown.Item>
+                  <Dropdown.Item className="dropdownitem" value="meat">
+                    Süd
+                  </Dropdown.Item>
+                  <Dropdown.Item className="dropdownitem" value="meat">
+                    Fıstıq
+                  </Dropdown.Item>
+                  <Dropdown.Item className="dropdownitem" value="meat">
+                    Soya
+                  </Dropdown.Item>
+                  <Dropdown.Item className="dropdownitem" value="meat">
+                    Qoz-fındıq
+                  </Dropdown.Item>
+                  <Dropdown.Item className="dropdownitem" value="meat">
+                    Buğda
+                  </Dropdown.Item>
+                  <Dropdown.Item className="dropdownitem" value="meat">
+                    Qlütenli taxıllar
+                  </Dropdown.Item>
+                  <Dropdown.Item className="dropdownitem" value="meat">
+                    Sulfitlər
+                  </Dropdown.Item>
+                  <Dropdown.Item className="dropdownitem" value="meat">
+                    Qarabaşaq yarması
+                  </Dropdown.Item>
+                  <Dropdown.Item className="dropdownitem" value="meat">
+                    Kərəviz
+                  </Dropdown.Item>
+                  <Dropdown.Item className="dropdownitem" value="meat">
+                    Acıpaxla
+                  </Dropdown.Item>
+                  <Dropdown.Item className="dropdownitem" value="meat">
+                    Molyuskar qabıqlı balıqlar
+                  </Dropdown.Item>
+                  <Dropdown.Item className="dropdownitem" value="meat">
+                    Xardal
+                  </Dropdown.Item>
+                  <Dropdown.Item className="dropdownitem" value="meat">
+                    Küncüt
+                  </Dropdown.Item>
+                </Dropdown>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,23 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./styles/ProductsList.css";
 
 export default function ProductsList() {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/api/categories-with-items")
+      .then((response) => response.json())
+      .then((data) => {
+        setCategories(data);
+      });
+  }, []);
+
   return (
     <div className="list">
-      <div className="products">
-        <div className="product">Suplar</div>
-        <div className="food">
-          <button className="foodBtn">
-            <div className="namePrice">
-              <span className="foodName">Toyuq Şorbası</span>
-              <span className="price">5.00 ₼</span>
-            </div>
-            <div className="thePrice">
-              <span className="price">5.00 ₼</span>
-            </div>
-          </button>
+      {categories.map((category) => (
+        <div className="category" key={category._id}>
+          <div className="product">{category.name}</div>
+          <div className="food">
+            {category.items.map((item) => (
+              <button className="foodBtn" key={item._id}>
+                <div className="namePrice">
+                  <span className="foodName">{item.name}</span>
+                  <span className="price">{item.price} ₼</span>
+                </div>
+                <div className="thePrice">
+                  <span className="price">{item.price} ₼</span>
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 }
