@@ -18,6 +18,8 @@ import "swiper/css/pagination";
 
 
 export default function Menu() {
+  const [filteredItems, setFilteredItems] = useState([]);
+  const [input, setInput] = useState("");
   const [isModal4Open, setModal4Open] = useState(false);
   const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   const [theme, setTheme] = useLocalStorage(
@@ -53,6 +55,37 @@ export default function Menu() {
 
   const closeSearchModal = () => {
     setModalSearchOpen(false);
+  };
+
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/api/categories-with-items")
+      .then((response) => response.json())
+      .then((data) => {
+        setCategories(data);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (input.trim() !== "") {
+      const firstLetter = input.trim().split(" ")[0].toLowerCase();
+      const filtered = categories.filter((category) => {
+        return (
+          input &&
+          category.items &&
+          category.items.name &&
+          category.items.name.toLowerCase().includes(input.toLowerCase())
+        );
+      });
+      setFilteredItems(filtered);
+    } else {
+      setFilteredItems(categories);
+    }
+  }, [input, categories]);
+
+  const handleInputChange = (e) => {
+    setInput(e.target.value);
   };
 
   return (
@@ -168,7 +201,6 @@ export default function Menu() {
                         icon={faArrowLeft}
                       />
                     </div>
-
                     <p className="back-text">Geri qayit</p>
                   </div>
                 </Link>
@@ -182,7 +214,27 @@ export default function Menu() {
                   className="main-search-input"
                   type="text"
                   placeholder="Axtardığınız qidanın adını yazın"
+                  value={input}
+                  onChange={handleInputChange}
                 />
+                <div className="search-list">
+                  {input.trim() !== "" &&
+                    filteredItems.map((category) => (
+                      <div key={category.id}>
+                        {category.items.map((item) => (
+                          <div key={item.id}>
+                            <div className="namePrice">
+                              <span className="foodName">{item.name}</span>
+                              <span className="price">{item.price} ₼</span>
+                            </div>
+                            <div className="thePrice">
+                              <span className="price">{item.price} ₼</span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ))}
+                </div>
               </button>
             </div>
           </div>
