@@ -30,3 +30,15 @@
   font-weight: 700;
   font-size: 16px;
 }
+[data-theme="dark"] .products {
+  color: #fff;
+}
+[data-theme="dark"] .foodName {
+  color: #fff;
+}
+[data-theme="dark"] .price {
+  color: #595959;
+}
+[data-theme="dark"] .thePrice {
+  color: #595959;
+}
