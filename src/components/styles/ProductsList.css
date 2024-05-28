@@ -2,17 +2,21 @@
   padding: 16px;
   font-size: 24px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.01);
+  color: black;
 }
 
 .food {
   padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
 }
 
 .foodBtn {
   border: none;
   display: flex;
   flex-direction: row;
-  gap: 185px;
+  justify-content: space-between;
 }
 
 .namePrice {
@@ -24,11 +28,13 @@
 .foodName {
   font-size: 14px;
   font-weight: 600;
+  color: black;
 }
 
 .price {
   font-weight: 700;
   font-size: 16px;
+  color: black;
 }
 [data-theme="dark"] .products {
   color: #fff;
