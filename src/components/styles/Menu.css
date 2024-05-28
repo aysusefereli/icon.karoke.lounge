@@ -6,6 +6,10 @@
   display: flex;
   justify-content: center;
 }
+.container {
+  display: flex;
+  flex-direction: column;
+}
 .border-container {
   width: 750px;
   max-width: 100%;
@@ -27,10 +31,37 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  gap: 20px;
+  gap: 15px;
+}
+.back {
+  border: 1px solid transparent;
+  background-color: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 20%;
+  padding: 8px;
+  cursor: pointer;
+}
+[data-theme="dark"] .back:hover {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #1e293b;
+  background-color: #1e293b;
+  border-radius: 20%;
+  padding: 8px;
+  cursor: pointer;
 }
 .back-arrow {
   margin: 8px 0;
+  color: black;
+  width: 20px;
+  height: 20px;
+}
+[data-theme="dark"] .back-arrow {
+  color: white;
+}
+[data-theme="dark"] .back-arrow:hover {
+  background-color: #1e293b;
 }
 .menu-note {
   margin: 15px;
@@ -47,6 +78,7 @@
   background-color: hsl(210 40% 96.1%);
   border-radius: 20%;
   padding: 8px;
+  cursor: pointer;
 }
 
 [data-theme="dark"] .mode {
@@ -60,7 +92,6 @@
   border: 1px solid #1e293b;
   color: white;
 }
-
 .mode:hover {
   background-color: hsl(210 80% 97.1%);
   cursor: pointer;
@@ -125,12 +156,59 @@
   background-color: #1e293b;
   border: none;
 }
-[data-theme="dark"] .serach-icon {
-  fill: #fff;
+.search {
+  border: 1px solid transparent;
+  background-color: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 20%;
+  padding: 8px;
+  cursor: pointer;
 }
-[data-theme="dark"] .filter-icon {
-  fill: #fff;
+
+[data-theme="dark"] .searchIcon {
+  color: white;
 }
+
+[data-theme="dark"] .search:hover {
+  width: 45px;
+  height: 45px;
+  border: 1px solid #1e293b;
+  background-color: #1e293b;
+  border-radius: 20%;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.filter {
+  border: 1px solid transparent;
+  background-color: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 20%;
+  padding: 8px;
+  cursor: pointer;
+}
+.filterIcon {
+  border: none;
+  background: none;
+  width: 20px;
+  height: 20px;
+}
+[data-theme="dark"] .filter:hover {
+  width: 45px;
+  height: 45px;
+  border: 1px solid #1e293b;
+  background-color: #1e293b;
+  border-radius: 20%;
+  padding: 8px;
+  cursor: pointer;
+}
+[data-theme="dark"] .filterIcon {
+  fill: white;
+  cursor: pointer;
+}
+
 [data-theme="dark"] .menu-note span {
   color: #fff;
 }
@@ -153,8 +231,12 @@
   padding-right: 20px;
   padding-left: 20px;
   border-radius: 12%;
-  height: 40px;
+  height: 35px;
   width: 100%;
+  font-size: 14px;
+  white-space: nowrap;
+  cursor: pointer;
+  color: #020817;
 }
 
 [data-theme="dark"] .meal {

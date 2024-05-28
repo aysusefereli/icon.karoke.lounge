@@ -1,0 +1,32 @@
+.product {
+  padding: 16px;
+  font-size: 24px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.01);
+}
+
+.food {
+  padding: 10px;
+}
+
+.foodBtn {
+  border: none;
+  display: flex;
+  flex-direction: row;
+  gap: 185px;
+}
+
+.namePrice {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}
+
+.foodName {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.price {
+  font-weight: 700;
+  font-size: 16px;
+}
