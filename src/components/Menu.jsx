@@ -57,15 +57,6 @@ export default function Menu() {
     setModalSearchOpen(false);
   };
 
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:3000/api/categories-with-items")
-      .then((response) => response.json())
-      .then((data) => {
-        setCategories(data);
-      });
-  }, []);
 
   useEffect(() => {
     if (input.trim() !== "") {
