@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles/Menu.css";
 import { Link } from "react-router-dom";
 import useLocalStorage from "use-local-storage";
@@ -10,6 +10,12 @@ import {
 import ProductsList from "../components/ProductsList.jsx";
 import { Dropdown } from "rsuite";
 import "rsuite/dist/rsuite.css";
+import { FreeMode, Keyboard, Mousewheel } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
+
 
 export default function Menu() {
   const [isModal4Open, setModal4Open] = useState(false);
@@ -23,7 +29,15 @@ export default function Menu() {
     setTheme(newTheme);
     console.log(newTheme);
   };
+  const [categories, setCategories] = useState([]);
 
+  useEffect(() => {
+    fetch("http://localhost:3000/api/categories-with-items")
+      .then((response) => response.json())
+      .then((data) => {
+        setCategories(data);
+      });
+  }, []);
   const open4Modal = () => {
     setModal4Open(true);
   };
@@ -45,6 +59,7 @@ export default function Menu() {
     <div className="main-container" data-theme={theme}>
       <div className="container">
         <div className="border-container">
+        <div className="header-border">
           <div className="menu-header">
             <div className="arrow_moon">
               <Link to="/" className="back">
@@ -96,45 +111,29 @@ export default function Menu() {
             </div>
           </div>
           <div className="mealsOptions">
-            <ul className="meals">
-              <button className="meal">Suplar</button>
-              <button className="meal">Salatlar</button>
-              <button className="meal">Soyuq qəlyanaltılar</button>
-              <button className="meal">İsti qəlyanaltılar</button>
-              <button className="meal">Sushi</button>
-              <button className="meal">Pizzalar</button>
-              <button className="meal">Sendviç və burgerlər</button>
-              <button className="meal">Pastalar</button>
-              <button className="meal">İsti Yeməklər</button>
-              <button className="meal">Qarnirlər</button>
-              <button className="meal">Saclar</button>
-              <button className="meal">Kabablar</button>
-              <button className="meal">Steak</button>
-              <button className="meal">Çərəzlər</button>
-              <button className="meal">Şirniyyatlar</button>
-              <button className="meal">Spirtsiz içkilər</button>
-              <button className="meal">Qəlyanlar</button>
-              <button className="meal">İsti içkilər</button>
-              <button className="meal">Təzə Sıxılmış Şirələr</button>
-              <button className="meal">Pivə</button>
-              <button className="meal">Alkoqolsuz Kokteyllər</button>
-              <button className="meal">Ginlər</button>
-              <button className="meal">Romlar</button>
-              <button className="meal">Viskilər</button>
-              <button className="meal">Viski Butulka</button>
-              <button className="meal">Araqlar</button>
-              <button className="meal">Araq Butulka</button>
-              <button className="meal">Tequila</button>
-              <button className="meal">Tequila Butulka</button>
-              <button className="meal">Konyak</button>
-              <button className="meal">Likor,Bitterlər,Vermut</button>
-              <button className="meal">Şərablar</button>
-              <button className="meal">Şampan</button>
-              <button className="meal">Alkoqollu Kokteyllər</button>
-              <button className="meal">Məzələr</button>
-              <button className="meal">Rakı</button>
-              <button className="meal">Shot</button>
-            </ul>
+            <Swiper
+              slidesPerView={"auto"}
+              spaceBetween={10}
+              freeMode={true}
+              keyboard={{
+                enabled: true,
+                onlyInViewport: false,
+              }}
+            mousewheel={{
+              forceToAxis: true, 
+            }}
+            simulateTouch={true} 
+            touchReleaseOnEdges={true} 
+              modules={[FreeMode,Keyboard,Mousewheel]}
+              className="mySwiper"
+            >
+              {categories.map((category) => (
+                  <SwiperSlide key={category.id} className="swiper-slide-auto">
+                  <button className="meal">{category.name}</button>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
           </div>
           <div className="menu-note">
             <svg
