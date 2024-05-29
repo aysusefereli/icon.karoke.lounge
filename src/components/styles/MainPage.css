@@ -85,6 +85,7 @@ body {
   width: 25px;
   height: 22px;
   color: #000000;
+  background-color: hsl(210 80% 97.1%);
 }
 
 [data-theme="dark"] .moonIcon {
@@ -165,6 +166,7 @@ body {
   width: 18px;
   height: 18px;
   color: #000000;
+  background-color: hsl(210 80% 97.1%);
 }
 
 [data-theme="dark"] .userIcon {
@@ -181,6 +183,7 @@ body {
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
+  background: none;
 }
 
 [data-theme="dark"] .giris {
