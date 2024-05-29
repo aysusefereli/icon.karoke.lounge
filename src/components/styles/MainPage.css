@@ -626,7 +626,6 @@ hr {
   font-size: 16px;
   transition: box-shadow 0.25s ease, border-color 0.25s ease;
   background: #fff;
-  border: 1px solid #cacaca;
   border-radius: 5px;
   margin-top: 15px;
 }
@@ -635,9 +634,6 @@ hr {
   background-color: hsl(222.2 84% 4.9%);
 }
 
-.PhoneInputInput {
-  border: none;
-}
 
 [data-theme="dark"] .PhoneInputInput {
   background-color: hsl(222.2 84% 4.9%);
@@ -651,4 +647,15 @@ hr {
 
 [data-theme="dark"] option {
   background-color: white;
+}
+.PhoneInput:focus {
+  border: 1px solid #69aafa;
+  box-shadow: 1px 0.5px 4px 1px rgba(105, 170, 250, 0.5);
+}
+.PhoneInputInput{
+  outline: none;
+  border: none;
+}
+.PhoneInput{
+  border: 1px solid #cacaca47 ;
 }
