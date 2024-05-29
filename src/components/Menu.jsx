@@ -59,9 +59,9 @@ export default function Menu() {
       const filtered = categories.filter((category) => {
         return (
           input &&
-          category.items &&
-          category.items.name &&
-          category.items.name.toLowerCase().includes(input.toLowerCase())
+          category &&
+          category.name &&
+          category.name.toLowerCase().includes(input.toLowerCase())
         );
       });
       setFilteredItems(filtered);

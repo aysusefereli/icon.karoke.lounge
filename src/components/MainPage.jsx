@@ -96,7 +96,7 @@ export default function MainPage({ switchTheme, theme }) {
           <Link className="menu-link" to="/menu">
             <div className="menu-link-left-side">
               <img src="menu-icon.png" />
-              <p> Menyu</p>
+              <p className="menuPage"> Menyu</p>
             </div>
             <FontAwesomeIcon className="faChevronRight" icon={faChevronRight} />
           </Link>
