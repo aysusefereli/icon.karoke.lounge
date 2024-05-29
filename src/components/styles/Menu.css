@@ -414,14 +414,17 @@
   padding-left: 16px;
   padding-right: 16px;
 }
+.select-picker select {
+  width: 100%;
+}
 
 .allergies {
   font-size: 14px;
   font-weight: 500;
   margin-top: 25px;
 }
-
 .dropdown {
+  width: 100%;
   padding-left: 0.75rem;
   padding-right: 0.75rem;
 }
@@ -496,4 +499,24 @@
 [data-theme="dark"] .header-border {
   border: none;
   box-shadow: none;
+}
+.choiceAllergie {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.select-picker {
+  width: 450px;
+
+}
+
+.choiceAllergie select {
+  width: 100%;
+  max-width: 450px; /* Genişlik sınırı ekledik */
+  padding: 8px 12px; /* Kenar boşlukları ekledik */
+  box-sizing: border-box; /* Kutu modelini düzeltmek için */
+}
+
+.choiceAllergie option {
+  padding: 8px 12px; /* Kenar boşlukları ekledik */
 }

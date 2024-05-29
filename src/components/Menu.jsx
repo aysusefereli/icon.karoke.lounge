@@ -5,7 +5,6 @@ import useLocalStorage from "use-local-storage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import ProductsList from "../components/ProductsList.jsx";
-import { Dropdown } from "rsuite";
 import "rsuite/dist/rsuite.css";
 import { FreeMode, Keyboard, Mousewheel } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -25,7 +24,13 @@ export default function Menu() {
     console.log(newTheme);
   };
 
- 
+  
+    const [selectedOption, setSelectedOption] = useState('');
+  
+    const handleSelectChange = (event) => {
+      setSelectedOption(event.target.value);
+    };
+    
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -226,59 +231,37 @@ export default function Menu() {
                   <span>Acılı</span>
                 </button>
               </div>
-              <div className="allergies">Allergiyalar</div>
-              <div className="choiceAllergie">
-                <Dropdown title="Allergiyalar seç" className="dropdown">
-                  <Dropdown.Item className="dropdownitem" value="fruit">
-                    Qabıqli balıqlar
-                  </Dropdown.Item>
-                  <Dropdown.Item className="dropdownitem" value="vegetable">
-                    Yumurta
-                  </Dropdown.Item>
-                  <Dropdown.Item className="dropdownitem" value="meat">
-                    Balıq
-                  </Dropdown.Item>
-                  <Dropdown.Item className="dropdownitem" value="meat">
-                    Süd
-                  </Dropdown.Item>
-                  <Dropdown.Item className="dropdownitem" value="meat">
-                    Fıstıq
-                  </Dropdown.Item>
-                  <Dropdown.Item className="dropdownitem" value="meat">
-                    Soya
-                  </Dropdown.Item>
-                  <Dropdown.Item className="dropdownitem" value="meat">
-                    Qoz-fındıq
-                  </Dropdown.Item>
-                  <Dropdown.Item className="dropdownitem" value="meat">
-                    Buğda
-                  </Dropdown.Item>
-                  <Dropdown.Item className="dropdownitem" value="meat">
-                    Qlütenli taxıllar
-                  </Dropdown.Item>
-                  <Dropdown.Item className="dropdownitem" value="meat">
-                    Sulfitlər
-                  </Dropdown.Item>
-                  <Dropdown.Item className="dropdownitem" value="meat">
-                    Qarabaşaq yarması
-                  </Dropdown.Item>
-                  <Dropdown.Item className="dropdownitem" value="meat">
-                    Kərəviz
-                  </Dropdown.Item>
-                  <Dropdown.Item className="dropdownitem" value="meat">
-                    Acıpaxla
-                  </Dropdown.Item>
-                  <Dropdown.Item className="dropdownitem" value="meat">
-                    Molyuskar qabıqlı balıqlar
-                  </Dropdown.Item>
-                  <Dropdown.Item className="dropdownitem" value="meat">
-                    Xardal
-                  </Dropdown.Item>
-                  <Dropdown.Item className="dropdownitem" value="meat">
-                    Küncüt
-                  </Dropdown.Item>
-                </Dropdown>
+              <div className="allergies">
+                <p>Allergiyalar</p>
               </div>
+              <div className="choiceAllergie">
+                <div className="select-picker" style={{ width: "450px" }}>
+                  <select style={{ width: "100%"}} onChange={handleSelectChange} value={selectedOption}>
+                    <option value="" disabled selected hidden>Allergiyalar seç</option>
+                    <optgroup label="Allergiyalar">
+                      <option value="Qabıqlı balıqlar">Qabıqlı balıqlar</option>
+                      <option value="Yumurta">Yumurta</option>
+                      <option value="Süd">Süd</option>
+                      <option value="Balıq">Balıq</option>
+                      <option value="Fıstıq">Fıstıq</option>
+                      <option value="Soya">Soya</option>
+                      <option value="Qoz-fındıq">Qoz-fındıq</option>
+                      <option value="Buğda">Buğda</option>
+                      <option value="Qlütenli Taxıllar">Qlütenli Taxıllar</option>
+                      <option value="Sulfitlər">Sulfitlər</option>
+                      <option value="Qarabaşaq yarması">Qarabaşaq yarması</option>
+                      <option value="Kərəviz">Kərəviz</option>
+                      <option value="Acı paxla">Acı paxla</option>
+                      <option value="Molyusklar qabıqlı balıqlar">Molyusklar qabıqlı balıqlar</option>
+                      <option value="Xardal">Xardal</option>
+                      <option value="Küncüt">Küncüt</option>
+                    </optgroup>
+                  </select>
+                </div>
+              </div>
+            <div>
+              
+            </div>
             </div>
           </div>
         </div>
