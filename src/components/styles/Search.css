@@ -1,7 +1,151 @@
+/* styles/Search.css */
+
 [data-theme="dark"] {
   --background-color: black;
 }
 
 [data-theme="dark"] .search-modal {
   background-color: black;
+}
+
+.search-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fefefe;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.modal-search-content {
+  width: 100%;
+  max-width: 750px;
+  height: 100%;
+}
+.modal-search-content a {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: #000000;
+  font-weight: 600;
+  line-height: 1.75rem;
+  font-size: 1.125rem;
+}
+.modal-search-content a:hover {
+  color: #000000;
+}
+.back-container {
+  display: flex;
+  align-items: center;
+}
+
+.back-arrow-modal {
+  margin-right: 15px;
+}
+
+.main-search-input[type="text"] {
+  font-size: 16px;
+  padding: 5px;
+  margin: 10px 0 0 12px;
+  border: none;
+  margin: 15px 0;
+  width: 500px;
+  height: 10px;
+  outline: none;
+}
+.searcheader {
+  position: fixed;
+  top: 0;
+  background-color: white;
+  width: 100%;
+}
+.main-search-input[type="text"]:focus {
+  border: none;
+  outline: none;
+}
+.search-modal-input {
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  width: 700px;
+  height: 55px;
+  border: 0.1px solid hsl(210, 40%, 96.1%);
+  border-radius: 5px;
+}
+.search-modal-input:focus {
+  border: 1px solid #69aafa;
+  box-shadow: 1px 0.5px 4px 1px rgba(105, 170, 250, 0.5);
+}
+.searchIconModal {
+  margin: 15px;
+}
+[data-theme="dark"] .search-modal {
+  background-color: #000;
+  color: #fff;
+}
+.back-text {
+  text-decoration: none;
+}
+[data-theme="dark"] .back-text {
+  color: #fff;
+}
+[data-theme="dark"] .back-arrow-modal {
+  color: #fff;
+}
+[data-theme="dark"] .searchIconModal {
+  color: #fff;
+}
+[data-theme="dark"] .main-search-input {
+  color: #fff;
+}
+
+.modal {
+  overflow: hidden;
+}
+
+.search-list {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin-top: 120px;
+}
+
+.prices {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.namePrice {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-left: 20px;
+}
+
+.foodName {
+  flex: 1;
+}
+
+.thePrice {
+  margin-right: 20px;
+}
+
+.itemBt {
+  display: flex;
+  justify-content: space-around;
+}
+
+.price {
+  white-space: nowrap;
+  margin-right: 20px;
 }

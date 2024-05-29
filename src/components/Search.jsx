@@ -117,7 +117,7 @@ export default function Search() {
           <div className="search-list">
             {input.trim() !== "" &&
               filteredItems.map((category) => (
-                <button>
+                <button className="itemBtn">
                   <div
                     key={category._id}
                     id={`category-${category._id}`}
