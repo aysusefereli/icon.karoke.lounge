@@ -8,6 +8,14 @@
 body {
   background-color: var(--background-color);
 }
-a{
+a {
   text-decoration: none;
+}
+
+:root {
+  --background-color: white;
+}
+
+[data-theme="dark"] :root {
+  background-color: black;
 }
