@@ -1,9 +1,12 @@
-import React, { useEffect,  useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles/Menu.css";
 import { Link } from "react-router-dom";
 import useLocalStorage from "use-local-storage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowLeft,
+  faMagnifyingGlass,
+} from "@fortawesome/free-solid-svg-icons";
 import ProductsList from "../components/ProductsList.jsx";
 import { Dropdown } from "rsuite";
 import "rsuite/dist/rsuite.css";
@@ -18,14 +21,16 @@ export default function Menu() {
   const [input, setInput] = useState("");
   const [isModal4Open, setModal4Open] = useState(false);
   const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const [theme, setTheme] = useLocalStorage("theme", defaultDark ? "dark" : "light");
+  const [theme, setTheme] = useLocalStorage(
+    "theme",
+    defaultDark ? "dark" : "light"
+  );
   const switchTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
     console.log(newTheme);
   };
 
- 
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -53,25 +58,28 @@ export default function Menu() {
     setModalSearchOpen(false);
   };
 
-  useEffect(() => {
-    if (input.trim() !== "") {
-      const firstLetter = input.trim().split(" ")[0].toLowerCase();
-      const filtered = categories.filter((category) => {
-        return (
-          input &&
-          category.items &&
-          category.items.name &&
-          category.items.name.toLowerCase().includes(input.toLowerCase())
-        );
-      });
-      setFilteredItems(filtered);
-    } else {
-      setFilteredItems(categories);
-    }
-  }, [input, categories]);
+  const handleInputChange = (event) => {
+    const inputValue = event.target.value.toLowerCase();
+    setInput(inputValue);
 
-  const handleInputChange = (e) => {
-    setInput(e.target.value);
+    const filteredCategories = categories
+      .map((category) => {
+        const filteredItems = category.items.filter((item) => {
+          return item.name.toLowerCase().includes(inputValue);
+        });
+
+        if (filteredItems.length > 0) {
+          return {
+            ...category,
+            items: filteredItems,
+          };
+        } else {
+          return null;
+        }
+      })
+      .filter(Boolean);
+
+    setFilteredItems(filteredCategories);
   };
 
   return (
@@ -85,24 +93,47 @@ export default function Menu() {
                   <FontAwesomeIcon className="back-arrow" icon={faArrowLeft} />
                 </Link>
                 <button className="menu-mode" id="moon" onClick={switchTheme}>
-                  <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px" fill="#000">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="28px"
+                    viewBox="0 -960 960 960"
+                    width="28px"
+                    fill="#000"
+                  >
                     <path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z" />
                   </svg>
                 </button>
                 <button className="menu-mode" id="sun" onClick={switchTheme}>
-                  <svg className="sun-svg" xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px" fill="#fff">
+                  <svg
+                    className="sun-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="28px"
+                    viewBox="0 -960 960 960"
+                    width="28px"
+                    fill="#fff"
+                  >
                     <path d="M480-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm0 80q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Zm326-268Z" />
                   </svg>
                 </button>
               </div>
               <div className="filter_search">
                 <button className="filter" onClick={open4Modal}>
-                  <svg className="filterIcon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000">
+                  <svg
+                    className="filterIcon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                    fill="#000"
+                  >
                     <path d="M710-150q-63 0-106.5-43.5T560-300q0-63 43.5-106.5T710-450q63 0 106.5 43.5T860-300q0 63-43.5 106.5T710-150Zm0-80q29 0 49.5-20.5T780-300q0-29-20.5-49.5T710-370q-29 0-49.5 20.5T640-300q0 29 20.5 49.5T710-230Zm-550-30v-80h320v80H160Zm90-250q-63 0-106.5-43.5T100-660q0-63 43.5-106.5T250-810q63 0 106.5 43.5T400-660q0 63-43.5 106.5T250-510Zm0-80q29 0 49.5-20.5T320-660q0-29-20.5-49.5T250-730q-29 0-49.5 20.5T180-660q0 29 20.5 49.5T250-590Zm230-30v-80h320v80H480Zm230 320ZM250-660Z" />
                   </svg>
                 </button>
                 <button className="search" onClick={openSearchModal}>
-                  <FontAwesomeIcon className="searchIcon" icon={faMagnifyingGlass} />
+                  <FontAwesomeIcon
+                    className="searchIcon"
+                    icon={faMagnifyingGlass}
+                  />
                 </button>
               </div>
             </div>
@@ -123,20 +154,22 @@ export default function Menu() {
                 modules={[FreeMode, Keyboard, Mousewheel]}
                 className="mySwiper"
               >
-              {categories.map((category) => (
-                      <SwiperSlide key={category.id} className="swiper-slide-auto">
-                      <button 
-                        className="meal" 
-                      >
-                        {category.name}
-                      </button>
-                    </SwiperSlide>
-              ))}
-            </Swiper>
+                {categories.map((category) => (
+                  <SwiperSlide key={category.id} className="swiper-slide-auto">
+                    <button className="meal">{category.name}</button>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
           </div>
           <div className="menu-note">
-            <svg className="menu-note-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
+            <svg
+              className="menu-note-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+            >
               <path
                 fill="#334155"
                 d="M11.999 2.014c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10m0 5a1 1 0 1 1 0 2 1 1 0 0 1 0-2m-1 3h1a.986.986 0 0 1 .969 1.188l-.75 3.812h.781a1 1 0 0 1 0 2h-1c-1.183 0-2.013-1.027-1.781-2.188l.593-2.874c-.453-.096-.812-.456-.812-.938a1 1 0 0 1 1-1"
@@ -155,14 +188,20 @@ export default function Menu() {
                 <Link to="/menu" className="back">
                   <div className="back-container">
                     <div className="back-modal">
-                      <FontAwesomeIcon className="back-arrow-modal" icon={faArrowLeft} />
+                      <FontAwesomeIcon
+                        className="back-arrow-modal"
+                        icon={faArrowLeft}
+                      />
                     </div>
                     <p className="back-text">Geri qayit</p>
                   </div>
                 </Link>
               </span>
               <button className="search-modal-input">
-                <FontAwesomeIcon className="searchIconModal" icon={faMagnifyingGlass} />
+                <FontAwesomeIcon
+                  className="searchIconModal"
+                  icon={faMagnifyingGlass}
+                />
                 <input
                   className="main-search-input"
                   type="text"
@@ -173,9 +212,13 @@ export default function Menu() {
                 <div className="search-list">
                   {input.trim() !== "" &&
                     filteredItems.map((category) => (
-                      <div key={category._id} id={`category-${category._id}`} className="category-name">
+                      <div
+                        key={category._id}
+                        id={`category-${category._id}`}
+                        className="category-name"
+                      >
                         {category.items.map((item) => (
-                          <div key={item.id}>
+                          <div key={item.id} className="prices">
                             <div className="namePrice">
                               <span className="foodName">{item.name}</span>
                               <span className="price">{item.price} ₼</span>

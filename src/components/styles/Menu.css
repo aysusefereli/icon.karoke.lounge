@@ -17,7 +17,7 @@
   max-width: 100%;
   position: sticky;
 }
-.header-border{
+.header-border {
   border: 1px solid #e5e7eb;
   box-shadow: 1px 1px 1px #e5e7eb;
 }
@@ -296,6 +296,8 @@
   width: 100%;
   max-width: 750px;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .modal-search-content a {
   width: 300px;
@@ -307,7 +309,7 @@
   line-height: 1, 75rem;
   font-size: 1.125rem;
 }
-.modal-search-content a:hover{
+.modal-search-content a:hover {
   color: #000000;
 }
 .back-container {
@@ -425,29 +427,29 @@
   padding-left: 0.75rem;
   padding-right: 0.75rem;
 }
-[data-theme="dark"] .modal-content4{
+[data-theme="dark"] .modal-content4 {
   background-color: #000000;
 }
-[data-theme="dark"] .modal-content4{
-  background-color: #000000;
-}
-
-[data-theme="dark"] .modal-content4{
+[data-theme="dark"] .modal-content4 {
   background-color: #000000;
 }
 
-[data-theme="dark"] .dropdown{
+[data-theme="dark"] .modal-content4 {
   background-color: #000000;
-  border: 1px solid #69AAFA;
+}
+
+[data-theme="dark"] .dropdown {
+  background-color: #000000;
+  border: 1px solid #69aafa;
   color: #fff;
 }
 
-[data-theme="dark"] .dropdown span{
+[data-theme="dark"] .dropdown span {
   color: #fff;
 }
 
 .mealsOptions {
-  padding:0 20px;
+  padding: 0 20px;
 }
 
 .mySwiper {
@@ -464,7 +466,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: auto !important; 
+  width: auto !important;
 }
 .meal {
   background-color: #ffffff;
@@ -475,9 +477,9 @@
   cursor: pointer;
   font-size: 14px;
   transition: background-color 0.3s;
-  white-space: nowrap; 
-  overflow: hidden; 
-  text-overflow: ellipsis; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   max-width: 100%;
 }
 
@@ -496,4 +498,24 @@
 [data-theme="dark"] .header-border {
   border: none;
   box-shadow: none;
+}
+
+.search-list {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+.prices {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.foodName {
+  white-space: nowrap;
+}
+
+.price {
+  white-space: nowrap;
 }
