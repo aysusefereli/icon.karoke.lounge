@@ -36,7 +36,7 @@
   font-size: 16px;
   color: black;
 }
-[data-theme="dark"] .products {
+[data-theme="dark"] .product {
   color: #fff;
 }
 [data-theme="dark"] .foodName {

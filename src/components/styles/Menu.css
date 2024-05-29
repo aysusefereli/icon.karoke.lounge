@@ -5,6 +5,8 @@
 .main-container {
   display: flex;
   justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 .container {
   display: flex;
@@ -14,6 +16,10 @@
   width: 750px;
   max-width: 100%;
   position: sticky;
+}
+.header-border{
+  border: 1px solid #e5e7eb;
+  box-shadow: 1px 1px 1px #e5e7eb;
 }
 .menu-header {
   display: flex;
@@ -301,6 +307,9 @@
   line-height: 1, 75rem;
   font-size: 1.125rem;
 }
+.modal-search-content a:hover{
+  color: #000000;
+}
 .back-container {
   display: flex;
   align-items: center;
@@ -416,3 +425,63 @@
   padding-left: 0.75rem;
   padding-right: 0.75rem;
 }
+[data-theme="dark"] .modal-content4{
+  background-color: #000000;
+}
+[data-theme="dark"] .modal-content4{
+  background-color: #000000;
+}
+
+[data-theme="dark"] .modal-content4{
+  background-color: #000000;
+}
+
+[data-theme="dark"] .dropdown{
+  background-color: #000000;
+  border: 1px solid #69AAFA;
+  color: #fff;
+}
+
+[data-theme="dark"] .dropdown span{
+  color: #fff;
+}
+
+.mealsOptions {
+  padding:0 20px;
+}
+
+.mySwiper {
+  width: 100%;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.swiper-slide-auto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto !important; 
+}
+.meal {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 0 20px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  max-width: 100%;
+}
+
+.meal:hover {
+  background-color: #f0f0f0;
+}
+
