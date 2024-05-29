@@ -11,6 +11,7 @@
 .container {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .border-container {
   width: 750px;
@@ -298,6 +299,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  text-decoration: none;
 }
 .modal-search-content a {
   width: 300px;
@@ -319,6 +321,14 @@
 
 .back-arrow-modal {
   margin-right: 15px;
+  border: 1px solid transparent;
+  background-color: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 20%;
+  padding: 8px;
+  cursor: pointer;
+  color: black;
 }
 
 .main-search-input[type="text"] {
@@ -339,7 +349,7 @@
   margin: 10px;
   display: flex;
   flex-direction: row;
-  width: 700px;
+  width: 730px;
   height: 55px;
   border: 0.1px solid hsl(210 40% 96.1%);
   border-radius: 5px;
@@ -355,14 +365,27 @@
   background-color: #000;
   color: #fff;
 }
+
 .back-text {
   text-decoration: none;
+  white-space: nowrap;
+  color: black;
 }
+.bckText {
+  text-decoration: none;
+}
+
 [data-theme="dark"] .back-text {
+  color: #fff;
+}
+[data-theme="dark"] .back-text:hover {
   color: #fff;
 }
 [data-theme="dark"] .back-arrow-modal {
   color: #fff;
+}
+[data-theme="dark"] .back-arrow-modal:hover {
+  background-color: #1e293b;
 }
 [data-theme="dark"] .searchIconModal {
   color: #fff;
@@ -501,7 +524,7 @@
 }
 
 .search-list {
-  margin-top: 80px;
+  margin-top: 100px;
   display: flex;
   flex-direction: column;
 }
@@ -510,6 +533,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding-bottom: 20px;
 }
 
 .foodName {
@@ -518,4 +542,39 @@
 
 .price {
   white-space: nowrap;
+}
+
+.search-modal {
+  overflow-y: auto;
+}
+
+.searcheader {
+  position: fixed;
+  background-color: white;
+  top: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .search-list {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+  }
+
+  .searcheader {
+    width: 100%;
+  }
+  .search-modal-input {
+    width: 100%;
+  }
+
+  .main-search-input {
+    width: 100%;
+  }
+
+  button {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+  }
 }

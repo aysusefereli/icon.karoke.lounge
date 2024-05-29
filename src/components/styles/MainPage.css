@@ -540,6 +540,14 @@ hr {
 [data-theme="dark"] .menu-link-left-side img {
   background-color: #595959;
 }
+.menuPage {
+  text-decoration: none;
+  color: white;
+}
+.faChevronRight {
+  text-decoration: none;
+  color: white;
+}
 [data-theme="dark"] .faChevronRight {
   background-color: #595959;
 }
@@ -634,7 +642,6 @@ hr {
   background-color: hsl(222.2 84% 4.9%);
 }
 
-
 [data-theme="dark"] .PhoneInputInput {
   background-color: hsl(222.2 84% 4.9%);
   color: white;
@@ -652,10 +659,10 @@ hr {
   border: 1px solid #69aafa;
   box-shadow: 1px 0.5px 4px 1px rgba(105, 170, 250, 0.5);
 }
-.PhoneInputInput{
+.PhoneInputInput {
   outline: none;
   border: none;
 }
-.PhoneInput{
-  border: 1px solid #cacaca47 ;
+.PhoneInput {
+  border: 1px solid #cacaca47;
 }

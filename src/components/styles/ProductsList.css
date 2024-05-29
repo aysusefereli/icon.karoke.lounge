@@ -5,6 +5,10 @@
   color: black;
 }
 
+.productsList {
+  width: 100%;
+}
+
 .food {
   padding: 10px;
   display: grid;

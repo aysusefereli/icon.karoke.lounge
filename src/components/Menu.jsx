@@ -131,12 +131,12 @@ export default function Menu() {
                     <path d="M710-150q-63 0-106.5-43.5T560-300q0-63 43.5-106.5T710-450q63 0 106.5 43.5T860-300q0 63-43.5 106.5T710-150Zm0-80q29 0 49.5-20.5T780-300q0-29-20.5-49.5T710-370q-29 0-49.5 20.5T640-300q0 29 20.5 49.5T710-230Zm-550-30v-80h320v80H160Zm90-250q-63 0-106.5-43.5T100-660q0-63 43.5-106.5T250-810q63 0 106.5 43.5T400-660q0 63-43.5 106.5T250-510Zm0-80q29 0 49.5-20.5T320-660q0-29-20.5-49.5T250-730q-29 0-49.5 20.5T180-660q0 29 20.5 49.5T250-590Zm230-30v-80h320v80H480Zm230 320ZM250-660Z" />
                   </svg>
                 </button>
-                <button className="search" onClick={openSearchModal}>
+                <Link to="/search" className="search">
                   <FontAwesomeIcon
                     className="searchIcon"
                     icon={faMagnifyingGlass}
                   />
-                </button>
+                </Link>
               </div>
             </div>
             <div className="mealsOptions">
@@ -183,60 +183,6 @@ export default function Menu() {
         <div className="productsList">
           <ProductsList />
         </div>
-        {isModalSearchOpen && (
-          <div id="mySearchModal" className="search-modal">
-            <div className="modal-search-content">
-              <span onClick={closeSearchModal}>
-                <Link to="/menu" className="back">
-                  <div className="back-container">
-                    <div className="back-modal">
-                      <FontAwesomeIcon
-                        className="back-arrow-modal"
-                        icon={faArrowLeft}
-                      />
-                    </div>
-                    <p className="back-text">Geri qayit</p>
-                  </div>
-                </Link>
-              </span>
-              <button className="search-modal-input">
-                <FontAwesomeIcon
-                  className="searchIconModal"
-                  icon={faMagnifyingGlass}
-                />
-                <input
-                  className="main-search-input"
-                  type="text"
-                  placeholder="Axtardığınız qidanın adını yazın"
-                  value={input}
-                  onChange={handleInputChange}
-                />
-                <div className="search-list">
-                  {input.trim() !== "" &&
-                    filteredItems.map((category) => (
-                      <div
-                        key={category._id}
-                        id={`category-${category._id}`}
-                        className="category-name"
-                      >
-                        {category.items.map((item) => (
-                          <div key={item.id} className="prices">
-                            <div className="namePrice">
-                              <span className="foodName">{item.name}</span>
-                              <span className="price">{item.price} ₼</span>
-                            </div>
-                            <div className="thePrice">
-                              <span className="price">{item.price} ₼</span>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    ))}
-                </div>
-              </button>
-            </div>
-          </div>
-        )}
       </div>
       {isModal4Open && (
         <div id="myModal" className="modal">
