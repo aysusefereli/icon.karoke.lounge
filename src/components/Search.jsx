@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useLocalStorage from "use-local-storage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,22 +12,12 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import "./styles/Search.css";
 
-export default function Search() {
+export default function Search({ theme, switchTheme }) {
   const [filteredItems, setFilteredItems] = useState([]);
   const [input, setInput] = useState("");
   const [isModal4Open, setModal4Open] = useState(false);
-  const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const [theme, setTheme] = useLocalStorage(
-    "theme",
-    defaultDark ? "dark" : "light"
-  );
-  const switchTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    console.log(newTheme);
-  };
-
   const [categories, setCategories] = useState([]);
+  const [isModalSearchOpen, setModalSearchOpen] = useState(false);
 
   useEffect(() => {
     fetch(
@@ -38,23 +28,6 @@ export default function Search() {
         setCategories(data);
       });
   }, []);
-
-  const open4Modal = () => {
-    setModal4Open(true);
-  };
-
-  const close4Modal = () => {
-    setModal4Open(false);
-  };
-
-  const [isModalSearchOpen, setModalSearchOpen] = useState(false);
-  const openSearchModal = () => {
-    setModalSearchOpen(true);
-  };
-
-  const closeSearchModal = () => {
-    setModalSearchOpen(false);
-  };
 
   const handleInputChange = (event) => {
     const inputValue = event.target.value.toLowerCase();
@@ -80,11 +53,26 @@ export default function Search() {
     setFilteredItems(filteredCategories);
   };
 
+  const openSearchModal = () => {
+    setModalSearchOpen(true);
+  };
+
+  const closeSearchModal = () => {
+    setModalSearchOpen(false);
+  };
+
+  useEffect(() => {
+    console.log("Current theme:", theme);
+  }, [theme]);
+
   return (
     <div>
-      <div id="mySearchModal" className="search-modal">
+      <div
+        id="mySearchModal"
+        className={`search-modal ${theme === "dark" ? "dark" : ""}`}
+      >
         <div className="modal-search-content">
-          <div className="searcheader">
+          <div className="search-header">
             <span onClick={closeSearchModal}>
               <Link to="/menu" className="back-modal">
                 <div className="back-container">

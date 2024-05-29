@@ -174,11 +174,12 @@
 .search {
   border: 1px solid transparent;
   background-color: none;
-  width: 45px;
-  height: 45px;
+  width: 25px;
+  height: 25px;
   border-radius: 20%;
   padding: 8px;
   cursor: pointer;
+  color: black;
 }
 
 [data-theme="dark"] .searchIcon {
@@ -186,11 +187,8 @@
 }
 
 [data-theme="dark"] .search:hover {
-  .searchIcon {
-    background-color: #1e293b;
-  }
-  width: 45px;
-  height: 45px;
+  width: 25px;
+  height: 25px;
   border: 1px solid #1e293b;
   background-color: #1e293b;
   border-radius: 20%;
@@ -198,13 +196,14 @@
   cursor: pointer;
 }
 .search:hover {
-  width: 45px;
-  height: 45px;
+  width: 25px;
+  height: 25px;
   border: 1px solid #e9efff;
   background-color: #e9efff;
   border-radius: 20%;
   padding: 8px;
   cursor: pointer;
+  color: black;
 }
 
 .filter {
