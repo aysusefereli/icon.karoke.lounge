@@ -34,7 +34,9 @@ export default function Menu() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/categories-with-items")
+    fetch(
+      "https://icon-karaoke-and-lounge-back.onrender.com/api/categories-with-items"
+    )
       .then((response) => response.json())
       .then((data) => {
         setCategories(data);
