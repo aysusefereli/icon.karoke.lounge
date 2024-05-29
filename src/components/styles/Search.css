@@ -1,0 +1,7 @@
+[data-theme="dark"] {
+  --background-color: black;
+}
+
+[data-theme="dark"] .search-modal {
+  background-color: black;
+}

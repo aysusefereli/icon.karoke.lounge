@@ -10,6 +10,7 @@ import "rsuite/dist/rsuite.css";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
+import "./styles/Search.css";
 
 export default function Search() {
   const [filteredItems, setFilteredItems] = useState([]);
