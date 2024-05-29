@@ -11,6 +11,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
+import { useTheme } from '@mui/material/styles';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import Box from '@mui/material/Box'; 
+import Slider from '@mui/material/Slider'; 
 
 export default function Menu() {
   const [filteredItems, setFilteredItems] = useState([]);
@@ -23,13 +31,65 @@ export default function Menu() {
     setTheme(newTheme);
     console.log(newTheme);
   };
+  function valuetext(value) {
+    return `${value}°C`;
+  }
+ let min=0;
+ let max=0
+ const [sliderValue, setSliderValue] = useState([1, 25]);
 
-  
-    const [selectedOption, setSelectedOption] = useState('');
-  
-    const handleSelectChange = (event) => {
-      setSelectedOption(event.target.value);
-    };
+const bisirilmeVaxtiMetni = `Bişirilmə vaxtı: ${sliderValue[0]}-${sliderValue[1]} dəq`;
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+const names = [
+  'Qabıqlı balıqlar',
+  'Yumurta',
+  'Balıq',
+  'Süd',
+  'Fıstıq',
+  'Soya',
+  'Qoz-fındıq',
+  'Buğda',
+  'Qlütenli taxıllar',
+  'Sulfitlər',
+  'Qarabaşaq yarması',
+  'Kərəviz',
+  'Acıpaxla',
+  'Molyusklar qabıqlı balıqlar',
+  'Xardal',
+  'Küncüt',
+];
+function getStyles(name, personName, thetheme) {
+  const fontWeightRegular = thetheme?.typography?.fontWeightRegular || 400; 
+  const fontWeightMedium = thetheme?.typography?.fontWeightMedium || 500; 
+
+  return {
+    fontWeight:
+      personName.indexOf(name) === -1
+        ? fontWeightRegular
+        : fontWeightMedium,
+  };
+}
+const thetheme = useTheme();
+const [personName, setPersonName] = React.useState([]);
+
+const handleChange = (event) => {
+  const {
+    target: { value },
+  } = event;
+  setPersonName(
+   
+    typeof value === 'string' ? value.split(',') : value,
+  );
+};
     
   const [categories, setCategories] = useState([]);
 
@@ -234,34 +294,58 @@ export default function Menu() {
               <div className="allergies">
                 <p>Allergiyalar</p>
               </div>
-              <div className="choiceAllergie">
-                <div className="select-picker" style={{ width: "450px" }}>
-                  <select style={{ width: "100%"}} onChange={handleSelectChange} value={selectedOption}>
-                    <option value="" disabled selected hidden>Allergiyalar seç</option>
-                    <optgroup label="Allergiyalar">
-                      <option value="Qabıqlı balıqlar">Qabıqlı balıqlar</option>
-                      <option value="Yumurta">Yumurta</option>
-                      <option value="Süd">Süd</option>
-                      <option value="Balıq">Balıq</option>
-                      <option value="Fıstıq">Fıstıq</option>
-                      <option value="Soya">Soya</option>
-                      <option value="Qoz-fındıq">Qoz-fındıq</option>
-                      <option value="Buğda">Buğda</option>
-                      <option value="Qlütenli Taxıllar">Qlütenli Taxıllar</option>
-                      <option value="Sulfitlər">Sulfitlər</option>
-                      <option value="Qarabaşaq yarması">Qarabaşaq yarması</option>
-                      <option value="Kərəviz">Kərəviz</option>
-                      <option value="Acı paxla">Acı paxla</option>
-                      <option value="Molyusklar qabıqlı balıqlar">Molyusklar qabıqlı balıqlar</option>
-                      <option value="Xardal">Xardal</option>
-                      <option value="Küncüt">Küncüt</option>
-                    </optgroup>
-                  </select>
-                </div>
+           
+
+              <div>
+      <FormControl sx={{ m: 1, width: 450 }}>
+        <InputLabel id="demo-multiple-name-label">  Seç</InputLabel>
+        <Select
+          labelId="demo-multiple-name-label"
+          id="demo-multiple-name"
+          multiple
+          value={personName}
+          onChange={handleChange}
+          input={<OutlinedInput label="Name" />}
+          MenuProps={MenuProps}
+        >
+          {names.map((name) => (
+            <MenuItem
+              key={name}
+              value={name}
+              style={getStyles(name, personName, theme)}
+            >
+              {name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </div>
+              <div>
+                <p className="bisirilme-vaxti">{bisirilmeVaxtiMetni}</p>
+              <Box sx={{ width: 450 , margin:"15px 0"}}>
+                <Slider
+                  getAriaLabel={() => 'Temperature range'}
+                  value={sliderValue}
+                  onChange={handleChange}
+                  valueLabelDisplay="auto"
+                  getAriaValueText={valuetext}
+                  color="#000" 
+                  max={25} 
+                  min={1}
+                  
+                />
+              </Box>
               </div>
-            <div>
-              
-            </div>
+              <div className="filter-section-buttons">
+                <button className="filter-section-delete-button" >
+                  <svg xmlns="http://www.w3.org/2000/svg" 
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#ff0000">
+                  <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg></button>
+                <button className="filter-section-confirm-button">Tətbiq et</button>
+              </div>
             </div>
           </div>
         </div>
