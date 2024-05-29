@@ -278,7 +278,7 @@
 [data-theme="dark"] .meal {
   color: white;
 }
-/* .search-modal {
+.search-modal {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -307,7 +307,7 @@
   line-height: 1, 75rem;
   font-size: 1.125rem;
 }
-.modal-search-content a:hover{
+.modal-search-content a:hover {
   color: #000000;
 }
 .back-container {
@@ -371,7 +371,7 @@
 
 .modal {
   overflow: hidden;
-} */
+}
 
 .modal-content4 {
   background-color: hsl(0 0% 100%);
