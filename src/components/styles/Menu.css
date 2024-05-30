@@ -20,6 +20,9 @@
 .header-border {
   border: 1px solid #e5e7eb;
   box-shadow: 1px 1px 1px #e5e7eb;
+  position: sticky;
+  top: 0;
+  background-color: white;
 }
 .menu-header {
   display: flex;
@@ -552,11 +555,11 @@
   background-color: #1e293b;
   border: none;
 }
-[data-theme="dark"]  .filtersBtn span{
+[data-theme="dark"] .filtersBtn span {
   background-color: #1e293b;
   border: none;
 }
-[data-theme="dark"]  .filtersBtn img{
+[data-theme="dark"] .filtersBtn img {
   background-color: #1e293b;
   border: none;
 }
@@ -586,22 +589,22 @@
 [data-theme="dark"] .filter-section-delete-button {
   border: 1px solid #1e293b;
 }
-[data-theme="dark"] .filtersBtn.active{
-  .filtersBtn-span{
+[data-theme="dark"] .filtersBtn.active {
+  .filtersBtn-span {
     background-color: #595959;
   }
-  .filtersBtn-img{
+  .filtersBtn-img {
     background-color: #595959;
   }
-   background-color: #595959;
+  background-color: #595959;
 }
-.filtersBtn.active{
-  .filtersBtn-span{
+.filtersBtn.active {
+  .filtersBtn-span {
     background-color: #000;
   }
-  .filtersBtn-img{
+  .filtersBtn-img {
     background-color: #000;
   }
-   background-color: #000;
-   color: #fff;
+  background-color: #000;
+  color: #fff;
 }

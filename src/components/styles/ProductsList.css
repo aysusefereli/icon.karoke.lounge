@@ -3,6 +3,9 @@
   font-size: 24px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.01);
   color: black;
+  position: sticky;
+  top: 0;
+  background-color: white;
 }
 
 .productsList {
@@ -42,6 +45,7 @@
 }
 [data-theme="dark"] .product {
   color: #fff;
+  background-color: black;
 }
 [data-theme="dark"] .foodName {
   color: #fff;

@@ -26,9 +26,10 @@ export default function ProductsList() {
                   <span className="foodName">{item.name}</span>
                   <span className="price">{item.price} ₼</span>
                 </div>
-                {item.image ? ( // If image exists
+                {item.image ? (
                   <span className="image">
                     <img className="foodImg" src={item.image} alt={item.name} />
+                    <div className="plus">+</div>
                   </span>
                 ) : (
                   <div className="noImage">

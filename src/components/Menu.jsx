@@ -7,7 +7,7 @@ import {
   faArrowLeft,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
-import ProductsList from "../components/ProductsList.jsx";
+import ProductsList from "../components/ProductsList";
 import "rsuite/dist/rsuite.css";
 import { FreeMode, Keyboard, Mousewheel } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -32,8 +32,8 @@ export default function Menu() {
     "theme",
     defaultDark ? "dark" : "light"
   );
-   const switchTheme = () => {
-     const newTheme = theme === "light" ? "dark" : "light";
+  const switchTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
     console.log(newTheme);
   };
@@ -102,7 +102,7 @@ export default function Menu() {
 
   useEffect(() => {
     fetch(
-      "https://icon-karaoke-and-lounge-back.onrender.com/api/items-with-category"
+      "https://icon-karaoke-and-lounge-back.onrender.com/api/categories-with-items"
     )
       .then((response) => response.json())
       .then((data) => {

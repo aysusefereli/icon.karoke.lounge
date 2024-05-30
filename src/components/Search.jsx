@@ -61,13 +61,9 @@ export default function Search() {
     setModalSearchOpen(false);
   };
 
-
   return (
     <div>
-      <div
-        id="mySearchModal"
-        className={`search-modal ${theme === "dark" ? "dark" : ""}`}
-      >
+      <div id="mySearchModal" className="search-modal">
         <div className="modal-search-content">
           <div className="search-header">
             <span onClick={closeSearchModal}>
