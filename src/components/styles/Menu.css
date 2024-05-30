@@ -553,11 +553,11 @@ align-items: center;
   background-color: #1e293b;
   border: none;
 }
-[data-theme="dark"]  .filtersBtn span{
+[data-theme="dark"]  .filtersBtn-span{
   background-color: #1e293b;
   border: none;
 }
-[data-theme="dark"]  .filtersBtn img{
+[data-theme="dark"]  .filtersBtn-img{
   background-color: #1e293b;
   border: none;
 }
@@ -581,3 +581,31 @@ align-items: center;
 [data-theme="dark"] .filter-section-delete-button{
   border: 1px solid #1e293b;
 }
+.filtersBtn {
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  cursor: pointer;
+  margin: 5px;
+}
+ .filtersBtn.active{
+  .filtersBtn-span{
+    background-color: #000;
+  }
+  .filtersBtn-img{
+    background-color: #000;
+  }
+   background-color: #000;
+   color: #fff;
+}
+
+[data-theme="dark"] .filtersBtn.active{
+  .filtersBtn-span{
+    background-color: #595959;
+  }
+  .filtersBtn-img{
+    background-color: #595959;
+  }
+   background-color: #595959;
+}
+
