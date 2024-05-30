@@ -101,7 +101,9 @@ export default function Menu() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/categories-with-items")
+    fetch(
+      "https://icon-karaoke-and-lounge-back.onrender.com/api/items-with-category"
+    )
       .then((response) => response.json())
       .then((data) => {
         setCategories(data);
@@ -145,7 +147,13 @@ export default function Menu() {
   const handleInputChange = (e) => {
     setInput(e.target.value);
   };
-  const [activeButtons, setActiveButtons] = useState([false, false, false, false, false]);
+  const [activeButtons, setActiveButtons] = useState([
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
 
   const handleButtonClick = (index) => {
     const newActiveButtons = [...activeButtons];
@@ -265,42 +273,62 @@ export default function Menu() {
             <div className="modal_info">
               <div className="choice">Filterler</div>
               <div className="filters">
-              <button
-                className={`filtersBtn ${activeButtons[0] ? 'active' : ''}`}
-                onClick={() => handleButtonClick(0)}
-              >
-                <img  className="filtersBtn-img" src="./assets/halal-sign.png" alt="Halal" />
-                <span className="filtersBtn-span">Halal</span>
-              </button>
-              <button
-                className={`filtersBtn ${activeButtons[1] ? 'active' : ''}`}
-                onClick={() => handleButtonClick(1)}
-              >
-                <img  className="filtersBtn-img" src="./assets/kosher.png" alt="Kosher" />
-                <span className="filtersBtn-span">Kosher</span>
-              </button>
-              <button
-                className={`filtersBtn ${activeButtons[2] ? 'active' : ''}`}
-                onClick={() => handleButtonClick(2)}
-              >
-                <img className="filtersBtn-img" src="./assets/vegan.png" alt="Vegetarian" />
-                <span className="filtersBtn-span"> Vegetarian</span>
-              </button>
-              <button
-                className={`filtersBtn ${activeButtons[3] ? 'active' : ''}`}
-                onClick={() => handleButtonClick(3)}
-              >
-                <img className="filtersBtn-img" src="./assets/salad.png" alt="Vegan" />
-                <span className="filtersBtn-span">Vegan</span>
-              </button>
-              <button
-                className={`filtersBtn ${activeButtons[4] ? 'active' : ''}`}
-                onClick={() => handleButtonClick(4)}
-              >
-                <img  className="filtersBtn-img" src="./assets/chili-pepper.png" alt="Acılı" />
-                <span className="filtersBtn-span">Acılı</span>
-              </button>
-            </div>
+                <button
+                  className={`filtersBtn ${activeButtons[0] ? "active" : ""}`}
+                  onClick={() => handleButtonClick(0)}
+                >
+                  <img
+                    className="filtersBtn-img"
+                    src="./assets/halal-sign.png"
+                    alt="Halal"
+                  />
+                  <span className="filtersBtn-span">Halal</span>
+                </button>
+                <button
+                  className={`filtersBtn ${activeButtons[1] ? "active" : ""}`}
+                  onClick={() => handleButtonClick(1)}
+                >
+                  <img
+                    className="filtersBtn-img"
+                    src="./assets/kosher.png"
+                    alt="Kosher"
+                  />
+                  <span className="filtersBtn-span">Kosher</span>
+                </button>
+                <button
+                  className={`filtersBtn ${activeButtons[2] ? "active" : ""}`}
+                  onClick={() => handleButtonClick(2)}
+                >
+                  <img
+                    className="filtersBtn-img"
+                    src="./assets/vegan.png"
+                    alt="Vegetarian"
+                  />
+                  <span className="filtersBtn-span"> Vegetarian</span>
+                </button>
+                <button
+                  className={`filtersBtn ${activeButtons[3] ? "active" : ""}`}
+                  onClick={() => handleButtonClick(3)}
+                >
+                  <img
+                    className="filtersBtn-img"
+                    src="./assets/salad.png"
+                    alt="Vegan"
+                  />
+                  <span className="filtersBtn-span">Vegan</span>
+                </button>
+                <button
+                  className={`filtersBtn ${activeButtons[4] ? "active" : ""}`}
+                  onClick={() => handleButtonClick(4)}
+                >
+                  <img
+                    className="filtersBtn-img"
+                    src="./assets/chili-pepper.png"
+                    alt="Acılı"
+                  />
+                  <span className="filtersBtn-span">Acılı</span>
+                </button>
+              </div>
               <div className="allergies">
                 <p>Allergiyalar</p>
               </div>

@@ -26,13 +26,16 @@ export default function ProductsList() {
                   <span className="foodName">{item.name}</span>
                   <span className="price">{item.price} ₼</span>
                 </div>
-                <div className="thePrice">
-                  <span className="price">{item.price} ₼</span>
+                {item.image ? ( // If image exists
                   <span className="image">
-                    <img className="foodImg" src={item.image} />
+                    <img className="foodImg" src={item.image} alt={item.name} />
                     <div className="plus">+</div>
                   </span>
-                </div>
+                ) : (
+                  <div className="noImage">
+                    <span className="price">{item.price} ₼</span>
+                  </div>
+                )}
               </button>
             ))}
           </div>
