@@ -12,7 +12,7 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import "./styles/Search.css";
 
-export default function Search({ theme, switchTheme }) {
+export default function Search() {
   const [filteredItems, setFilteredItems] = useState([]);
   const [input, setInput] = useState("");
   const [isModal4Open, setModal4Open] = useState(false);
@@ -61,9 +61,6 @@ export default function Search({ theme, switchTheme }) {
     setModalSearchOpen(false);
   };
 
-  useEffect(() => {
-    console.log("Current theme:", theme);
-  }, [theme]);
 
   return (
     <div>

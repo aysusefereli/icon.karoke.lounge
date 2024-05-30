@@ -564,6 +564,9 @@
   color: #f8f8f8;
 }
 
+[data-theme="dark"] .modal-content4 {
+  background-color: #000;
+}
 [data-theme="dark"] .allergies-form {
   border: 1px solid #1e293b;
   border-radius: 10px;
@@ -579,4 +582,26 @@
 }
 [data-theme="dark"] .filter-section-delete-button {
   border: 1px solid #1e293b;
+}
+[data-theme="dark"] .filter-section-delete-button {
+  border: 1px solid #1e293b;
+}
+[data-theme="dark"] .filtersBtn.active{
+  .filtersBtn-span{
+    background-color: #595959;
+  }
+  .filtersBtn-img{
+    background-color: #595959;
+  }
+   background-color: #595959;
+}
+.filtersBtn.active{
+  .filtersBtn-span{
+    background-color: #000;
+  }
+  .filtersBtn-img{
+    background-color: #000;
+  }
+   background-color: #000;
+   color: #fff;
 }

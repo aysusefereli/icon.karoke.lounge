@@ -32,8 +32,8 @@ export default function Menu() {
     "theme",
     defaultDark ? "dark" : "light"
   );
-  const switchTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
+   const switchTheme = () => {
+     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
     console.log(newTheme);
   };
