@@ -59,6 +59,19 @@
   border-radius: 12px;
 }
 
-.plus {
+.image {
   position: relative;
+  display: inline-block;
+}
+
+.plus {
+  font-weight: 600;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: black;
+  color: white;
+  padding: 2px 5px;
+  border-top-left-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
