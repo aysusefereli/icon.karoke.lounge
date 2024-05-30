@@ -1,9 +1,12 @@
-import React, { useEffect,  useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles/Menu.css";
 import { Link } from "react-router-dom";
 import useLocalStorage from "use-local-storage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowLeft,
+  faMagnifyingGlass,
+} from "@fortawesome/free-solid-svg-icons";
 import ProductsList from "../components/ProductsList.jsx";
 import "rsuite/dist/rsuite.css";
 import { FreeMode, Keyboard, Mousewheel } from "swiper/modules";
@@ -11,21 +14,24 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
-import { useTheme, useThemeProps } from '@mui/material/styles';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import Box from '@mui/material/Box'; 
-import Slider from '@mui/material/Slider'; 
+import { useTheme, useThemeProps } from "@mui/material/styles";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import Box from "@mui/material/Box";
+import Slider from "@mui/material/Slider";
 
 export default function Menu() {
   const [filteredItems, setFilteredItems] = useState([]);
   const [input, setInput] = useState("");
   const [isModal4Open, setModal4Open] = useState(false);
   const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const [theme, setTheme] = useLocalStorage("theme", defaultDark ? "dark" : "light");
+  const [theme, setTheme] = useLocalStorage(
+    "theme",
+    defaultDark ? "dark" : "light"
+  );
   const switchTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
@@ -34,51 +40,49 @@ export default function Menu() {
   function valuetext(value) {
     return `${value}°C`;
   }
-  
- let min=0;
- let max=0
- const [sliderValue, setSliderValue] = useState([1, 25]);
 
+  let min = 0;
+  let max = 0;
+  const [sliderValue, setSliderValue] = useState([1, 25]);
 
-const bisirilmeVaxtiMetni = `Bişirilmə vaxtı: ${sliderValue[0]}-${sliderValue[1]} dəq`;
+  const bisirilmeVaxtiMetni = `Bişirilmə vaxtı: ${sliderValue[0]}-${sliderValue[1]} dəq`;
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
     },
-  },
-};
-const names = [
-  'Qabıqlı balıqlar',
-  'Yumurta',
-  'Balıq',
-  'Süd',
-  'Fıstıq',
-  'Soya',
-  'Qoz-fındıq',
-  'Buğda',
-  'Qlütenli taxıllar',
-  'Sulfitlər',
-  'Qarabaşaq yarması',
-  'Kərəviz',
-  'Acıpaxla',
-  'Molyusklar qabıqlı balıqlar',
-  'Xardal',
-  'Küncüt',
-];
-function getStyles(name, personName, thetheme) {
-  return {
-    fontWeight:
-      personName.indexOf(name) === -1
-        ? thetheme.typography.fontWeightRegular
-        : thetheme.typography.fontWeightMedium,
   };
-}
-
+  const names = [
+    "Qabıqlı balıqlar",
+    "Yumurta",
+    "Balıq",
+    "Süd",
+    "Fıstıq",
+    "Soya",
+    "Qoz-fındıq",
+    "Buğda",
+    "Qlütenli taxıllar",
+    "Sulfitlər",
+    "Qarabaşaq yarması",
+    "Kərəviz",
+    "Acıpaxla",
+    "Molyusklar qabıqlı balıqlar",
+    "Xardal",
+    "Küncüt",
+  ];
+  function getStyles(name, personName, thetheme) {
+    return {
+      fontWeight:
+        personName.indexOf(name) === -1
+          ? thetheme.typography.fontWeightRegular
+          : thetheme.typography.fontWeightMedium,
+    };
+  }
 
   const thetheme = useTheme();
   const [personName, setPersonName] = React.useState([]);
@@ -87,16 +91,13 @@ function getStyles(name, personName, thetheme) {
     const {
       target: { value },
     } = event;
-    setPersonName(
-      typeof value === 'string' ? value.split(',') : value,
-    );
+    setPersonName(typeof value === "string" ? value.split(",") : value);
   };
 
   const handleSliderChange = (event, newValue) => {
     setSliderValue(newValue);
   };
-  
-    
+
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -163,25 +164,48 @@ function getStyles(name, personName, thetheme) {
                   <FontAwesomeIcon className="back-arrow" icon={faArrowLeft} />
                 </Link>
                 <button className="menu-mode" id="moon" onClick={switchTheme}>
-                  <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px" fill="#000">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="28px"
+                    viewBox="0 -960 960 960"
+                    width="28px"
+                    fill="#000"
+                  >
                     <path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z" />
                   </svg>
                 </button>
                 <button className="menu-mode" id="sun" onClick={switchTheme}>
-                  <svg className="sun-svg" xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px" fill="#fff">
+                  <svg
+                    className="sun-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="28px"
+                    viewBox="0 -960 960 960"
+                    width="28px"
+                    fill="#fff"
+                  >
                     <path d="M480-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm0 80q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Zm326-268Z" />
                   </svg>
                 </button>
               </div>
               <div className="filter_search">
                 <button className="filter" onClick={open4Modal}>
-                  <svg className="filterIcon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000">
+                  <svg
+                    className="filterIcon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                    fill="#000"
+                  >
                     <path d="M710-150q-63 0-106.5-43.5T560-300q0-63 43.5-106.5T710-450q63 0 106.5 43.5T860-300q0 63-43.5 106.5T710-150Zm0-80q29 0 49.5-20.5T780-300q0-29-20.5-49.5T710-370q-29 0-49.5 20.5T640-300q0 29 20.5 49.5T710-230Zm-550-30v-80h320v80H160Zm90-250q-63 0-106.5-43.5T100-660q0-63 43.5-106.5T250-810q63 0 106.5 43.5T400-660q0 63-43.5 106.5T250-510Zm0-80q29 0 49.5-20.5T320-660q0-29-20.5-49.5T250-730q-29 0-49.5 20.5T180-660q0 29 20.5 49.5T250-590Zm230-30v-80h320v80H480Zm230 320ZM250-660Z" />
                   </svg>
                 </button>
-                <button className="search" onClick={openSearchModal}>
-                  <FontAwesomeIcon className="searchIcon" icon={faMagnifyingGlass} />
-                </button>
+                <Link className="search" to="/search">
+                  <FontAwesomeIcon
+                    className="searchIcon"
+                    icon={faMagnifyingGlass}
+                  />
+                </Link>
               </div>
             </div>
             <div className="mealsOptions">
@@ -201,20 +225,22 @@ function getStyles(name, personName, thetheme) {
                 modules={[FreeMode, Keyboard, Mousewheel]}
                 className="mySwiper"
               >
-              {categories.map((category) => (
-                      <SwiperSlide key={category.id} className="swiper-slide-auto">
-                      <button 
-                        className="meal" 
-                      >
-                        {category.name}
-                      </button>
-                    </SwiperSlide>
-              ))}
-            </Swiper>
+                {categories.map((category) => (
+                  <SwiperSlide key={category.id} className="swiper-slide-auto">
+                    <button className="meal">{category.name}</button>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
           </div>
           <div className="menu-note">
-            <svg className="menu-note-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
+            <svg
+              className="menu-note-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+            >
               <path
                 fill="#334155"
                 d="M11.999 2.014c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10m0 5a1 1 0 1 1 0 2 1 1 0 0 1 0-2m-1 3h1a.986.986 0 0 1 .969 1.188l-.75 3.812h.781a1 1 0 0 1 0 2h-1c-1.183 0-2.013-1.027-1.781-2.188l.593-2.874c-.453-.096-.812-.456-.812-.938a1 1 0 0 1 1-1"
@@ -226,53 +252,9 @@ function getStyles(name, personName, thetheme) {
         <div className="productsList">
           <ProductsList />
         </div>
-        {isModalSearchOpen && (
-          <div id="mySearchModal" className="search-modal">
-            <div className="modal-search-content">
-              <span onClick={closeSearchModal}>
-                <Link to="/menu" className="back">
-                  <div className="back-container">
-                    <div className="back-modal">
-                      <FontAwesomeIcon className="back-arrow-modal" icon={faArrowLeft} />
-                    </div>
-                    <p className="back-text">Geri qayit</p>
-                  </div>
-                </Link>
-              </span>
-              <button className="search-modal-input">
-                <FontAwesomeIcon className="searchIconModal" icon={faMagnifyingGlass} />
-                <input
-                  className="main-search-input"
-                  type="text"
-                  placeholder="Axtardığınız qidanın adını yazın"
-                  value={input}
-                  onChange={handleInputChange}
-                />
-                <div className="search-list">
-                  {input.trim() !== "" &&
-                    filteredItems.map((category) => (
-                      <div key={category._id} id={`category-${category._id}`} className="category-name">
-                        {category.items.map((item) => (
-                          <div key={item.id}>
-                            <div className="namePrice">
-                              <span className="foodName">{item.name}</span>
-                              <span className="price">{item.price} ₼</span>
-                            </div>
-                            <div className="thePrice">
-                              <span className="price">{item.price} ₼</span>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    ))}
-                </div>
-              </button>
-            </div>
-          </div>
-        )}
       </div>
       {isModal4Open && (
-      <div id="myModal" className="modal">
+        <div id="myModal" className="modal">
           <div className="modal-content4">
             <span className="close" onClick={close4Modal}>
               &times;
@@ -322,58 +304,73 @@ function getStyles(name, personName, thetheme) {
               <div className="allergies">
                 <p>Allergiyalar</p>
               </div>
-           
 
-                      <div>
-                      <FormControl className="allergies-form" sx={{ m: 1, width: 450 }}>
-                <InputLabel id="demo-multiple-name-label" className="allergiya-sec">Seç</InputLabel>
-                <Select
-                  labelId="demo-multiple-name-label"
-                  id="demo-multiple-name"
-                  multiple
-                  value={personName}
-                  onChange={handleChange}
-                  input={<OutlinedInput label="Name" />}
-                  MenuProps={MenuProps}
+              <div>
+                <FormControl
+                  className="allergies-form"
+                  sx={{ m: 1, width: 450 }}
                 >
-                  {names.map((name) => (
-                    <MenuItem
-                      key={name}
-                      value={name}
-                      style={getStyles(name, personName, thetheme)}
-                    >
-                      {name}
-                    </MenuItem>
-                  ))}
-                    </Select>
-                  </FormControl>
-                </div>
-                  <div>
-                    <p className="bisirilme-vaxti">{bisirilmeVaxtiMetni}</p>
-                    <Box sx={{ width: 450, margin: "15px 0" }}>
-                      <Slider
-                        getAriaLabel={() => 'Temperature range'}
-                        value={sliderValue}
-                        onChange={handleSliderChange}
-                        valueLabelDisplay="auto"
-                        getAriaValueText={valuetext}
-                        color="dark"
-                        max={25}
-                        min={1}
-                      />
-                    </Box>
-
-                  </div>
-                  <div className="filter-section-buttons">
-                    <button className="filter-section-delete-button" >
-                      <svg xmlns="http://www.w3.org/2000/svg" 
-                      height="24px"
-                      viewBox="0 -960 960 960"
-                      width="24px"
-                      fill="#ff0000">
-                      <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg></button>
-                    <button className="filter-section-confirm-button" onClick={close4Modal}>Tətbiq et</button >
-                  </div>
+                  <InputLabel
+                    id="demo-multiple-name-label"
+                    className="allergiya-sec"
+                  >
+                    Seç
+                  </InputLabel>
+                  <Select
+                    labelId="demo-multiple-name-label"
+                    id="demo-multiple-name"
+                    multiple
+                    value={personName}
+                    onChange={handleChange}
+                    input={<OutlinedInput label="Name" />}
+                    MenuProps={MenuProps}
+                  >
+                    {names.map((name) => (
+                      <MenuItem
+                        key={name}
+                        value={name}
+                        style={getStyles(name, personName, thetheme)}
+                      >
+                        {name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </div>
+              <div>
+                <p className="bisirilme-vaxti">{bisirilmeVaxtiMetni}</p>
+                <Box sx={{ width: 450, margin: "15px 0" }}>
+                  <Slider
+                    getAriaLabel={() => "Temperature range"}
+                    value={sliderValue}
+                    onChange={handleSliderChange}
+                    valueLabelDisplay="auto"
+                    getAriaValueText={valuetext}
+                    color="dark"
+                    max={25}
+                    min={1}
+                  />
+                </Box>
+              </div>
+              <div className="filter-section-buttons">
+                <button className="filter-section-delete-button">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                    fill="#ff0000"
+                  >
+                    <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
+                  </svg>
+                </button>
+                <button
+                  className="filter-section-confirm-button"
+                  onClick={close4Modal}
+                >
+                  Tətbiq et
+                </button>
+              </div>
             </div>
           </div>
         </div>

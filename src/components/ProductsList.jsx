@@ -28,6 +28,10 @@ export default function ProductsList() {
                 </div>
                 <div className="thePrice">
                   <span className="price">{item.price} ₼</span>
+                  <span className="image">
+                    <img className="foodImg" src={item.image} />
+                    <div className="plus">+</div>
+                  </span>
                 </div>
               </button>
             ))}

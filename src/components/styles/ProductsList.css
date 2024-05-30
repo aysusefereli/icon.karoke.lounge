@@ -52,3 +52,13 @@
 [data-theme="dark"] .thePrice {
   color: #595959;
 }
+
+.foodImg {
+  width: 150px;
+  height: 84px;
+  border-radius: 12px;
+}
+
+.plus {
+  position: relative;
+}
