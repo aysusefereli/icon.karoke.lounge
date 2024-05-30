@@ -85,7 +85,7 @@ body {
   width: 25px;
   height: 22px;
   color: #000000;
-  background-color: hsl(210 80% 97.1%);
+  background: transparent;
 }
 
 [data-theme="dark"] .moonIcon {
@@ -277,7 +277,7 @@ body {
 .modal-content {
   background-color: hsl(0 0% 100%);
   width: 512px;
-  height: 90px;
+  height: 120px;
   border-radius: 10px 10px 0 0;
   padding: 20px;
   position: relative;
@@ -418,6 +418,7 @@ body {
   cursor: pointer;
   margin-left: 10px;
   margin-top: 25px;
+  color: #000000;
 }
 
 [data-theme="dark"] .flag {

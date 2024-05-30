@@ -17,7 +17,7 @@
   max-width: 100%;
   position: sticky;
 }
-.header-border{
+.header-border {
   border: 1px solid #e5e7eb;
   box-shadow: 1px 1px 1px #e5e7eb;
 }
@@ -60,6 +60,7 @@
 .back-arrow {
   margin: 8px 0;
   color: black;
+  background-color: transparent;
   width: 20px;
   height: 20px;
 }
@@ -116,6 +117,7 @@
   width: 25px;
   height: 22px;
   color: #000000;
+  background: transparent;
 }
 
 [data-theme="dark"] .moonIcon {
@@ -174,11 +176,15 @@
 .search {
   border: 1px solid transparent;
   background-color: none;
-  width: 45px;
-  height: 45px;
+  width: 25px;
+  height: 25px;
   border-radius: 20%;
   padding: 8px;
   cursor: pointer;
+}
+
+.searchIcon {
+  color: black;
 }
 
 [data-theme="dark"] .searchIcon {
@@ -186,11 +192,8 @@
 }
 
 [data-theme="dark"] .search:hover {
-  .searchIcon {
-    background-color: #1e293b;
-  }
-  width: 45px;
-  height: 45px;
+  width: 25px;
+  height: 25px;
   border: 1px solid #1e293b;
   background-color: #1e293b;
   border-radius: 20%;
@@ -198,8 +201,8 @@
   cursor: pointer;
 }
 .search:hover {
-  width: 45px;
-  height: 45px;
+  width: 25px;
+  height: 25px;
   border: 1px solid #e9efff;
   background-color: #e9efff;
   border-radius: 20%;
@@ -307,7 +310,7 @@
   line-height: 1, 75rem;
   font-size: 1.125rem;
 }
-.modal-search-content a:hover{
+.modal-search-content a:hover {
   color: #000000;
 }
 .back-container {
@@ -429,29 +432,29 @@
   padding-left: 0.75rem;
   padding-right: 0.75rem;
 }
-[data-theme="dark"] .modal-content4{
+[data-theme="dark"] .modal-content4 {
   background-color: #000000;
 }
-[data-theme="dark"] .modal-content4{
-  background-color: #000000;
-}
-
-[data-theme="dark"] .modal-content4{
+[data-theme="dark"] .modal-content4 {
   background-color: #000000;
 }
 
-[data-theme="dark"] .dropdown{
+[data-theme="dark"] .modal-content4 {
   background-color: #000000;
-  border: 1px solid #69AAFA;
+}
+
+[data-theme="dark"] .dropdown {
+  background-color: #000000;
+  border: 1px solid #69aafa;
   color: #fff;
 }
 
-[data-theme="dark"] .dropdown span{
+[data-theme="dark"] .dropdown span {
   color: #fff;
 }
 
 .mealsOptions {
-  padding:0 20px;
+  padding: 0 20px;
 }
 
 .mySwiper {
@@ -468,7 +471,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: auto !important; 
+  width: auto !important;
 }
 .meal {
   background-color: #ffffff;
@@ -479,9 +482,9 @@
   cursor: pointer;
   font-size: 14px;
   transition: background-color 0.3s;
-  white-space: nowrap; 
-  overflow: hidden; 
-  text-overflow: ellipsis; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   max-width: 100%;
 }
 
@@ -508,34 +511,33 @@
 
 .select-picker {
   width: 450px;
-
 }
 
 .choiceAllergie select {
   width: 100%;
-  max-width: 450px; 
-  padding: 8px 12px; 
-  box-sizing: border-box; 
+  max-width: 450px;
+  padding: 8px 12px;
+  box-sizing: border-box;
 }
 
 .choiceAllergie option {
-  padding: 8px 12px; 
+  padding: 8px 12px;
 }
-.bisirilme-vaxti{
+.bisirilme-vaxti {
   margin: 25px 0 15px 0;
   font-weight: 500;
   color: #000;
 }
-.filter-section-buttons{
-display: flex;
-align-items: center;
+.filter-section-buttons {
+  display: flex;
+  align-items: center;
 }
-.filter-section-delete-button{
+.filter-section-delete-button {
   padding: 15px 20px;
   border: 1px solid #e0e0e050;
   border-radius: 15px;
 }
-.filter-section-confirm-button{
+.filter-section-confirm-button {
   margin-left: 10px;
   padding: 18px 162px;
   border: 1px solid #000;
