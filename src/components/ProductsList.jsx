@@ -29,7 +29,6 @@ export default function ProductsList() {
                 {item.image ? ( // If image exists
                   <span className="image">
                     <img className="foodImg" src={item.image} alt={item.name} />
-                    <div className="plus">+</div>
                   </span>
                 ) : (
                   <div className="noImage">
