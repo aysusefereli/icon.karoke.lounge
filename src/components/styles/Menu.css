@@ -382,6 +382,7 @@
   position: relative;
   animation: slideDown 0.5s forwards, slideUp 0.5s forwards;
   overflow-y: none;
+  color: #000;
 }
 
 .choice {
@@ -542,4 +543,41 @@ align-items: center;
   background-color: #000;
   border-radius: 12px;
   color: #fff;
+}
+
+
+[data-theme="dark"] .modal-content4{
+  color: #f8f8f8;
+}
+[data-theme="dark"]  .filtersBtn{
+  background-color: #1e293b;
+  border: none;
+}
+[data-theme="dark"]  .filtersBtn span{
+  background-color: #1e293b;
+  border: none;
+}
+[data-theme="dark"]  .filtersBtn img{
+  background-color: #1e293b;
+  border: none;
+}
+[data-theme="dark"] .allergies{
+  color: #f8f8f8;
+}
+
+[data-theme="dark"] .allergies-form{
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+}
+[data-theme="dark"] .allergiya-sec{
+  color: #f8f8f8;
+}
+[data-theme="dark"] .bisirilme-vaxti{
+  color: #f8f8f8;
+}
+[data-theme="dark"] .filter-section-confirm-button{
+  background-color: #595959;
+}
+[data-theme="dark"] .filter-section-delete-button{
+  border: 1px solid #1e293b;
 }

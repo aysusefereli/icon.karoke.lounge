@@ -11,7 +11,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
-import { useTheme } from '@mui/material/styles';
+import { useTheme, useThemeProps } from '@mui/material/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -34,11 +34,14 @@ export default function Menu() {
   function valuetext(value) {
     return `${value}°C`;
   }
+  
  let min=0;
  let max=0
  const [sliderValue, setSliderValue] = useState([1, 25]);
 
+
 const bisirilmeVaxtiMetni = `Bişirilmə vaxtı: ${sliderValue[0]}-${sliderValue[1]} dəq`;
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -68,28 +71,31 @@ const names = [
   'Küncüt',
 ];
 function getStyles(name, personName, thetheme) {
-  const fontWeightRegular = thetheme?.typography?.fontWeightRegular || 400; 
-  const fontWeightMedium = thetheme?.typography?.fontWeightMedium || 500; 
-
   return {
     fontWeight:
       personName.indexOf(name) === -1
-        ? fontWeightRegular
-        : fontWeightMedium,
+        ? thetheme.typography.fontWeightRegular
+        : thetheme.typography.fontWeightMedium,
   };
 }
-const thetheme = useTheme();
-const [personName, setPersonName] = React.useState([]);
 
-const handleChange = (event) => {
-  const {
-    target: { value },
-  } = event;
-  setPersonName(
-   
-    typeof value === 'string' ? value.split(',') : value,
-  );
-};
+
+  const thetheme = useTheme();
+  const [personName, setPersonName] = React.useState([]);
+
+  const handleChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setPersonName(
+      typeof value === 'string' ? value.split(',') : value,
+    );
+  };
+
+  const handleSliderChange = (event, newValue) => {
+    setSliderValue(newValue);
+  };
+  
     
   const [categories, setCategories] = useState([]);
 
@@ -259,7 +265,7 @@ const handleChange = (event) => {
         )}
       </div>
       {isModal4Open && (
-        <div id="myModal" className="modal">
+      <div id="myModal" className="modal">
           <div className="modal-content4">
             <span className="close" onClick={close4Modal}>
               &times;
@@ -296,56 +302,56 @@ const handleChange = (event) => {
               </div>
            
 
-              <div>
-      <FormControl sx={{ m: 1, width: 450 }}>
-        <InputLabel id="demo-multiple-name-label">  Seç</InputLabel>
-        <Select
-          labelId="demo-multiple-name-label"
-          id="demo-multiple-name"
-          multiple
-          value={personName}
-          onChange={handleChange}
-          input={<OutlinedInput label="Name" />}
-          MenuProps={MenuProps}
-        >
-          {names.map((name) => (
-            <MenuItem
-              key={name}
-              value={name}
-              style={getStyles(name, personName, theme)}
-            >
-              {name}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </div>
-              <div>
-                <p className="bisirilme-vaxti">{bisirilmeVaxtiMetni}</p>
-              <Box sx={{ width: 450 , margin:"15px 0"}}>
-                <Slider
-                  getAriaLabel={() => 'Temperature range'}
-                  value={sliderValue}
+                      <div>
+                      <FormControl className="allergies-form" sx={{ m: 1, width: 450 }}>
+                <InputLabel id="demo-multiple-name-label" className="allergiya-sec">Seç</InputLabel>
+                <Select
+                  labelId="demo-multiple-name-label"
+                  id="demo-multiple-name"
+                  multiple
+                  value={personName}
                   onChange={handleChange}
-                  valueLabelDisplay="auto"
-                  getAriaValueText={valuetext}
-                  color="#000" 
-                  max={25} 
-                  min={1}
-                  
-                />
-              </Box>
-              </div>
-              <div className="filter-section-buttons">
-                <button className="filter-section-delete-button" >
-                  <svg xmlns="http://www.w3.org/2000/svg" 
-                  height="24px"
-                  viewBox="0 -960 960 960"
-                  width="24px"
-                  fill="#ff0000">
-                  <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg></button>
-                <button className="filter-section-confirm-button">Tətbiq et</button>
-              </div>
+                  input={<OutlinedInput label="Name" />}
+                  MenuProps={MenuProps}
+                >
+                  {names.map((name) => (
+                    <MenuItem
+                      key={name}
+                      value={name}
+                      style={getStyles(name, personName, thetheme)}
+                    >
+                      {name}
+                    </MenuItem>
+                  ))}
+                    </Select>
+                  </FormControl>
+                </div>
+                  <div>
+                    <p className="bisirilme-vaxti">{bisirilmeVaxtiMetni}</p>
+                    <Box sx={{ width: 450, margin: "15px 0" }}>
+                      <Slider
+                        getAriaLabel={() => 'Temperature range'}
+                        value={sliderValue}
+                        onChange={handleSliderChange}
+                        valueLabelDisplay="auto"
+                        getAriaValueText={valuetext}
+                        color="dark"
+                        max={25}
+                        min={1}
+                      />
+                    </Box>
+
+                  </div>
+                  <div className="filter-section-buttons">
+                    <button className="filter-section-delete-button" >
+                      <svg xmlns="http://www.w3.org/2000/svg" 
+                      height="24px"
+                      viewBox="0 -960 960 960"
+                      width="24px"
+                      fill="#ff0000">
+                      <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg></button>
+                    <button className="filter-section-confirm-button" onClick={close4Modal}>Tətbiq et</button >
+                  </div>
             </div>
           </div>
         </div>

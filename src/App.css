@@ -12,9 +12,7 @@ a {
   text-decoration: none;
 }
 
-:root {
-  --background-color: white;
-}
+
 
 [data-theme="dark"] :root {
   background-color: black;
