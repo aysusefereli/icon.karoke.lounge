@@ -380,7 +380,6 @@
 .modal-content4 {
   background-color: hsl(0 0% 100%);
   width: 470px;
-  height: 470px;
   border-radius: 10px 10px 0 0;
   padding: 20px;
   position: relative;
@@ -607,4 +606,39 @@
   }
   background-color: #000;
   color: #fff;
+}
+
+.footer1 {
+  position: sticky;
+  bottom: 10px;
+  background-color: #000;
+  border-radius: 12px;
+  z-index: 4;
+  padding: 15px;
+}
+
+.footer2 {
+  position: sticky;
+  bottom: 10px;
+  background-color: #000;
+  border-radius: 12px;
+  z-index: 4;
+  padding: 15px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+}
+
+.footerBtn {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.faBasket {
+  color: white;
+}
+
+.total {
+  color: white;
 }

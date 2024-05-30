@@ -5,6 +5,7 @@ import useLocalStorage from "use-local-storage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
+  faBasketShopping,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import ProductsList from "../components/ProductsList";
@@ -161,6 +162,27 @@ export default function Menu() {
     setActiveButtons(newActiveButtons);
   };
 
+  let lastScrollTop = 0;
+
+  const handleScroll = () => {
+    const footer1 = document.querySelector(".footer1");
+    const footer2 = document.querySelector(".footer2");
+
+    if (footer1 && footer2) {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      if (scrollTop > lastScrollTop) {
+        footer1.style.bottom = "-100px";
+        footer2.style.bottom = "0";
+      } else {
+        footer1.style.bottom = "0";
+        footer2.style.bottom = "-100px";
+      }
+      lastScrollTop = scrollTop;
+    }
+  };
+
+  window.addEventListener("scroll", handleScroll);
+
   return (
     <div className="main-container" data-theme={theme}>
       <div className="container">
@@ -241,24 +263,39 @@ export default function Menu() {
               </Swiper>
             </div>
           </div>
-          <div className="menu-note">
-            <svg
-              className="menu-note-icon"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="none"
-            >
-              <path
-                fill="#334155"
-                d="M11.999 2.014c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10m0 5a1 1 0 1 1 0 2 1 1 0 0 1 0-2m-1 3h1a.986.986 0 0 1 .969 1.188l-.75 3.812h.781a1 1 0 0 1 0 2h-1c-1.183 0-2.013-1.027-1.781-2.188l.593-2.874c-.453-.096-.812-.456-.812-.938a1 1 0 0 1 1-1"
-              />
-            </svg>
-            <span>Hesaba 10% servis haqqı əlavə olunur</span>
-          </div>
+        </div>
+        <div className="menu-note">
+          <svg
+            className="menu-note-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+          >
+            <path
+              fill="#334155"
+              d="M11.999 2.014c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10m0 5a1 1 0 1 1 0 2 1 1 0 0 1 0-2m-1 3h1a.986.986 0 0 1 .969 1.188l-.75 3.812h.781a1 1 0 0 1 0 2h-1c-1.183 0-2.013-1.027-1.781-2.188l.593-2.874c-.453-.096-.812-.456-.812-.938a1 1 0 0 1 1-1"
+            />
+          </svg>
+          <span>Hesaba 10% servis haqqı əlavə olunur</span>
         </div>
         <div className="productsList">
           <ProductsList />
+        </div>
+        <div className="footer1">
+          <button className="footerBtn">
+            <div className="basket">
+              <FontAwesomeIcon className="faBasket" icon={faBasketShopping} />
+            </div>
+            <div className="total">Cəm: 0 ₼</div>
+          </button>
+        </div>
+        <div className="footer2">
+          <button>
+            <div className="basket">
+              <FontAwesomeIcon className="faBasket" icon={faBasketShopping} />
+            </div>
+          </button>
         </div>
       </div>
       {isModal4Open && (
