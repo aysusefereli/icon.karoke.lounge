@@ -3,7 +3,6 @@
   color: #000;
 }
 
-
 .main-container {
   display: flex;
   justify-content: center;
@@ -88,7 +87,6 @@
   cursor: pointer;
 }
 
-
 .mode:hover {
   background-color: hsl(210 80% 97.1%);
   cursor: pointer;
@@ -100,12 +98,9 @@
   color: #000000;
 }
 
-
-
 #moon {
   display: block;
 }
-
 
 .sunIcon {
   width: 25px;
@@ -113,7 +108,6 @@
   color: #000000;
   fill: #000;
 }
-
 
 #sun {
   display: none;
@@ -131,7 +125,6 @@
 .searchIcon {
   color: #000;
 }
-
 
 .search:hover {
   width: 25px;
@@ -193,7 +186,6 @@
   cursor: pointer;
   color: #020817;
 }
-
 
 .search-modal {
   display: flex;
@@ -370,7 +362,6 @@
   background-color: #f0f0f0;
 }
 
-
 .choiceAllergie {
   max-height: 200px;
   overflow-y: auto;
@@ -413,7 +404,6 @@
   color: #fff;
 }
 
-
 .filtersBtn.active {
   .filtersBtn-span {
     background-color: #000;
@@ -435,7 +425,7 @@
   font-size: 1.25rem;
   line-height: 1.75rem;
 }
-.faBasket{
+.faBasket {
   font-size: 22px;
 }
 .footer2 {
@@ -444,11 +434,11 @@
   background-color: #000;
   border-radius: 12px;
   z-index: 4;
-  padding:12px 22px 17px 8px;
+  padding: 12px 22px 17px 8px;
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  margin-bottom: 10px
+  margin-bottom: 10px;
 }
 
 .footerBtn {
@@ -465,17 +455,17 @@
   color: white;
 }
 
-.close{
-  padding:0 10px 12px 10px;
+.close {
+  padding: 0 10px 12px 10px;
   font-size: 22px;
   margin: 5px;
 }
 .main-container.dark {
   background-color: #000;
   color: #fff;
-  .menu-header{
-   background-color: #000;
-   color: #fff;
+  .menu-header {
+    background-color: #000;
+    color: #fff;
   }
   .back:hover {
     width: 28px;
@@ -497,7 +487,7 @@
     border: 1px solid #1e293b;
     color: white;
   }
-  
+
   .mode:hover {
     background-color: #1e293b;
     border: 1px solid #1e293b;
@@ -507,12 +497,12 @@
     color: white;
     background-color: #1e293b;
   }
-  
+
   .moonIcon:hover {
     color: white;
     background-color: #1e293b;
   }
-  
+
   #moon {
     display: none;
   }
@@ -521,13 +511,11 @@
     color: white;
     background-color: #1e293b;
   }
-  
 
-  
   #sun {
     display: block;
   }
-  
+
   .back-arrow {
     fill: #fff;
   }
@@ -571,10 +559,9 @@
     fill: white;
     cursor: pointer;
   }
-  
+
   .menu-note p {
     color: #fff;
-    
   }
   .meal {
     color: white;
@@ -587,7 +574,7 @@
     background-color: #000;
     color: #fff;
   }
-  
+
   .back-text {
     color: #fff;
   }
@@ -606,17 +593,17 @@
   .modal-content4 {
     background-color: #000000;
   }
-  
+
   .modal-content4 {
     background-color: #000000;
   }
-  
+
   .dropdown {
     background-color: #000000;
     border: 1px solid #69aafa;
     color: #fff;
   }
-  
+
   .dropdown span {
     color: #fff;
   }
@@ -650,7 +637,7 @@
   .allergies {
     color: #f8f8f8;
   }
-  
+
   .modal-content4 {
     background-color: #000;
   }
@@ -664,7 +651,7 @@
   .bisirilme-vaxti {
     color: #f8f8f8;
   }
-   .filter-section-confirm-button {
+  .filter-section-confirm-button {
     background-color: #595959;
   }
   .filter-section-delete-button {
@@ -683,24 +670,69 @@
     background-color: #595959;
   }
 
-.mealsOptions{
-  background-color: #000;
-  fill: #000;
+  .mealsOptions {
+    background-color: #000;
+    fill: #000;
+  }
+  .rounded-top {
+    background-color: #1e293b;
+    border: 1px solid #1e293b;
+  }
+  .close {
+    background-color: #182232;
+    color: #a8a3a3;
+    border: none;
+  }
+  .close:hover {
+    background-color: #1e293b;
+    color: #fff;
+  }
+  .footer1,
+  .footer2 {
+    background-color: #595959;
+  }
 }
-.rounded-top{
-  background-color: #1e293b;
-  border: 1px solid #1e293b ;
+
+.basketImg {
+  width: 100px;
+  height: 100px;
+  margin-top: 30px;
 }
-.close{
-  background-color: #182232;
-  color: #a8a3a3;
-  border: none;
+
+.emptyBasket {
+  display: flex;
+  justify-content: center;
 }
-.close:hover{
-  background-color: #1e293b;
-  color: #fff;
+
+.basketText {
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  margin-bottom: 90px;
 }
-.footer1, .footer2{
-  background-color: #595959;
+
+.notes {
+  margin-left: 15px;
+  margin-right: 35px;
 }
+
+.note {
+  width: 100%;
+  background-color: hsl(210 40% 96.1%);
+  border: hsl(210 40% 96.1%);
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.footerBtns {
+  margin-top: 15px;
+}
+
+.filter-section-delete-button2 {
+  padding: 15px 20px;
+  border: 1px solid #e0e0e050;
+  border-radius: 15px;
+  margin-left: 15px;
 }

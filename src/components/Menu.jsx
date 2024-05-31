@@ -24,12 +24,37 @@ import Select from "@mui/material/Select";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import { useThemeManager } from "./theme";
+import { useDispatch, useSelector } from "react-redux";
+import { decrement, increment } from "../store/slices/counterSlice";
 
 export default function Menu() {
   const [filteredItems, setFilteredItems] = useState([]);
   const [input, setInput] = useState("");
   const [isModal4Open, setModal4Open] = useState(false);
   const { theme, switchTheme } = useThemeManager();
+  const [isModalOpenEmpty, setModalOpenEmpty] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [activeProduct, setActiveProduct] = useState(null);
+  const counter = useSelector((state) => state.counterStore.counter);
+  const dispatch = useDispatch();
+
+  const openModal = (product) => {
+    setActiveProduct(product);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  const openModalEmpty = () => {
+    setModalOpenEmpty(true);
+  };
+
+  const closeModalEmpty = () => {
+    setModalOpenEmpty(false);
+  };
+
   function valuetext(value) {
     return `${value}°C`;
   }
@@ -164,9 +189,9 @@ export default function Menu() {
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
       if (scrollTop > lastScrollTop) {
         footer1.style.bottom = "-100px";
-        footer2.style.bottom = "0";
+        footer2.style.bottom = "10px";
       } else {
-        footer1.style.bottom = "0";
+        footer1.style.bottom = "10px";
         footer2.style.bottom = "-100px";
       }
       lastScrollTop = scrollTop;
@@ -175,8 +200,23 @@ export default function Menu() {
 
   window.addEventListener("scroll", handleScroll);
 
+  useEffect(() => {
+    const footer1 = document.querySelector(".footer1");
+    const footer2 = document.querySelector(".footer2");
+
+    if (footer1 && footer2) {
+      footer1.style.bottom = "10px";
+      footer2.style.bottom = "-100px";
+    }
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <div  className={`main-container ${theme}`}>
+    <div className={`main-container ${theme}`}>
       <div className="container">
         <div className="border-container">
           <div className="header-border">
@@ -186,28 +226,28 @@ export default function Menu() {
                   <FontAwesomeIcon className="back-arrow" icon={faArrowLeft} />
                 </Link>
                 <button className="menu-mode" onClick={switchTheme}>
-                  {theme === 'light' ? (
-                    <svg className="moonIcon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="28px"
-                    viewBox="0 -960 960 960"
-                    width="28px"
-                    fill="#000"
-                  >
-                    <path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z" />
-                  </svg>
+                  {theme === "light" ? (
+                    <svg
+                      className="moonIcon"
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="28px"
+                      viewBox="0 -960 960 960"
+                      width="28px"
+                      fill="#000"
+                    >
+                      <path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z" />
+                    </svg>
                   ) : (
-
-                   <svg
-                   className="sunIcon"
-                   xmlns="http://www.w3.org/2000/svg"
-                   height="28px"
-                   viewBox="0 -960 960 960"
-                   width="28px"
-                   fill="#fff"
-                   >
-                   <path d="M480-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm0 80q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Zm326-268Z" />
-                  </svg>
+                    <svg
+                      className="sunIcon"
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="28px"
+                      viewBox="0 -960 960 960"
+                      width="28px"
+                      fill="#fff"
+                    >
+                      <path d="M480-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm0 80q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Zm326-268Z" />
+                    </svg>
                   )}
                 </button>
               </div>
@@ -233,22 +273,24 @@ export default function Menu() {
               </div>
             </div>
             <div className="mealsOptions">
-            <Swiper
-              slidesPerView={"auto"}
-              spaceBetween={10}
-              freeMode={true}
-              keyboard={{
-                enabled: true,
-                onlyInViewport: false,
-              }}
-              mousewheel={{
-                forceToAxis: true,
-              }}
-              simulateTouch={true}
-              touchReleaseOnEdges={true}
-              modules={[FreeMode, Keyboard, Mousewheel]}
-              className={`mySwiper ${theme === 'light' ? 'light-theme' : 'dark-theme'}`}
-            >
+              <Swiper
+                slidesPerView={"auto"}
+                spaceBetween={10}
+                freeMode={true}
+                keyboard={{
+                  enabled: true,
+                  onlyInViewport: false,
+                }}
+                mousewheel={{
+                  forceToAxis: true,
+                }}
+                simulateTouch={true}
+                touchReleaseOnEdges={true}
+                modules={[FreeMode, Keyboard, Mousewheel]}
+                className={`mySwiper ${
+                  theme === "light" ? "light-theme" : "dark-theme"
+                }`}
+              >
                 {categories.map((category) => (
                   <SwiperSlide key={category.id} className="swiper-slide-auto">
                     <button className="meal">{category.name}</button>
@@ -276,7 +318,7 @@ export default function Menu() {
         <div className="productsList">
           <ProductsList />
         </div>
-        <div className="footer1">
+        <div className="footer1" onClick={openModal}>
           <button className="footerBtn">
             <div className="basket">
               <FontAwesomeIcon className="faBasket" icon={faBasketShopping} />
@@ -284,7 +326,7 @@ export default function Menu() {
             <div className="total">Cəm: 0 ₼</div>
           </button>
         </div>
-        <div className="footer2">
+        <div className="footer2" onClick={openModal}>
           <button>
             <div className="basket">
               <FontAwesomeIcon className="faBasket" icon={faBasketShopping} />
@@ -428,6 +470,83 @@ export default function Menu() {
                   onClick={close4Modal}
                 >
                   Tətbiq et
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {isModalOpenEmpty && (
+        <div id="myModal" className="modal">
+          <div className="modal-content5">
+            <span className="close" onClick={closeModalEmpty}>
+              &times;
+            </span>
+            <div className="vaul-scrollable">
+              <div className="rounded-top"></div>
+            </div>
+            <div className="modal_info">
+              <div className="choice">Səbətdəki məhsullar</div>
+              <div className="emptyBasket">
+                <img
+                  className="basketImg"
+                  src="./assets/wicker-basket (2).png"
+                />
+              </div>
+              <div className="basketText">Səbət boşdur</div>
+            </div>
+          </div>
+        </div>
+      )}
+      {isModalOpen && (
+        <div id="myModal" className="modal">
+          <div className="modal-content5">
+            <span className="close" onClick={closeModal}>
+              &times;
+            </span>
+            <div className="vaul-scrollable">
+              <div className="rounded-top"></div>
+            </div>
+            <div className="modal_info">
+              <div className="choice">Səbətdəki məhsullar</div>
+              <div className="counter_basket">
+                <div className="counter">
+                  <button
+                    onClick={() => dispatch(decrement())}
+                    disabled={counter <= 0}
+                  >
+                    <span id="count">-</span>
+                  </button>
+                  <div className="countNmbr">{counter}</div>
+                  <button onClick={() => dispatch(increment())}>
+                    <span id="count">+</span>
+                  </button>
+                </div>
+                <div className="add">
+                  {activeProduct && <div>{activeProduct.name}</div>}
+                </div>
+              </div>
+              <div className="notes">
+                <textarea
+                  className="note"
+                  placeholder="Qeyd əlavə edin"
+                  rows={4}
+                ></textarea>
+              </div>
+              <div className="footerBtns">
+                <button className="filter-section-delete-button2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                    fill="#ff0000"
+                  >
+                    <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
+                  </svg>
+                </button>
+                <button>
+                  <span>WhatsApp sifarişi</span>
                 </button>
               </div>
             </div>

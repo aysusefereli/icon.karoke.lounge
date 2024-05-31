@@ -105,7 +105,6 @@
   padding: 10px;
 }
 
-
 .list.dark {
   color: #fff;
   background-color: black;
@@ -113,14 +112,14 @@
   .productImg {
     background-color: hsl(222.2 84% 4.9%);
   }
-  .product{
+  .product {
     color: #fff;
     background-color: black;
   }
- .imgimg {
+  .imgimg {
     background-color: hsl(222.2 84% 4.9%);
   }
-  .category{
+  .category {
     background-color: #000;
     color: #fff;
   }
@@ -136,8 +135,51 @@
   .thePrice {
     color: #595959;
   }
-  .modal-content5{
+  .modal-content5 {
     background-color: #000;
-  
   }
+}
+
+.counter {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid hsl(210 40% 96.1%);
+  border-radius: 12px;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 15px;
+  gap: 10px;
+}
+
+.counter_basket {
+  display: flex;
+  flex-direction: row;
+  margin-left: 15px;
+  gap: 10px;
+}
+
+#count {
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.addBasket {
+  border: 1px solid hsl(210 40% 96.1%);
+  border-radius: 12px;
+  padding: 13px 100px;
+  background-color: #000;
+  color: white;
+  font-size: 14px;
+}
+
+.countNmbr {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+button:disabled {
+  color: #999;
+  cursor: auto;
+  opacity: 0.6;
 }

@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import "./styles/ProductsList.css";
 import { useThemeManager } from "./theme";
+import { useDispatch, useSelector } from "react-redux";
+import { decrement, increment } from "../store/slices/counterSlice";
 
 export default function ProductsList() {
   const [categories, setCategories] = useState([]);
   const [activeProduct, setActiveProduct] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
   const { theme } = useThemeManager();
+  const counter = useSelector((state) => state.counterStore.counter);
+  const dispatch = useDispatch();
+
   const openModal = (product) => {
     setActiveProduct(product);
     setModalOpen(true);
@@ -77,6 +82,27 @@ export default function ProductsList() {
                 )}
               </div>
               <div className="choice">{activeProduct.name}</div>
+              <div className="counter_basket">
+                <div className="counter">
+                  <button
+                    onClick={() => dispatch(decrement())}
+                    disabled={counter <= 0}
+                  >
+                    <span id="count">-</span>
+                  </button>
+                  <div className="countNmbr">{counter}</div>
+                  <button onClick={() => dispatch(increment())}>
+                    <span id="count">+</span>
+                  </button>
+                </div>
+                <div className="add">
+                  {activeProduct && (
+                    <button className="addBasket">
+                      Səbətə əlavə et {activeProduct.price} ₼
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </div>
