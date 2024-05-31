@@ -124,7 +124,7 @@
   width: 25px;
   height: 25px;
   border-radius: 20%;
-  padding: 8px;
+  padding: 8px 4px 8px 12px;
   cursor: pointer;
 }
 
@@ -139,7 +139,7 @@
   border: 1px solid #e9efff;
   background-color: #e9efff;
   border-radius: 20%;
-  padding: 8px;
+  padding: 8px 4px 8px 12px;
   cursor: pointer;
 }
 
@@ -427,23 +427,28 @@
 
 .footer1 {
   position: sticky;
-  bottom: 10px;
+  bottom: 20px;
   background-color: #000;
   border-radius: 12px;
   z-index: 4;
-  padding: 15px;
+  padding: 10px;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
-
+.faBasket{
+  font-size: 22px;
+}
 .footer2 {
   position: sticky;
   bottom: 10px;
   background-color: #000;
   border-radius: 12px;
   z-index: 4;
-  padding: 15px;
+  padding:12px 22px 17px 8px;
   width: 22px;
   height: 22px;
   border-radius: 50%;
+  margin-bottom: 10px
 }
 
 .footerBtn {
@@ -550,7 +555,7 @@
     border: 1px solid #1e293b;
     background-color: #1e293b;
     border-radius: 20%;
-    padding: 8px;
+    padding: 8px 4px 8px 12px;
     cursor: pointer;
   }
   .filter:hover {
@@ -694,5 +699,8 @@
 .close:hover{
   background-color: #1e293b;
   color: #fff;
+}
+.footer1, .footer2{
+  background-color: #595959;
 }
 }
