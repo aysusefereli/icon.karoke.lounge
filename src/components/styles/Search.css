@@ -1,16 +1,15 @@
-[data-theme="dark"] {
-  --background-color: black;
-  --text-color: white;
+.search-modal.light {
+  background-color: #fff;
+  color: #000;
 }
+
 
 body {
   background-color: var(--background-color);
   color: var(--text-color);
 }
 
-[data-theme="dark"] .search-modal {
-  background-color: black;
-}
+
 
 .search-modal {
   display: flex;
@@ -29,8 +28,8 @@ body {
 }
 
 .modal-search-content {
-  width: 100%;
-  max-width: 750px;
+  max-width: 100%;
+  width: 750px;
   height: 100%;
 }
 
@@ -55,8 +54,16 @@ body {
 }
 
 .back-arrow-modal {
-  margin-right: 15px;
   background: transparent;
+  margin: 4px 2px;
+  color: black;
+  width: 20px;
+  height: 20px;
+}
+
+
+.back-text{
+  margin-left: 10px;
 }
 
 .main-search-input[type="text"] {
@@ -65,7 +72,8 @@ body {
   margin: 10px 0 0 12px;
   border: none;
   margin: 15px 0;
-  width: 500px;
+  width: 750px;
+  max-width: 100%;
   height: 10px;
   outline: none;
 }
@@ -73,9 +81,9 @@ body {
 .search-header {
   background-color: white;
   width: 100%;
-  display: flex; /* Eklendi: esnek kutu düzeni */
-  flex-direction: column; /* Eklendi: içeriği dikey hizalamak için */
-  padding-bottom: 20px; /* Eklendi: boşluk eklemek için */
+  display: flex; 
+  flex-direction: column; 
+  padding-bottom: 20px; 
 }
 
 .main-search-input[type="text"]:focus {
@@ -87,10 +95,11 @@ body {
   margin: 10px;
   display: flex;
   flex-direction: row;
-  width: 700px;
   height: 55px;
   border: 0.1px solid hsl(210, 40%, 96.1%);
   border-radius: 5px;
+  max-width: 100%;
+  width: 750px;
 }
 
 .search-modal-input:focus {
@@ -102,30 +111,12 @@ body {
   margin: 15px;
 }
 
-[data-theme="dark"] .search-modal {
-  background-color: #000;
-  color: #fff;
-}
+
 
 .back-text {
   text-decoration: none;
 }
 
-[data-theme="dark"] .back-text {
-  color: #fff;
-}
-
-[data-theme="dark"] .back-arrow-modal {
-  color: #fff;
-}
-
-[data-theme="dark"] .searchIconModal {
-  color: #fff;
-}
-
-[data-theme="dark"] .main-search-input {
-  color: #fff;
-}
 
 .modal {
   overflow: hidden;
@@ -166,4 +157,40 @@ body {
 .price {
   white-space: nowrap;
   margin-right: 20px;
+}
+.search-modal.dark {
+  background-color: #000;
+  color: #fff;
+  .search-modal {
+    background-color: #000;
+    color: #fff;
+  }
+  .back-text {
+    color: #fff;
+  }
+  
+  .back-arrow-modal {
+    color: #fff;
+  }
+  
+  .searchIconModal {
+    color: #fff;
+  }
+  
+ .main-search-input {
+    color: #fff;
+  }
+  .search-header{
+    background-color: #000;
+  }
+  .foodName,.price{
+    color: #fff;
+  }
+  .back:hover{
+    background-color: #1e293b;
+    border: #1e293b;
+    .back-arrow-modal{
+      background-color: #1e293b;
+    }
+  }
 }

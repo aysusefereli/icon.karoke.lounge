@@ -44,19 +44,6 @@
   font-size: 16px;
   color: black;
 }
-[data-theme="dark"] .product {
-  color: #fff;
-  background-color: black;
-}
-[data-theme="dark"] .foodName {
-  color: #fff;
-}
-[data-theme="dark"] .price {
-  color: #595959;
-}
-[data-theme="dark"] .thePrice {
-  color: #595959;
-}
 
 .foodImg {
   width: 150px;
@@ -112,25 +99,45 @@
 .choice {
   font-size: 24px;
   font-weight: 700;
-  padding: 8px 15px;
+  padding: 0 15px 15px 15px;
 }
 .vaul-scrollable {
   padding: 10px;
 }
 
-[data-theme="dark"] .modal-content5 {
-  color: #f8fafc;
-  background-color: hsl(222.2 84% 4.9%);
-}
 
-[data-theme="dark"] .productImg {
-  background-color: hsl(222.2 84% 4.9%);
-}
+.list.dark {
+  color: #fff;
+  background-color: black;
 
-[data-theme="dark"] .imgimg {
-  background-color: hsl(222.2 84% 4.9%);
-}
-
-[data-theme="dark"] .choice {
-  color: white;
+  .productImg {
+    background-color: hsl(222.2 84% 4.9%);
+  }
+  .product{
+    color: #fff;
+    background-color: black;
+  }
+ .imgimg {
+    background-color: hsl(222.2 84% 4.9%);
+  }
+  .category{
+    background-color: #000;
+    color: #fff;
+  }
+  .choice {
+    color: white;
+  }
+  .foodName {
+    color: #fff;
+  }
+  .price {
+    color: #595959;
+  }
+  .thePrice {
+    color: #595959;
+  }
+  .modal-content5{
+    background-color: #000;
+  
+  }
 }

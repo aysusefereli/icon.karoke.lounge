@@ -11,6 +11,7 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import "./styles/Search.css";
+import { useThemeManager } from "./theme";
 
 export default function Search() {
   const [filteredItems, setFilteredItems] = useState([]);
@@ -18,6 +19,7 @@ export default function Search() {
   const [isModal4Open, setModal4Open] = useState(false);
   const [categories, setCategories] = useState([]);
   const [isModalSearchOpen, setModalSearchOpen] = useState(false);
+  const { theme } = useThemeManager();
 
   useEffect(() => {
     fetch(
@@ -63,7 +65,7 @@ export default function Search() {
 
   return (
     <div>
-      <div id="mySearchModal" className="search-modal">
+      <div id="mySearchModal" className={`search-modal ${theme}`}>
         <div className="modal-search-content">
           <div className="search-header">
             <span onClick={closeSearchModal}>

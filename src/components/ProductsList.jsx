@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./styles/ProductsList.css";
+import { useThemeManager } from "./theme";
 
 export default function ProductsList() {
   const [categories, setCategories] = useState([]);
   const [activeProduct, setActiveProduct] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
-
+  const { theme } = useThemeManager();
   const openModal = (product) => {
     setActiveProduct(product);
     setModalOpen(true);
@@ -26,7 +27,7 @@ export default function ProductsList() {
   }, []);
 
   return (
-    <div className="list">
+    <div className={`list ${theme}`}>
       {categories.map((category) => (
         <div className="category" key={category._id}>
           <div className="product">{category.name}</div>

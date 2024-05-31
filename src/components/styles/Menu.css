@@ -1,6 +1,8 @@
-[data-theme="dark"] {
-  --background-color: black;
+.main-container.light {
+  background-color: #fff;
+  color: #000;
 }
+
 
 .main-container {
   display: flex;
@@ -51,27 +53,14 @@
   padding: 8px;
   cursor: pointer;
 }
-[data-theme="dark"] .back:hover {
-  width: 28px;
-  height: 28px;
-  border: 1px solid #1e293b;
-  background-color: #1e293b;
-  border-radius: 20%;
-  padding: 8px;
-  cursor: pointer;
-}
+
 .back-arrow {
-  margin: 8px 0;
+  margin: 4px 2px;
   color: black;
   width: 20px;
   height: 20px;
 }
-[data-theme="dark"] .back-arrow {
-  color: white;
-}
-[data-theme="dark"] .back-arrow:hover {
-  background-color: #1e293b;
-}
+
 .back:hover {
   width: 28px;
   height: 28px;
@@ -86,7 +75,7 @@
   display: flex;
   align-items: center;
 }
-.menu-note span {
+.menu-note p {
   margin: 10px;
 }
 .menu-mode {
@@ -99,17 +88,7 @@
   cursor: pointer;
 }
 
-[data-theme="dark"] .mode {
-  background-color: #1e293b;
-  border: 1px solid #1e293b;
-  color: white;
-}
 
-[data-theme="dark"] .mode:hover {
-  background-color: #1e293b;
-  border: 1px solid #1e293b;
-  color: white;
-}
 .mode:hover {
   background-color: hsl(210 80% 97.1%);
   cursor: pointer;
@@ -121,58 +100,23 @@
   color: #000000;
 }
 
-[data-theme="dark"] .moonIcon {
-  color: white;
-  background-color: #1e293b;
-}
 
-[data-theme="dark"] .moonIcon:hover {
-  color: white;
-  background-color: #1e293b;
-}
 
 #moon {
   display: block;
 }
 
-[data-theme="dark"] #moon {
-  display: none;
-}
 
 .sunIcon {
   width: 25px;
   height: 22px;
   color: #000000;
+  fill: #000;
 }
 
-[data-theme="dark"] .sunIcon {
-  color: white;
-  background-color: #1e293b;
-}
-
-[data-theme="dark"] .sunIcon:hover {
-  color: white;
-  background-color: #1e293b;
-}
 
 #sun {
   display: none;
-}
-
-[data-theme="dark"] #sun {
-  display: block;
-}
-
-[data-theme="dark"] .back-arrow {
-  fill: #fff;
-}
-[data-theme="dark"] .sun-svg {
-  fill: #fff;
-  background-color: #1e293b;
-}
-[data-theme="dark"] .menu-mode {
-  background-color: #1e293b;
-  border: none;
 }
 .search {
   border: 1px solid transparent;
@@ -188,19 +132,7 @@
   color: #000;
 }
 
-[data-theme="dark"] .searchIcon {
-  color: white;
-}
 
-[data-theme="dark"] .search:hover {
-  width: 25px;
-  height: 25px;
-  border: 1px solid #1e293b;
-  background-color: #1e293b;
-  border-radius: 20%;
-  padding: 8px;
-  cursor: pointer;
-}
 .search:hover {
   width: 25px;
   height: 25px;
@@ -235,23 +167,6 @@
   padding: 8px;
   cursor: pointer;
 }
-[data-theme="dark"] .filter:hover {
-  width: 45px;
-  height: 45px;
-  border: 1px solid #1e293b;
-  background-color: #1e293b;
-  border-radius: 20%;
-  padding: 8px;
-  cursor: pointer;
-}
-[data-theme="dark"] .filterIcon {
-  fill: white;
-  cursor: pointer;
-}
-
-[data-theme="dark"] .menu-note span {
-  color: #fff;
-}
 
 .meals {
   display: flex;
@@ -279,9 +194,7 @@
   color: #020817;
 }
 
-[data-theme="dark"] .meal {
-  color: white;
-}
+
 .search-modal {
   display: flex;
   align-items: center;
@@ -353,26 +266,10 @@
 .searchIconModal {
   margin: 15px;
 }
-[data-theme="dark"] .search-modal {
-  background-color: #000;
-  color: #fff;
-}
+
 .back-text {
   text-decoration: none;
 }
-[data-theme="dark"] .back-text {
-  color: #fff;
-}
-[data-theme="dark"] .back-arrow-modal {
-  color: #fff;
-}
-[data-theme="dark"] .searchIconModal {
-  color: #fff;
-}
-[data-theme="dark"] .main-search-input {
-  color: #fff;
-}
-
 .modal {
   overflow: hidden;
 }
@@ -433,26 +330,6 @@
   padding-left: 0.75rem;
   padding-right: 0.75rem;
 }
-[data-theme="dark"] .modal-content4 {
-  background-color: #000000;
-}
-[data-theme="dark"] .modal-content4 {
-  background-color: #000000;
-}
-
-[data-theme="dark"] .modal-content4 {
-  background-color: #000000;
-}
-
-[data-theme="dark"] .dropdown {
-  background-color: #000000;
-  border: 1px solid #69aafa;
-  color: #fff;
-}
-
-[data-theme="dark"] .dropdown span {
-  color: #fff;
-}
 
 .mealsOptions {
   padding: 0 20px;
@@ -493,18 +370,7 @@
   background-color: #f0f0f0;
 }
 
-[data-theme="dark"] .meal {
-  color: #fff;
-  background-color: #000;
-  border: 1px solid #1e293b;
-}
-[data-theme="dark"] .meal:hover {
-  background-color: #1e293b;
-}
-[data-theme="dark"] .header-border {
-  border: none;
-  box-shadow: none;
-}
+
 .choiceAllergie {
   max-height: 200px;
   overflow-y: auto;
@@ -547,56 +413,7 @@
   color: #fff;
 }
 
-[data-theme="dark"] .modal-content4 {
-  color: #f8f8f8;
-}
-[data-theme="dark"] .filtersBtn {
-  background-color: #1e293b;
-  border: none;
-}
-[data-theme="dark"] .filtersBtn span {
-  background-color: #1e293b;
-  border: none;
-}
-[data-theme="dark"] .filtersBtn img {
-  background-color: #1e293b;
-  border: none;
-}
-[data-theme="dark"] .allergies {
-  color: #f8f8f8;
-}
 
-[data-theme="dark"] .modal-content4 {
-  background-color: #000;
-}
-[data-theme="dark"] .allergies-form {
-  border: 1px solid #1e293b;
-  border-radius: 10px;
-}
-[data-theme="dark"] .allergiya-sec {
-  color: #f8f8f8;
-}
-[data-theme="dark"] .bisirilme-vaxti {
-  color: #f8f8f8;
-}
-[data-theme="dark"] .filter-section-confirm-button {
-  background-color: #595959;
-}
-[data-theme="dark"] .filter-section-delete-button {
-  border: 1px solid #1e293b;
-}
-[data-theme="dark"] .filter-section-delete-button {
-  border: 1px solid #1e293b;
-}
-[data-theme="dark"] .filtersBtn.active {
-  .filtersBtn-span {
-    background-color: #595959;
-  }
-  .filtersBtn-img {
-    background-color: #595959;
-  }
-  background-color: #595959;
-}
 .filtersBtn.active {
   .filtersBtn-span {
     background-color: #000;
@@ -641,4 +458,241 @@
 
 .total {
   color: white;
+}
+
+.close{
+  padding:0 10px 12px 10px;
+  font-size: 22px;
+  margin: 5px;
+}
+.main-container.dark {
+  background-color: #000;
+  color: #fff;
+  .menu-header{
+   background-color: #000;
+   color: #fff;
+  }
+  .back:hover {
+    width: 28px;
+    height: 28px;
+    border: 1px solid #1e293b;
+    background-color: #1e293b;
+    border-radius: 20%;
+    padding: 8px;
+    cursor: pointer;
+  }
+  .back-arrow {
+    color: white;
+  }
+  .back-arrow:hover {
+    background-color: #1e293b;
+  }
+  .mode {
+    background-color: #1e293b;
+    border: 1px solid #1e293b;
+    color: white;
+  }
+  
+  .mode:hover {
+    background-color: #1e293b;
+    border: 1px solid #1e293b;
+    color: white;
+  }
+  .moonIcon {
+    color: white;
+    background-color: #1e293b;
+  }
+  
+  .moonIcon:hover {
+    color: white;
+    background-color: #1e293b;
+  }
+  
+  #moon {
+    display: none;
+  }
+  .sunIcon {
+    fill: #fff;
+    color: white;
+    background-color: #1e293b;
+  }
+  
+
+  
+  #sun {
+    display: block;
+  }
+  
+  .back-arrow {
+    fill: #fff;
+  }
+  .sun-svg {
+    fill: #fff;
+    background-color: #1e293b;
+  }
+  .menu-mode {
+    background-color: #1e293b;
+    border: none;
+  }
+  .menu-mode:hover {
+    background-color: #182232;
+    border: none;
+    .sunIcon {
+      background-color: #182232;
+    }
+  }
+  .searchIcon {
+    color: white;
+  }
+  .search:hover {
+    width: 25px;
+    height: 25px;
+    border: 1px solid #1e293b;
+    background-color: #1e293b;
+    border-radius: 20%;
+    padding: 8px;
+    cursor: pointer;
+  }
+  .filter:hover {
+    width: 45px;
+    height: 45px;
+    border: 1px solid #1e293b;
+    background-color: #1e293b;
+    border-radius: 20%;
+    padding: 8px;
+    cursor: pointer;
+  }
+  .filterIcon {
+    fill: white;
+    cursor: pointer;
+  }
+  
+  .menu-note p {
+    color: #fff;
+    
+  }
+  .meal {
+    color: white;
+  }
+  .meal:hover {
+    background-color: #1e293b;
+    color: white;
+  }
+  .search-modal {
+    background-color: #000;
+    color: #fff;
+  }
+  
+  .back-text {
+    color: #fff;
+  }
+  .back-arrow-modal {
+    color: #fff;
+  }
+  .searchIconModal {
+    color: #fff;
+  }
+  .main-search-input {
+    color: #fff;
+  }
+  .modal-content4 {
+    background-color: #000000;
+  }
+  .modal-content4 {
+    background-color: #000000;
+  }
+  
+  .modal-content4 {
+    background-color: #000000;
+  }
+  
+  .dropdown {
+    background-color: #000000;
+    border: 1px solid #69aafa;
+    color: #fff;
+  }
+  
+  .dropdown span {
+    color: #fff;
+  }
+  .meal {
+    color: #fff;
+    background-color: #000;
+    border: 1px solid #1e293b;
+  }
+  .meal-:hover {
+    background-color: #1e293b;
+  }
+  .header-border {
+    border: none;
+    box-shadow: none;
+  }
+  .modal-content4 {
+    color: #f8f8f8;
+  }
+  .filtersBtn {
+    background-color: #1e293b;
+    border: none;
+  }
+  .filtersBtn span {
+    background-color: #1e293b;
+    border: none;
+  }
+  .filtersBtn img {
+    background-color: #1e293b;
+    border: none;
+  }
+  .allergies {
+    color: #f8f8f8;
+  }
+  
+  .modal-content4 {
+    background-color: #000;
+  }
+  .allergies-form {
+    border: 1px solid #1e293b;
+    border-radius: 10px;
+  }
+  .allergiya-sec {
+    color: #f8f8f8;
+  }
+  .bisirilme-vaxti {
+    color: #f8f8f8;
+  }
+   .filter-section-confirm-button {
+    background-color: #595959;
+  }
+  .filter-section-delete-button {
+    border: 1px solid #1e293b;
+  }
+  .filter-section-delete-button {
+    border: 1px solid #1e293b;
+  }
+  .filtersBtn.active {
+    .filtersBtn-span {
+      background-color: #595959;
+    }
+    .filtersBtn-img {
+      background-color: #595959;
+    }
+    background-color: #595959;
+  }
+
+.mealsOptions{
+  background-color: #000;
+  fill: #000;
+}
+.rounded-top{
+  background-color: #1e293b;
+  border: 1px solid #1e293b ;
+}
+.close{
+  background-color: #182232;
+  color: #a8a3a3;
+  border: none;
+}
+.close:hover{
+  background-color: #1e293b;
+  color: #fff;
+}
 }
