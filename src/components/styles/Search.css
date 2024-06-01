@@ -1,4 +1,4 @@
-.search-modal.light {
+ .search-modal.light {
   background-color: #fff;
   color: #000;
 }
@@ -192,5 +192,6 @@ body {
     .back-arrow-modal{
       background-color: #1e293b;
     }
+  
   }
 }
