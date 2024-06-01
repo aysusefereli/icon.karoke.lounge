@@ -98,7 +98,7 @@ export default function ProductsList() {
                 <div className="add">
                   {activeProduct && (
                     <button className="addBasket">
-                      Səbətə əlavə et {activeProduct.price} ₼
+                      Səbətə əlavə et {activeProduct.price*counter} ₼
                     </button>
                   )}
                 </div>

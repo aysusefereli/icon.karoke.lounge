@@ -460,6 +460,75 @@
   font-size: 22px;
   margin: 5px;
 }
+
+.basketImg {
+  width: 100px;
+  height: 100px;
+  margin-top: 30px;
+}
+
+.emptyBasket {
+  display: flex;
+  justify-content: center;
+}
+
+.basketText {
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  margin-bottom: 90px;
+}
+
+.notes {
+  margin-left: 15px;
+  margin-right: 35px;
+}
+
+.note {
+  width: 100%;
+  background-color: hsl(210 40% 96.1%);
+  border: hsl(210 40% 96.1%);
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.footerBtns {
+  margin-top: 15px;
+}
+
+.filter-section-delete-button2 {
+  padding: 15px 20px;
+  border: 1px solid #e0e0e050;
+  border-radius: 15px;
+  margin-left: 15px;
+}
+.wp-order{
+  max-width: 500px;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #22C55E;
+  border-radius: 15px;
+  margin: 0 10px 20px 0;
+  
+}
+.footerBtns{
+  height: 60px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  color: #F8FAFC;
+}
+.faWhatsapp{
+  font-size: 40px;
+}
+.wp-order:hover{
+  background-color: #000;
+}
 .main-container.dark {
   background-color: #000;
   color: #fff;
@@ -691,50 +760,16 @@
   .footer2 {
     background-color: #595959;
   }
-}
-
-.basketImg {
-  width: 100px;
-  height: 100px;
-  margin-top: 30px;
-}
-
-.emptyBasket {
-  display: flex;
-  justify-content: center;
-}
-
-.basketText {
-  font-size: 20px;
-  font-weight: 700;
-  display: flex;
-  justify-content: center;
-  margin-top: 25px;
-  margin-bottom: 90px;
-}
-
-.notes {
-  margin-left: 15px;
-  margin-right: 35px;
-}
-
-.note {
-  width: 100%;
-  background-color: hsl(210 40% 96.1%);
-  border: hsl(210 40% 96.1%);
-  border-radius: 12px;
-  padding: 10px;
-}
-
-.footerBtns {
-  margin-top: 15px;
-}
-
-.filter-section-delete-button2 {
-  padding: 15px 20px;
-  border: 1px solid #e0e0e050;
-  border-radius: 15px;
-  margin-left: 15px;
+  .modal-content5{
+    color: #fff;
+    background-color: #000;
+  }
+  .note {
+   background-color: #1e293b;
+  }
+  .wp-order:hover{
+    background-color: #595959;
+  }
 }
 
 @media (max-width: 768px) {
