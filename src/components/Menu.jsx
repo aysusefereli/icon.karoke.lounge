@@ -8,7 +8,6 @@ import {
   faBasketShopping,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
-import ProductsList from "../components/ProductsList";
 import "rsuite/dist/rsuite.css";
 import { FreeMode, Keyboard, Mousewheel } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -43,6 +42,16 @@ export default function Menu() {
     setActiveProduct(product);
     setModalOpen(true);
   };
+  const [modalPrdctOpen, setModalPrdctOpen] = useState(false);
+  const openPrdctModal = (product) => {
+    setActiveProduct(product);
+    setModalPrdctOpen(true);
+  };
+
+  const closePrdctModal = () => {
+    setModalPrdctOpen(false);
+  };
+
 
   const closeModal = () => {
     setModalOpen(false);
@@ -316,8 +325,83 @@ export default function Menu() {
           </svg>
           <p>Hesaba 10% servis haqqı əlavə olunur</p>
         </div>
-        <div className="productsList">
-          <ProductsList />
+        <div className="productsList"> 
+        {categories.map((category) => (
+        <div className="category" key={category._id}>
+          <div className="product">{category.name}</div>
+          <div className="food">
+            {category.items.map((item) => (
+              <button
+                className="foodBtn"
+                key={item._id}
+                onClick={() => openPrdctModal(item)}
+                
+              >
+                <div className="namePrice">
+                  <span className="foodName">{item.name}</span>
+                  <span className="price">{item.price} ₼</span>
+                </div>
+                {item.image ? (
+                  <span className="image">
+                    <img className="foodImg" src={item.image} alt={item.name} />
+                    <div className="plus">+</div>
+                  </span>
+                ) : (
+                  <div className="noImage">
+                    <span className="price">{item.price} ₼</span>
+                  </div>
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+      ))}
+       {modalPrdctOpen && ( 
+        <div id="myModal" className="modal">
+          <div className="modal-content-product">
+            <span className="close" onClick={closePrdctModal}>
+              &times;
+            </span>
+            <div className="modal_info">
+            {activeProduct && activeProduct.image && (
+              <div className="imgimg">
+                <img
+                  className="productImg"
+                  src={activeProduct.image}
+                  alt={activeProduct.name}
+                />
+              </div>
+            )}
+
+            {activeProduct && activeProduct.name && (
+              <div className="choice">{activeProduct.name}</div>
+            )}
+
+              <div className="counter_basket">
+                <div className="counter">
+                  <button
+                    onClick={() => dispatch(decrement())}
+                    disabled={counter <= 0}
+                  >
+                    <span id="count">-</span>
+                  </button>
+                  <div className="countNmbr">{counter}</div>
+                  <button onClick={() => dispatch(increment())}>
+                    <span id="count">+</span>
+                  </button>
+                </div>
+                <div className="add">
+                  {activeProduct && (
+                    <button className="addBasket">
+                      Səbətə əlavə et {activeProduct.price*counter} ₼
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
         </div>
         <div className="footer1" onClick={openModal}>
           <button className="footerBtn">
