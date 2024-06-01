@@ -5,15 +5,18 @@ import {
   faChevronRight,
   faPhone,
   faUser,
+  faArrowLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import axios from "axios";
 
 export default function MainPage({ switchTheme, theme }) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isModal2Open, setModal2Open] = useState(false);
   const [isModal3Open, setModal3Open] = useState(false);
+  const [isModal2OpenNext, setModal2OpenNext] = useState(false);
   const [phoneValue, setPhoneValue] = useState("");
 
   const openModal = () => {
@@ -38,6 +41,56 @@ export default function MainPage({ switchTheme, theme }) {
 
   const close3Modal = () => {
     setModal3Open(false);
+  };
+
+  const open2ModalNext = () => {
+    setModal2OpenNext(true);
+  };
+
+  const close2ModalNext = () => {
+    setModal2OpenNext(false);
+  };
+
+  const extractCountryAndNumber = (value) => {
+    const countryLengths = {
+      994: 12,
+    };
+
+    let countryCode = "";
+    let phoneNumber = "";
+
+    for (const code of Object.keys(countryLengths)) {
+      if (value.startsWith(code)) {
+        countryCode = code;
+        phoneNumber = value.substring(code.length);
+        break;
+      }
+    }
+
+    return { countryCode, phoneNumber };
+  };
+
+  const handlePhoneSubmit = async (e) => {
+    e.preventDefault();
+    const { countryCode, phoneNumber } = extractCountryAndNumber(phoneValue);
+    try {
+      const response = await axios.post(
+        "https://icon-karaoke-and-lounge-back.onrender.com/api/otp/send",
+        { countryCode, phoneNumber }
+      );
+      console.log("Response:", response);
+      if (response.status === 200) {
+        console.log("Phone submitted successfully");
+        setModal2Open(false);
+        setModal2OpenNext(true);
+        console.log(phoneValue);
+      }
+    } catch (error) {
+      console.error("Error sending OTP", error);
+    }
+
+    console.log("Country Code:", countryCode);
+    console.log("Phone Number:", phoneNumber);
   };
 
   return (
@@ -152,20 +205,24 @@ export default function MainPage({ switchTheme, theme }) {
             </span>
             <div className="modal_info2">
               <div className="choice2">Giriş et</div>
-              <PhoneInput
-                className="phoneInput"
-                international
-                CountryCallingCodeEditable={false}
-                defaultCountry="AZ"
-                value={phoneValue}
-                onChange={setPhoneValue}
-              />
-              <p className="phoneNumber">
-                Telefon nömrənizi doğrulamaq üçün kod göndərəcəyik
-              </p>
-              <div className="continue">
-                <button className="continueBtn">Davam et</button>
-              </div>
+              <form onSubmit={handlePhoneSubmit}>
+                <PhoneInput
+                  className="phoneInput"
+                  international
+                  countryCallingCodeEditable={false}
+                  defaultCountry="AZ"
+                  value={phoneValue}
+                  onChange={setPhoneValue}
+                />
+                <p className="phoneNumber">
+                  Telefon nömrənizi doğrulamaq üçün kod göndərəcəyik
+                </p>
+                <div className="continue">
+                  <button className="continueBtn" type="submit">
+                    Davam et
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -199,6 +256,39 @@ export default function MainPage({ switchTheme, theme }) {
                     alt="whatsapp"
                   />
                 </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {isModal2OpenNext && (
+        <div id="myModal" className="modal2">
+          <div className="modal-content2">
+            <span className="close2" onClick={close2ModalNext}>
+              &times;
+            </span>
+            <div className="modal_info2">
+              <div>
+                <div className="choice2">
+                  <FontAwesomeIcon
+                    className="back-arrow-modal"
+                    icon={faArrowLeft}
+                    onClick={() => {
+                      setModal2OpenNext(false);
+                      setModal2Open(true);
+                    }}
+                  />
+                </div>
+                <div className="choice2">Kodu daxil edin</div>
+              </div>
+              <div className="inputs">
+                <input type="number"></input>
+                <input type="number"></input>
+                <input type="number"></input>
+                <input type="number"></input>
+              </div>
+              <div className="continue">
+                <button className="continueBtn">Davam et</button>
               </div>
             </div>
           </div>

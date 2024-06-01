@@ -736,3 +736,23 @@
   border-radius: 15px;
   margin-left: 15px;
 }
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .border-container,
+  .menu-header {
+    max-width: none;
+  }
+
+  .search-modal-input,
+  .main-search-input[type="text"] {
+    width: 100%;
+  }
+
+  .main-search-input[type="text"] {
+    font-size: 14px;
+  }
+}
