@@ -1007,3 +1007,23 @@ button{
     color: #fff;
   }
 }
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .border-container,
+  .menu-header {
+    max-width: none;
+  }
+
+  .search-modal-input,
+  .main-search-input[type="text"] {
+    width: 100%;
+  }
+
+  .main-search-input[type="text"] {
+    font-size: 14px;
+  }
+}
