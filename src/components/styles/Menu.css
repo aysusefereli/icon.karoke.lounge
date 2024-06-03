@@ -293,8 +293,12 @@
   font-weight: 600;
   font-size: 18px;
 }
+<<<<<<< HEAD
 .choice-basket {
   margin-left: 1px;
+=======
+.choice-basket{
+>>>>>>> origin/main
   margin: 20px 20px 30px 15px;
   font-weight: 600;
   font-size: 24px;
@@ -622,9 +626,10 @@
   border-radius: 10px 10px 0 0;
   position: relative;
   animation: slideDown 0.5s forwards, slideUp 0.5s forwards;
-  overflow-y: none;
+  overflow-y: auto;
   color: #000;
   margin-top: 0;
+  max-height: 95vh;
 }
 hr {
   opacity: 0.3;
@@ -684,8 +689,8 @@ hr {
   gap: 10px;
   max-width: 100%;
   width: 100px;
-  height: 60px;
 }
+
 
 #count {
   font-size: 30px;
