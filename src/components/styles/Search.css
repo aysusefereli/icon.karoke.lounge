@@ -285,3 +285,52 @@ button {
   align-items: center;
   border: 1px solid hsl(210 40% 96.1%);
 }
+
+.counter-basket {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid hsl(210 40% 96.1%);
+  border-radius: 12px;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  gap: 10px;
+  max-height: 40px;
+}
+
+.basket-main {
+  display: flex;
+  flex-direction: row;
+  margin-left: 15px;
+  margin-bottom: 15px;
+  gap: 10px;
+  max-width: 100%;
+  width: 100px;
+  height: 60px;
+}
+
+#count {
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.addBasket {
+  border: 1px solid hsl(210 40% 96.1%);
+  border-radius: 12px;
+  width: 350px;
+  max-width: 100%;
+  height: 60px;
+  background-color: #000;
+  color: white;
+  font-size: 14px;
+}
+
+.countNmbr {
+  font-size: 16px;
+  font-weight: 400;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  color: #000;
+}

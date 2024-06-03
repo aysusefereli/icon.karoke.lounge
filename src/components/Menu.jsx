@@ -22,11 +22,11 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
-import Accordion from '@mui/material/Accordion';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Accordion from "@mui/material/Accordion";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useThemeManager } from "./theme";
 import { useDispatch, useSelector } from "react-redux";
 import { decrement, increment } from "../store/slices/counterSlice";
@@ -57,13 +57,11 @@ export default function Menu() {
   const openPrdctModal = (product) => {
     setActiveProduct(product);
     setModalPrdctOpen(true);
-    
   };
 
   const closePrdctModal = () => {
     setModalPrdctOpen(false);
   };
-
 
   const closeModal = () => {
     setModalOpen(false);
@@ -260,8 +258,8 @@ export default function Menu() {
   }, [prevScrollPos]);
   const [theOrders, setTheOrders] = useState([]);
   const addOrders = (item) => {
-    setTheOrders(prevOrders => [...prevOrders, item]);
-  }
+    setTheOrders((prevOrders) => [...prevOrders, item]);
+  };
   return (
     <div className={`main-container ${theme}`}>
       <div className="container">
@@ -339,14 +337,14 @@ export default function Menu() {
                 }`}
               >
                 {categories.map((category) => (
-                <SwiperSlide key={category.id} className="swiper-slide-auto">
-                <button
-                  className="meal"
-                  onClick={() => scrollToSection(category.name)}
-                >
-                  {category?.name}
-                </button>
-              </SwiperSlide>
+                  <SwiperSlide key={category.id} className="swiper-slide-auto">
+                    <button
+                      className="meal"
+                      onClick={() => scrollToSection(category.name)}
+                    >
+                      {category?.name}
+                    </button>
+                  </SwiperSlide>
                 ))}
               </Swiper>
             </div>
@@ -367,90 +365,98 @@ export default function Menu() {
           </svg>
           <p>Hesaba 10% servis haqqı əlavə olunur</p>
         </div>
-        <div className="productsList"> 
-        {categories.map((category) => (
-        <div className="category" key={category._id}>
-         <div id={category.name} className="product" key={category._id}>
+        <div className="productsList">
+          {categories.map((category) => (
+            <div className="category" key={category._id}>
+              <div id={category.name} className="product" key={category._id}>
                 {category.name}
               </div>
-          <div className="food">
-            {category.items.map((item) => (
-              <button
-                className="foodBtn"
-                key={item._id}
-                onClick={() => openPrdctModal(item)}
-                
-              >
-                <div className="namePrice">
-                  <span className="foodName">{item.name}</span>
-                  <span className="price">{item.price} ₼</span>
-                </div>
-                {item.image ? (
-                  <span className="image">
-                    <img className="foodImg" src={item.image} alt={item.name} />
-                    <div className="plus">+</div>
-                  </span>
-                ) : (
-                  <div className="noImage">
-                    <span className="price">{item.price} ₼</span>
-                  </div>
-                )}
-              </button>
-            ))}
-          </div>
-        </div>
-      ))}
-       {modalPrdctOpen && ( 
-        <div id="myModal" className="modal">
-          <div className="modal-content-product">
-            <span className="close" onClick={closePrdctModal}>
-              &times;
-            </span>
-            <div className="modal_info">
-            {activeProduct && activeProduct.image && (
-              <div className="imgimg">
-                <img
-                  className="productImg"
-                  src={activeProduct.image}
-                  alt={activeProduct.name}
-                />
-              </div>
-            )}
-
-            {activeProduct && activeProduct.name && (
-              <div className="choice">{activeProduct.name}</div>
-            )}
-
-              <div className="basket-main">
-                <div className="counter">
+              <div className="food">
+                {category.items.map((item) => (
                   <button
-                    onClick={() => dispatch(decrement())}
-                    disabled={counter <= 1}
+                    className="foodBtn"
+                    key={item._id}
+                    onClick={() => openPrdctModal(item)}
                   >
-                    <span id="count">-</span>
+                    <div className="namePrice">
+                      <span className="foodName">{item.name}</span>
+                      <span className="price">{item.price} ₼</span>
+                    </div>
+                    {item.image ? (
+                      <span className="image">
+                        <img
+                          className="foodImg"
+                          src={item.image}
+                          alt={item.name}
+                        />
+                        <div className="plus">+</div>
+                      </span>
+                    ) : (
+                      <div className="noImage">
+                        <span className="price">{item.price} ₼</span>
+                      </div>
+                    )}
                   </button>
-                  <div className="countNmbr">{counter}</div>
-                  <button onClick={() => dispatch(increment())}>
-                    <span id="count">+</span>
-                  </button>
-                </div>
-                     <div className="add">
-                     {activeProduct && (
-                       <button
-                         className="addBasket"
-                         onClick={() => addOrders(activeProduct)}
-                       >
-                         Səbətə əlavə et {activeProduct.price * counter} ₼
-                       </button>
+                ))}
+              </div>
+            </div>
+          ))}
+          {modalPrdctOpen && (
+            <div id="myModal" className="modal">
+              <div className="modal-content-product">
+                <span className="close" onClick={closePrdctModal}>
+                  &times;
+                </span>
+                <div className="modal_info">
+                  {activeProduct && activeProduct.image && (
+                    <div className="imgimg">
+                      <img
+                        className="productImg"
+                        src={activeProduct.image}
+                        alt={activeProduct.name}
+                      />
+                    </div>
                   )}
+
+                  {activeProduct && activeProduct.name && (
+                    <div className="choice">{activeProduct.name}</div>
+                  )}
+
+                  <div className="basket-main">
+                    <div className="counter">
+                      <button
+                        onClick={() => dispatch(decrement())}
+                        disabled={counter <= 1}
+                      >
+                        <span id="count">-</span>
+                      </button>
+                      <div className="countNmbr">{counter}</div>
+                      <button onClick={() => dispatch(increment())}>
+                        <span id="count">+</span>
+                      </button>
+                    </div>
+                    <div className="add">
+                      {activeProduct && (
+                        <button
+                          className="addBasket"
+                          onClick={() => addOrders(activeProduct)}
+                        >
+                          Səbətə əlavə et {activeProduct.price * counter} ₼
+                        </button>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
-      )}
-        </div>
-        <div className="footer1" onClick={openModal}>
+        <div
+          className="footer1"
+          onClick={() =>
+            theOrders.length === 0 ? openModalEmpty() : openModal()
+          }
+        >
           <button className="footerBtn">
             <div className="basket">
               <FontAwesomeIcon className="faBasket" icon={faBasketShopping} />
@@ -458,7 +464,12 @@ export default function Menu() {
             <div className="total">Cəm: 0 ₼</div>
           </button>
         </div>
-        <div className="footer2" onClick={openModal}>
+        <div
+          className="footer2"
+          onClick={() =>
+            theOrders.length === 0 ? openModalEmpty() : openModal()
+          }
+        >
           <button>
             <div className="basket">
               <FontAwesomeIcon className="faBasket" icon={faBasketShopping} />
@@ -640,65 +651,63 @@ export default function Menu() {
               <div className="rounded-top"></div>
             </div>
             <div className="modal_info">
-            <div className="choice-basket">Səbətdəki məhsullar</div>
-            {theOrders.length > 0 && theOrders.map((order, index) => (
-                <Accordion expanded={expanded === 'panel1'} onChange={handleChangeBasket('panel1')}>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1bh-content"
-                id="panel1bh-header"
-              >
-                <Typography sx={{ width: '95%', flexShrink: 0 }}>
-                      <div key={index} className="basket-item-top">
-                        <div>1 x {order.name}</div>
-                        <div>{order.price} ₼</div>
-                      </div>
-                </Typography>
-              
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography sx={{ width: '92%', flexShrink: 0 }}>
-                 <div className="basket-item-bottom">
-                 <div className="counter-basket">
-                  <button
-                    onClick={() => dispatch(decrement())}
-                    disabled={counter <= 1}
+              <div className="choice-basket">Səbətdəki məhsullar</div>
+              {theOrders.length > 0 &&
+                theOrders.map((order, index) => (
+                  <Accordion
+                    expanded={expanded === "panel1"}
+                    onChange={handleChangeBasket("panel1")}
                   >
-                    <span id="count">-</span>
-                  </button>
-                  <div className="countNmbr">{counter}</div>
-                  <button onClick={() => dispatch(increment())}>
-                    <span id="count">+</span>
-                  </button>
-                </div>
-                <div>  
-                    <svg className="basket-item-remove"
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="24px"
-                    viewBox="0 -960 960 960"
-                    width="20px"
-                    fill="#ff0000"
-                  >     
-                  <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
-                  </svg>
-                  </div>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls="panel1bh-content"
+                      id="panel1bh-header"
+                    >
+                      <Typography sx={{ width: "95%", flexShrink: 0 }}>
+                        <div key={index} className="basket-item-top">
+                          <div>1 x {order.name}</div>
+                          <div>{order.price} ₼</div>
+                        </div>
+                      </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <Typography sx={{ width: "92%", flexShrink: 0 }}>
+                        <div className="basket-item-bottom">
+                          <div className="counter-basket">
+                            <button
+                              onClick={() => dispatch(decrement())}
+                              disabled={counter <= 1}
+                            >
+                              <span id="count">-</span>
+                            </button>
+                            <div className="countNmbr">{counter}</div>
+                            <button onClick={() => dispatch(increment())}>
+                              <span id="count">+</span>
+                            </button>
+                          </div>
+                          <div>
+                            <svg
+                              className="basket-item-remove"
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="24px"
+                              viewBox="0 -960 960 960"
+                              width="20px"
+                              fill="#ff0000"
+                            >
+                              <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
+                            </svg>
+                          </div>
+                        </div>
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
+                ))}
 
-                 </div>
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
-            ))}
-            
               <div className="basket-main">
                 <div className="basket-main-left">
-                <div>
-                  
-                </div>
-               
+                  <div></div>
                 </div>
                 <div className="basket-main-right"></div>
-              
-              
               </div>
               <div className="notes">
                 <textarea
@@ -709,7 +718,6 @@ export default function Menu() {
               </div>
               <div className="footerBtns">
                 <button className="filter-section-delete-button2">
-                  
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     height="24px"
@@ -721,7 +729,7 @@ export default function Menu() {
                   </svg>
                 </button>
                 <button className="wp-order">
-                <FontAwesomeIcon className="faWhatsapp" icon={faWhatsapp} />
+                  <FontAwesomeIcon className="faWhatsapp" icon={faWhatsapp} />
                   <span>WhatsApp sifarişi</span>
                 </button>
               </div>

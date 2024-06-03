@@ -115,14 +115,18 @@ export default function Search() {
           <div className="search-list">
             {input.trim() !== "" &&
               filteredItems.map((category) => (
-                <button className="itemBtn" onClick={openPrdctModal}>
+                <button className="itemBtn">
                   <div
                     key={category._id}
                     id={`category-${category._id}`}
                     className="category-name"
                   >
                     {category.items.map((item) => (
-                      <div key={item.id} className="prices">
+                      <div
+                        key={item.id}
+                        className="prices"
+                        onClick={() => openPrdctModal(item)}
+                      >
                         <div className="namePrice">
                           <span className="foodName">{item.name}</span>
                           <span className="price">{item.price} ₼</span>
@@ -169,7 +173,7 @@ export default function Search() {
                   <div className="choice">{activeProduct.name}</div>
                 )}
 
-                <div className="counter_basket">
+                <div className="basket-main">
                   <div className="counter">
                     <button
                       onClick={() => dispatch(decrement())}
