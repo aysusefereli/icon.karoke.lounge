@@ -22,6 +22,11 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useThemeManager } from "./theme";
 import { useDispatch, useSelector } from "react-redux";
 import { decrement, increment } from "../store/slices/counterSlice";
@@ -38,6 +43,12 @@ export default function Menu() {
   const counter = useSelector((state) => state.counterStore.counter);
   const dispatch = useDispatch();
 
+  const [expanded, setExpanded] = React.useState(false);
+
+  const handleChangeBasket = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
+
   const openModal = (product) => {
     setActiveProduct(product);
     setModalOpen(true);
@@ -46,6 +57,7 @@ export default function Menu() {
   const openPrdctModal = (product) => {
     setActiveProduct(product);
     setModalPrdctOpen(true);
+    
   };
 
   const closePrdctModal = () => {
@@ -225,6 +237,10 @@ export default function Menu() {
     };
   }, []);
 
+  const [theOrders, setTheOrders] = useState([]);
+  const addOrders = (item) => {
+    setTheOrders(prevOrders => [...prevOrders, item]);
+  }
   return (
     <div className={`main-container ${theme}`}>
       <div className="container">
@@ -377,11 +393,11 @@ export default function Menu() {
               <div className="choice">{activeProduct.name}</div>
             )}
 
-              <div className="counter_basket">
+              <div className="basket-main">
                 <div className="counter">
                   <button
                     onClick={() => dispatch(decrement())}
-                    disabled={counter <= 0}
+                    disabled={counter <= 1}
                   >
                     <span id="count">-</span>
                   </button>
@@ -390,11 +406,14 @@ export default function Menu() {
                     <span id="count">+</span>
                   </button>
                 </div>
-                <div className="add">
-                  {activeProduct && (
-                    <button className="addBasket">
-                      Səbətə əlavə et {activeProduct.price*counter} ₼
-                    </button>
+                     <div className="add">
+                     {activeProduct && (
+                       <button
+                         className="addBasket"
+                         onClick={() => addOrders(activeProduct)}
+                       >
+                         Səbətə əlavə et {activeProduct.price * counter} ₼
+                       </button>
                   )}
                 </div>
               </div>
@@ -593,13 +612,29 @@ export default function Menu() {
               <div className="rounded-top"></div>
             </div>
             <div className="modal_info">
-              <div className="choice">Səbətdəki məhsullar</div>
-              <div className="counter_basket">
-                
-                <div className="counter">
+            <div className="choice-basket">Səbətdəki məhsullar</div>
+            {theOrders.length > 0 && theOrders.map((order, index) => (
+                <Accordion expanded={expanded === 'panel1'} onChange={handleChangeBasket('panel1')}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1bh-content"
+                id="panel1bh-header"
+              >
+                <Typography sx={{ width: '95%', flexShrink: 0 }}>
+                      <div key={index} className="basket-item-top">
+                        <div>1 x {order.name}</div>
+                        <div>{order.price}</div>
+                      </div>
+                </Typography>
+              
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography sx={{ width: '92%', flexShrink: 0 }}>
+                 <div className="basket-item-bottom">
+                 <div className="counter-basket">
                   <button
                     onClick={() => dispatch(decrement())}
-                    disabled={counter <= 0}
+                    disabled={counter <= 1}
                   >
                     <span id="count">-</span>
                   </button>
@@ -608,9 +643,34 @@ export default function Menu() {
                     <span id="count">+</span>
                   </button>
                 </div>
-                <div className="add">
-                  {activeProduct && <div>{activeProduct.name}</div>}
+                <div>  
+                    <svg className="basket-item-remove"
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="20px"
+                    fill="#ff0000"
+                  >     
+                  <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
+                  </svg>
+                  </div>
+
+                 </div>
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+            ))}
+            
+              <div className="basket-main">
+                <div className="basket-main-left">
+                <div>
+                  
                 </div>
+               
+                </div>
+                <div className="basket-main-right"></div>
+              
+              
               </div>
               <div className="notes">
                 <textarea
@@ -621,6 +681,7 @@ export default function Menu() {
               </div>
               <div className="footerBtns">
                 <button className="filter-section-delete-button2">
+                  
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     height="24px"
