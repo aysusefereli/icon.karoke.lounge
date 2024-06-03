@@ -236,7 +236,28 @@ export default function Menu() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
+  const [visible, setVisible] = useState(true);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset;
+      setVisible(prevScrollPos > currentScrollPos);
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [prevScrollPos]);
   const [theOrders, setTheOrders] = useState([]);
   const addOrders = (item) => {
     setTheOrders(prevOrders => [...prevOrders, item]);
@@ -244,7 +265,7 @@ export default function Menu() {
   return (
     <div className={`main-container ${theme}`}>
       <div className="container">
-        <div className="border-container">
+        <div className={`border-container ${visible ? "" : "hide"}`}>
           <div className="header-border">
             <div className="menu-header">
               <div className="arrow_moon">
@@ -318,9 +339,14 @@ export default function Menu() {
                 }`}
               >
                 {categories.map((category) => (
-                  <SwiperSlide key={category.id} className="swiper-slide-auto">
-                    <button className="meal">{category.name}</button>
-                  </SwiperSlide>
+                <SwiperSlide key={category.id} className="swiper-slide-auto">
+                <button
+                  className="meal"
+                  onClick={() => scrollToSection(category.name)}
+                >
+                  {category?.name}
+                </button>
+              </SwiperSlide>
                 ))}
               </Swiper>
             </div>
@@ -344,7 +370,9 @@ export default function Menu() {
         <div className="productsList"> 
         {categories.map((category) => (
         <div className="category" key={category._id}>
-          <div className="product">{category.name}</div>
+         <div id={category.name} className="product" key={category._id}>
+                {category.name}
+              </div>
           <div className="food">
             {category.items.map((item) => (
               <button
@@ -623,7 +651,7 @@ export default function Menu() {
                 <Typography sx={{ width: '95%', flexShrink: 0 }}>
                       <div key={index} className="basket-item-top">
                         <div>1 x {order.name}</div>
-                        <div>{order.price}</div>
+                        <div>{order.price} ₼</div>
                       </div>
                 </Typography>
               
