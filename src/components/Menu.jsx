@@ -356,6 +356,7 @@ export default function Menu() {
                     <div className="namePrice">
                       <span className="foodName">{item.name}</span>
                       <span className="price">{item.price} ₼</span>
+                      <div>a</div>
                     </div>
                     {item.image ? (
                       <span className="image">
