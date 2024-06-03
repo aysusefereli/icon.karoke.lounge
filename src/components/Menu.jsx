@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./styles/Menu.css";
 import { Link } from "react-router-dom";
 import useLocalStorage from "use-local-storage";
@@ -51,7 +51,6 @@ export default function Menu() {
   const closePrdctModal = () => {
     setModalPrdctOpen(false);
   };
-
 
   const closeModal = () => {
     setModalOpen(false);
@@ -175,19 +174,6 @@ export default function Menu() {
   const handleInputChange = (e) => {
     setInput(e.target.value);
   };
-  const [activeButtons, setActiveButtons] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
-
-  const handleButtonClick = (index) => {
-    const newActiveButtons = [...activeButtons];
-    newActiveButtons[index] = !newActiveButtons[index];
-    setActiveButtons(newActiveButtons);
-  };
 
   let lastScrollTop = 0;
 
@@ -225,10 +211,34 @@ export default function Menu() {
     };
   }, []);
 
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset;
+      setVisible(prevScrollPos > currentScrollPos);
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [prevScrollPos]);
+
   return (
     <div className={`main-container ${theme}`}>
       <div className="container">
-        <div className="border-container">
+        <div className={`border-container ${visible ? "" : "hide"}`}>
           <div className="header-border">
             <div className="menu-header">
               <div className="arrow_moon">
@@ -303,7 +313,12 @@ export default function Menu() {
               >
                 {categories.map((category) => (
                   <SwiperSlide key={category.id} className="swiper-slide-auto">
-                    <button className="meal">{category.name}</button>
+                    <button
+                      className="meal"
+                      onClick={() => scrollToSection(category.name)}
+                    >
+                      {category?.name}
+                    </button>
                   </SwiperSlide>
                 ))}
               </Swiper>
@@ -325,83 +340,88 @@ export default function Menu() {
           </svg>
           <p>Hesaba 10% servis haqqı əlavə olunur</p>
         </div>
-        <div className="productsList"> 
-        {categories.map((category) => (
-        <div className="category" key={category._id}>
-          <div className="product">{category.name}</div>
-          <div className="food">
-            {category.items.map((item) => (
-              <button
-                className="foodBtn"
-                key={item._id}
-                onClick={() => openPrdctModal(item)}
-                
-              >
-                <div className="namePrice">
-                  <span className="foodName">{item.name}</span>
-                  <span className="price">{item.price} ₼</span>
-                </div>
-                {item.image ? (
-                  <span className="image">
-                    <img className="foodImg" src={item.image} alt={item.name} />
-                    <div className="plus">+</div>
-                  </span>
-                ) : (
-                  <div className="noImage">
-                    <span className="price">{item.price} ₼</span>
-                  </div>
-                )}
-              </button>
-            ))}
-          </div>
-        </div>
-      ))}
-       {modalPrdctOpen && ( 
-        <div id="myModal" className="modal">
-          <div className="modal-content-product">
-            <span className="close" onClick={closePrdctModal}>
-              &times;
-            </span>
-            <div className="modal_info">
-            {activeProduct && activeProduct.image && (
-              <div className="imgimg">
-                <img
-                  className="productImg"
-                  src={activeProduct.image}
-                  alt={activeProduct.name}
-                />
+        <div className="productsList">
+          {categories.map((category) => (
+            <div className="category" key={category._id}>
+              <div id={category.name} className="product" key={category._id}>
+                {category.name}
               </div>
-            )}
-
-            {activeProduct && activeProduct.name && (
-              <div className="choice">{activeProduct.name}</div>
-            )}
-
-              <div className="counter_basket">
-                <div className="counter">
+              <div className="food">
+                {category.items.map((item) => (
                   <button
-                    onClick={() => dispatch(decrement())}
-                    disabled={counter <= 0}
+                    className="foodBtn"
+                    key={item._id}
+                    onClick={() => openPrdctModal(item)}
                   >
-                    <span id="count">-</span>
+                    <div className="namePrice">
+                      <span className="foodName">{item.name}</span>
+                      <span className="price">{item.price} ₼</span>
+                    </div>
+                    {item.image ? (
+                      <span className="image">
+                        <img
+                          className="foodImg"
+                          src={item.image}
+                          alt={item.name}
+                        />
+                        <div className="plus">+</div>
+                      </span>
+                    ) : (
+                      <div className="noImage">
+                        <span className="price">{item.price} ₼</span>
+                      </div>
+                    )}
                   </button>
-                  <div className="countNmbr">{counter}</div>
-                  <button onClick={() => dispatch(increment())}>
-                    <span id="count">+</span>
-                  </button>
-                </div>
-                <div className="add">
-                  {activeProduct && (
-                    <button className="addBasket">
-                      Səbətə əlavə et {activeProduct.price*counter} ₼
-                    </button>
+                ))}
+              </div>
+            </div>
+          ))}
+          {modalPrdctOpen && (
+            <div id="myModal" className="modal">
+              <div className="modal-content-product">
+                <span className="close" onClick={closePrdctModal}>
+                  &times;
+                </span>
+                <div className="modal_info">
+                  {activeProduct && activeProduct.image && (
+                    <div className="imgimg">
+                      <img
+                        className="productImg"
+                        src={activeProduct.image}
+                        alt={activeProduct.name}
+                      />
+                    </div>
                   )}
+
+                  {activeProduct && activeProduct.name && (
+                    <div className="choice">{activeProduct.name}</div>
+                  )}
+
+                  <div className="counter_basket">
+                    <div className="counter">
+                      <button
+                        onClick={() => dispatch(decrement())}
+                        disabled={counter <= 0}
+                      >
+                        <span id="count">-</span>
+                      </button>
+                      <div className="countNmbr">{counter}</div>
+                      <button onClick={() => dispatch(increment())}>
+                        <span id="count">+</span>
+                      </button>
+                    </div>
+                    <div className="add">
+                      {activeProduct && (
+                        <button className="addBasket">
+                          Səbətə əlavə et {activeProduct.price * counter} ₼
+                        </button>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      )}
+          )}
         </div>
         <div className="footer1" onClick={openModal}>
           <button className="footerBtn">
@@ -595,7 +615,6 @@ export default function Menu() {
             <div className="modal_info">
               <div className="choice">Səbətdəki məhsullar</div>
               <div className="counter_basket">
-                
                 <div className="counter">
                   <button
                     onClick={() => dispatch(decrement())}
@@ -632,7 +651,7 @@ export default function Menu() {
                   </svg>
                 </button>
                 <button className="wp-order">
-                <FontAwesomeIcon className="faWhatsapp" icon={faWhatsapp} />
+                  <FontAwesomeIcon className="faWhatsapp" icon={faWhatsapp} />
                   <span>WhatsApp sifarişi</span>
                 </button>
               </div>
