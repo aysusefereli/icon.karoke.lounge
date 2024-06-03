@@ -45,9 +45,10 @@ export default function Menu() {
 
   const [expanded, setExpanded] = React.useState(false);
 
-  const handleChangeBasket = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
+  const handleChangePanel = (panel) => (event, isExpanded) => {
+    setExpanded({ ...expanded, [panel]: isExpanded });
   };
+  
 
   const openModal = (product) => {
     setActiveProduct(product);
@@ -258,10 +259,24 @@ export default function Menu() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [prevScrollPos]);
+
   const [theOrders, setTheOrders] = useState([]);
   const addOrders = (item) => {
     setTheOrders(prevOrders => [...prevOrders, item]);
+    setModalPrdctOpen(false);
   }
+  const removeOrder = (index) => {
+    setTheOrders(prevOrders => {
+      const updatedOrders = [...prevOrders];
+      updatedOrders.splice(index, 1);
+      return updatedOrders;
+    });
+  }
+  const removeAllOrders = () => {
+    setTheOrders([]);
+  }
+  
+  
   return (
     <div className={`main-container ${theme}`}>
       <div className="container">
@@ -424,13 +439,13 @@ export default function Menu() {
               <div className="basket-main">
                 <div className="counter">
                   <button
-                    onClick={() => dispatch(decrement())}
+                    onClick={() => dispatch(decrement(activeProduct))}
                     disabled={counter <= 1}
                   >
                     <span id="count">-</span>
                   </button>
                   <div className="countNmbr">{counter}</div>
-                  <button onClick={() => dispatch(increment())}>
+                  <button onClick={() => dispatch(increment(activeProduct))}>
                     <span id="count">+</span>
                   </button>
                 </div>
@@ -642,7 +657,11 @@ export default function Menu() {
             <div className="modal_info">
             <div className="choice-basket">Səbətdəki məhsullar</div>
             {theOrders.length > 0 && theOrders.map((order, index) => (
-                <Accordion expanded={expanded === 'panel1'} onChange={handleChangeBasket('panel1')}>
+                 <Accordion
+                 key={index}
+                 expanded={expanded[`panel${index}`]}
+                 onChange={handleChangePanel(`panel${index}`)}
+               >
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1bh-content"
@@ -650,8 +669,8 @@ export default function Menu() {
               >
                 <Typography sx={{ width: '95%', flexShrink: 0 }}>
                       <div key={index} className="basket-item-top">
-                        <div>1 x {order.name}</div>
-                        <div>{order.price} ₼</div>
+                        <div>{counter} x {order.name}</div>
+                        <div>{order.price*counter} ₼</div>
                       </div>
                 </Typography>
               
@@ -671,7 +690,7 @@ export default function Menu() {
                     <span id="count">+</span>
                   </button>
                 </div>
-                <div>  
+                <div onClick={() => removeOrder(index)} >  
                     <svg className="basket-item-remove"
                     xmlns="http://www.w3.org/2000/svg"
                     height="24px"
@@ -708,7 +727,7 @@ export default function Menu() {
                 ></textarea>
               </div>
               <div className="footerBtns">
-                <button className="filter-section-delete-button2">
+                <button onClick={() => removeAllOrders()} className="filter-section-delete-button2">
                   
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
