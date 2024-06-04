@@ -77,7 +77,10 @@ export default function Search() {
   const closePrdctModal = () => {
     setModalPrdctOpen(false);
   };
-
+  const addOrders = (item) => {
+    setTheOrders(prevOrders => [...prevOrders, item]);
+    setModalPrdctOpen(false);
+  }
   return (
     <div>
       <div id="mySearchModal" className={`search-modal ${theme}`}>
@@ -188,7 +191,10 @@ export default function Search() {
                   </div>
                   <div className="add">
                     {activeProduct && (
-                      <button className="addBasket">
+                       <button
+                       className="addBasket"
+                       onClick={() => addOrders(activeProduct)}
+                     >
                         Səbətə əlavə et {activeProduct.price * counter} ₼
                       </button>
                     )}

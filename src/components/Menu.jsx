@@ -31,6 +31,7 @@ import { useThemeManager } from "./theme";
 import { useDispatch, useSelector } from "react-redux";
 import { decrement, increment } from "../store/slices/counterSlice";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { Explore } from "@mui/icons-material";
 
 export default function Menu() {
   const [filteredItems, setFilteredItems] = useState([]);
@@ -260,7 +261,7 @@ export default function Menu() {
     };
   }, [prevScrollPos]);
 
-  const [theOrders, setTheOrders] = useState([]);
+   const [theOrders, setTheOrders] = useState([]);
   const addOrders = (item) => {
     setTheOrders(prevOrders => [...prevOrders, item]);
     setModalPrdctOpen(false);
@@ -269,9 +270,13 @@ export default function Menu() {
     setTheOrders(prevOrders => {
       const updatedOrders = [...prevOrders];
       updatedOrders.splice(index, 1);
+  
+      if (updatedOrders.length === 0) {
+        setModalOpen(false);
+      }
+  
       return updatedOrders;
-    });
-  }
+    });}
   const removeAllOrders = () => {
     setTheOrders([]);
     setModalOpen(false);
@@ -415,7 +420,8 @@ export default function Menu() {
                   </div>
                 )}
               </button>
-            ))}
+            ))} 
+           
           </div>
         </div>
       ))}
@@ -479,15 +485,17 @@ export default function Menu() {
             <div className="basket">
               <FontAwesomeIcon className="faBasket" icon={faBasketShopping} />
             </div>
-            <div className="total">Cəm: ${totalPrice} ₼</div>
+            <div className="total">Cəm: {totalPrice} ₼</div>
           </button>
+          {theOrders.length > 0 && <span className="order-count">{theOrders.length}</span>}
         </div>
         <div
           className="footer2"
           onClick={() =>
-            theOrders.length === 0 ? openModalEmpty() : openModal()
+            theOrders.length === 0 ? openModalEmpty() : openModal() 
           }
-        >
+          
+        > {theOrders.length > 0 && <span className="order-count">{theOrders.length}</span>}
           <button>
             <div className="basket">
               <FontAwesomeIcon className="faBasket" icon={faBasketShopping} />
@@ -681,7 +689,6 @@ export default function Menu() {
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1bh-content"
                 id="panel1bh-header"
-                sx={{backgroundColor:` ${theme === "light" ? "light-theme" : "dark-theme"}`} }
               >
                 <Typography  sx={{ width: '95%', flexShrink: 0 }}>
                       <div key={index} className="basket-item-top">
@@ -691,7 +698,7 @@ export default function Menu() {
                 </Typography>
               
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetails >
                 <Typography sx={{ width: '92%', flexShrink: 0 }}>
                  <div className="basket-item-bottom">
                  <div className="counter-basket">

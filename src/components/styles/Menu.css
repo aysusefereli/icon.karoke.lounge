@@ -433,7 +433,7 @@
 }
 
 .footer1 {
-  position: sticky;
+  position: fixed;
   bottom: 20px;
   background-color: #000;
   border-radius: 12px;
@@ -441,12 +441,13 @@
   padding: 10px;
   font-size: 1.25rem;
   line-height: 1.75rem;
+  width: 50%;
 }
 .faBasket {
   font-size: 22px;
 }
 .footer2 {
-  position: sticky;
+  position: fixed;
   bottom: 10px;
   background-color: #000;
   border-radius: 12px;
@@ -456,6 +457,21 @@
   height: 22px;
   border-radius: 50%;
   margin-bottom: 10px;
+}
+.order-count{
+  color: #000;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 15px;
+  top: 17%;
+  left: 30px;
+  background-color: #fff;
+  padding: 0 6px ;
+  font-size: 7px;
+  border-radius: 50%;
+  border: 2px solid #000;
 }
 
 .footerBtn {
@@ -1102,6 +1118,8 @@ button {
 
   .choice-basket{
     background-color: #000;
+    color: #fff;
+    fill: #fff;
   }
   .countNmbr{
     color: #000;
