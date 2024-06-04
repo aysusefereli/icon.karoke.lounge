@@ -442,6 +442,9 @@
   font-size: 1.25rem;
   line-height: 1.75rem;
   width: 50%;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.15s;
 }
 .faBasket {
   font-size: 22px;
@@ -452,11 +455,13 @@
   background-color: #000;
   border-radius: 12px;
   z-index: 4;
-  padding: 12px 22px 17px 8px;
+  padding: 12px 23px 17px 9px;
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  margin-bottom: 10px;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.15s;
 }
 .order-count {
   color: #000;
@@ -864,6 +869,9 @@ button {
       background-color: #182232;
     }
   }
+  .modal-content5 {
+    background-color: hsl(222.2 84% 4.9%) !important;
+  }
   .searchIcon {
     color: white;
   }
@@ -905,8 +913,14 @@ button {
     color: #fff;
   }
 
+  .MuiCollapse-root {
+    color: white !important;
+    border: white !important;
+  }
+
   .MuiPaper-root {
     background-color: hsl(222.2 84% 4.9%) !important;
+    color: white;
   }
   .MuiList-root {
     background-color: hsl(222.2 84% 4.9%) !important;

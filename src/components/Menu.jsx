@@ -29,7 +29,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useThemeManager } from "./theme";
 import { useDispatch, useSelector } from "react-redux";
-import { decrement, increment } from "../store/slices/counterSlice";
+import { decrement, increment, setCounter } from "../store/slices/counterSlice";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { Explore } from "@mui/icons-material";
 
@@ -40,6 +40,7 @@ export default function Menu() {
   const { theme, switchTheme } = useThemeManager();
   const [isModalOpenEmpty, setModalOpenEmpty] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [modalPrdctOpen, setModalPrdctOpen] = useState(false);
   const [activeProduct, setActiveProduct] = useState(null);
   const counter = useSelector((state) => state.counterStore.counter);
   const dispatch = useDispatch();
@@ -53,19 +54,23 @@ export default function Menu() {
   const openModal = (product) => {
     setActiveProduct(product);
     setModalOpen(true);
-  };
-  const [modalPrdctOpen, setModalPrdctOpen] = useState(false);
-  const openPrdctModal = (product) => {
-    setActiveProduct(product);
-    setModalPrdctOpen(true);
-  };
-
-  const closePrdctModal = () => {
-    setModalPrdctOpen(false);
+    dispatch(setCounter(1));
   };
 
   const closeModal = () => {
     setModalOpen(false);
+    dispatch(setCounter(1));
+  };
+
+  const openPrdctModal = (product) => {
+    setActiveProduct(product);
+    setModalPrdctOpen(true);
+    dispatch(setCounter(1));
+  };
+
+  const closePrdctModal = () => {
+    setModalPrdctOpen(false);
+    dispatch(setCounter(1));
   };
 
   const openModalEmpty = () => {
@@ -283,6 +288,37 @@ export default function Menu() {
   theOrders.forEach((order) => {
     totalPrice += order.price * counter;
   });
+
+  const handleIncrement = () => {
+    dispatch(increment(activeProduct));
+  };
+
+  const handleDecrement = () => {
+    dispatch(decrement(activeProduct));
+  };
+
+  const handleWhatsAppOrder = () => {
+    const orderDetails = theOrders
+      .map((order, index) => {
+        return `${index + 1} ${order.name} - ${order.price * counter} AZN, `;
+      })
+      .join("");
+
+    let message = `Sifarişlər:
+      ${orderDetails}
+      Cəm: ${totalPrice} AZN`;
+
+    const note = document.querySelector(".note").value;
+    if (note.trim() !== "") {
+      message += `\nQeyd: ${note}`;
+    }
+
+    const encodedMessage = encodeURIComponent(message);
+
+    const whatsappLink = `https://api.whatsapp.com/send/?phone=%2B994553532243&text=${encodedMessage}`;
+
+    window.open(whatsappLink, "_blank");
+  };
 
   return (
     <div className={`main-container ${theme}`}>
@@ -711,13 +747,13 @@ export default function Menu() {
                         <div className="basket-item-bottom">
                           <div className="counter-basket">
                             <button
-                              onClick={() => dispatch(decrement())}
+                              onClick={() => handleDecrement()}
                               disabled={counter <= 1}
                             >
                               <span id="count">-</span>
                             </button>
                             <div className="countNmbr">{counter}</div>
-                            <button onClick={() => dispatch(increment())}>
+                            <button onClick={() => handleIncrement()}>
                               <span id="count">+</span>
                             </button>
                           </div>
@@ -767,7 +803,7 @@ export default function Menu() {
                     <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
                   </svg>
                 </button>
-                <button className="wp-order">
+                <button className="wp-order" onClick={handleWhatsAppOrder}>
                   <FontAwesomeIcon className="faWhatsapp" icon={faWhatsapp} />
                   <p>WhatsApp sifarişi {totalPrice}₼</p>
                 </button>
