@@ -263,23 +263,48 @@ export default function Menu() {
     };
   }, [prevScrollPos]);
 
-  const [theOrders, setTheOrders] = useState([]);
+  // Inside your Menu component
+
+  // Step 3: Retrieve cart items from localStorage when the component mounts
+  useEffect(() => {
+    const storedOrders = localStorage.getItem("cartItems");
+    if (storedOrders) {
+      setTheOrders(JSON.parse(storedOrders));
+    }
+  }, []);
+  const [theOrders, setTheOrders] = useState(() => {
+    const storedOrders = localStorage.getItem("cartItems");
+    return storedOrders ? JSON.parse(storedOrders) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(theOrders));
+  }, [theOrders]);
+
   const addOrders = (item) => {
-    setTheOrders((prevOrders) => [...prevOrders, item]);
+    // Check if the item is already in the basket
+    const existingItemIndex = theOrders.findIndex(
+      (order) => order._id === item._id
+    );
+
+    // If the item is already in the basket, increase its count
+    if (existingItemIndex !== -1) {
+      const updatedOrders = [...theOrders];
+      updatedOrders[existingItemIndex].count += 1; // Increase count
+      setTheOrders(updatedOrders);
+    } else {
+      // If the item is not in the basket, add it with count 1
+      setTheOrders((prevOrders) => [...prevOrders, { ...item, count: 1 }]);
+    }
     setModalPrdctOpen(false);
   };
+
   const removeOrder = (index) => {
-    setTheOrders((prevOrders) => {
-      const updatedOrders = [...prevOrders];
-      updatedOrders.splice(index, 1);
-
-      if (updatedOrders.length === 0) {
-        setModalOpen(false);
-      }
-
-      return updatedOrders;
-    });
+    const updatedOrders = [...theOrders];
+    updatedOrders.splice(index, 1);
+    setTheOrders(updatedOrders);
   };
+
   const removeAllOrders = () => {
     setTheOrders([]);
     setModalOpen(false);
@@ -537,7 +562,7 @@ export default function Menu() {
         >
           {" "}
           {theOrders.length > 0 && (
-            <span className="order-count">{theOrders.length}</span>
+            <span className="order-count2">{theOrders.length}</span>
           )}
           <button>
             <div className="basket">

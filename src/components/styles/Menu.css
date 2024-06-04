@@ -473,8 +473,24 @@
   top: 17%;
   left: 30px;
   background-color: #fff;
-  padding: 0 6px;
-  font-size: 7px;
+  padding: 2px 6px;
+  font-size: 10px;
+  border-radius: 50%;
+  border: 2px solid #000;
+}
+
+.order-count2 {
+  color: #000;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 15px;
+  top: 17%;
+  left: 30px;
+  background-color: #fff;
+  padding: 2px 6px;
+  font-size: 10px;
   border-radius: 50%;
   border: 2px solid #000;
 }
