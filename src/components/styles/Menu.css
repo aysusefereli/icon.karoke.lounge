@@ -530,7 +530,9 @@
   background-color: #22c55e;
   border-radius: 15px;
   margin: 0 10px 20px 0;
+  color: #fff;
 }
+
 .footerBtns {
   height: 60px;
   display: flex;
@@ -753,6 +755,7 @@ button {
   border: 1px solid hsl(210 40% 96.1%);
   border-radius: 20%;
 }
+
 .main-container.dark {
   background-color: #000;
   color: #fff;
@@ -1065,5 +1068,12 @@ button {
 
   .main-search-input[type="text"] {
     font-size: 14px;
+  }
+
+  .choice-basket{
+    background-color: #000;
+  }
+  .countNmbr{
+    color: #000;
   }
 }

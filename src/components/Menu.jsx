@@ -48,7 +48,7 @@ export default function Menu() {
   const handleChangePanel = (panel) => (event, isExpanded) => {
     setExpanded({ ...expanded, [panel]: isExpanded });
   };
-  
+
 
   const openModal = (product) => {
     setActiveProduct(product);
@@ -276,7 +276,10 @@ export default function Menu() {
     setTheOrders([]);
     setModalOpen(false);
   }
-  
+  let totalPrice = 0;
+  theOrders.forEach(order => {
+    totalPrice += order.price * counter;
+  });
   
   return (
     <div className={`main-container ${theme}`}>
@@ -476,7 +479,7 @@ export default function Menu() {
             <div className="basket">
               <FontAwesomeIcon className="faBasket" icon={faBasketShopping} />
             </div>
-            <div className="total">Cəm: 0 ₼</div>
+            <div className="total">Cəm: ${totalPrice} ₼</div>
           </button>
         </div>
         <div
@@ -668,17 +671,19 @@ export default function Menu() {
             <div className="modal_info">
             <div className="choice-basket">Səbətdəki məhsullar</div>
             {theOrders.length > 0 && theOrders.map((order, index) => (
-                 <Accordion
+                 <Accordion 
                  key={index}
                  expanded={expanded[`panel${index}`]}
                  onChange={handleChangePanel(`panel${index}`)}
+       
                >
-              <AccordionSummary
+              <AccordionSummary 
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1bh-content"
                 id="panel1bh-header"
+                sx={{backgroundColor:` ${theme === "light" ? "light-theme" : "dark-theme"}`} }
               >
-                <Typography sx={{ width: '95%', flexShrink: 0 }}>
+                <Typography  sx={{ width: '95%', flexShrink: 0 }}>
                       <div key={index} className="basket-item-top">
                         <div>{counter} x {order.name}</div>
                         <div>{order.price*counter} ₼</div>
@@ -752,7 +757,7 @@ export default function Menu() {
                 </button>
                 <button className="wp-order">
                 <FontAwesomeIcon className="faWhatsapp" icon={faWhatsapp} />
-                  <span>WhatsApp sifarişi</span>
+                  <p>WhatsApp sifarişi  {totalPrice}₼</p>
                 </button>
               </div>
             </div>
