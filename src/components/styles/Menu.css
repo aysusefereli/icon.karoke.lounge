@@ -647,6 +647,8 @@ hr {
   margin-top: 0;
   height: auto;
   width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
 }
 
 .choice {
@@ -812,6 +814,22 @@ button {
     display: block;
   }
 
+  .choice {
+    background-color: hsl(222.2 84% 4.9%);
+  }
+
+  .modal-content-product {
+    background-color: hsl(222.2 84% 4.9%) !important;
+  }
+
+  .basket-main {
+    background-color: hsl(222.2 84% 4.9%);
+  }
+
+  .modal_info {
+    background-color: hsl(222.2 84% 4.9%);
+  }
+
   .back-arrow {
     fill: #fff;
   }
@@ -871,6 +889,17 @@ button {
     color: #fff;
   }
 
+  .MuiPaper-root {
+    background-color: hsl(222.2 84% 4.9%) !important;
+  }
+  .MuiList-root {
+    background-color: hsl(222.2 84% 4.9%) !important;
+  }
+
+  .css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
+    background-color: hsl(222.2 84% 4.9%) !important;
+  }
+
   .back-text {
     color: #fff;
   }
@@ -884,14 +913,7 @@ button {
     color: #fff;
   }
   .modal-content4 {
-    background-color: #000000;
-  }
-  .modal-content4 {
-    background-color: #000000;
-  }
-
-  .modal-content4 {
-    background-color: #000000;
+    background-color: hsl(222.2 84% 4.9%) !important;
   }
 
   .dropdown {
@@ -950,12 +972,6 @@ button {
   .filter-section-confirm-button {
     background-color: #595959;
   }
-  .filter-section-delete-button {
-    border: 1px solid #1e293b;
-  }
-  .filter-section-delete-button {
-    border: 1px solid #1e293b;
-  }
   .filtersBtn.active {
     .filtersBtn-span {
       background-color: #595959;
@@ -964,6 +980,20 @@ button {
       background-color: #595959;
     }
     background-color: #595959;
+  }
+
+  .MuiInputBase-root {
+    border: hsl(0 0% 35%);
+  }
+
+  .MuiSlider-track {
+    background-color: hsl(0 0% 35%);
+    border: hsl(0 0% 35%);
+  }
+
+  .MuiSlider-thumb {
+    background-color: black;
+    border: 2px solid hsl(0 0% 35%);
   }
 
   .mealsOptions {
