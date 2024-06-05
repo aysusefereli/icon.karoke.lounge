@@ -1163,20 +1163,46 @@ button {
     grid-template-columns: repeat(1, 1fr);
     width: 100%;
   }
-  .category {
-    width: 100%;
-  }
-  .product {
-    width: 100%;
-  }
-  .foodBtn {
-    width: 100%;
-  }
-  .container {
-    width: 100%;
-  }
+
   .main-container {
     display: flex;
     justify-content: start;
+  }
+
+  .modal-content4 {
+    width: 90%;
+    max-width: 400px;
+  }
+  .MuiFormControl-root {
+    width: 90%;
+    max-width: 380px;
+  }
+  .MuiBox-root {
+    width: 90%;
+    max-width: 398px;
+  }
+  .filter-section-confirm-button {
+    width: 90%;
+    max-width: 300px;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 500px) {
+  .modal-content4 {
+    width: 80%;
+    max-width: 400px;
+  }
+  .MuiFormControl-root {
+    width: 80%;
+    max-width: 380px;
+  }
+  .MuiBox-root {
+    width: 80%;
+    max-width: 398px;
+  }
+  .filter-section-confirm-button {
+    width: 80%;
+    max-width: 300px;
   }
 }

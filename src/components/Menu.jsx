@@ -44,7 +44,6 @@ export default function Menu() {
   const [activeProduct, setActiveProduct] = useState(null);
   const counter = useSelector((state) => state.counterStore.counter);
   const dispatch = useDispatch();
-
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChangePanel = (panel) => (event, isExpanded) => {
@@ -264,7 +263,7 @@ export default function Menu() {
   }, [theOrders]);
 
   const addOrders = (item) => {
-    setTheOrders((prevOrders) => [...prevOrders, item]);
+    setTheOrders((prevOrders) => [...prevOrders, { ...item, count: 1 }]);
     setModalPrdctOpen(false);
   };
 
@@ -282,17 +281,24 @@ export default function Menu() {
     setTheOrders([]);
     setModalOpen(false);
   };
+
   let totalPrice = 0;
   theOrders.forEach((order) => {
     totalPrice += order.price * counter;
   });
 
-  const handleIncrement = () => {
-    dispatch(increment(activeProduct));
+  const handleIncrement = (index) => {
+    const updatedOrders = [...theOrders];
+    updatedOrders[index].count += 1;
+    setTheOrders(updatedOrders);
   };
 
-  const handleDecrement = () => {
-    dispatch(decrement(activeProduct));
+  const handleDecrement = (index) => {
+    const updatedOrders = [...theOrders];
+    if (updatedOrders[index].count > 1) {
+      updatedOrders[index].count -= 1;
+    }
+    setTheOrders(updatedOrders);
   };
 
   const handleWhatsAppOrder = () => {
@@ -732,9 +738,9 @@ export default function Menu() {
                       <Typography sx={{ width: "95%", flexShrink: 0 }}>
                         <div key={index} className="basket-item-top">
                           <div>
-                            {counter} x {order.name}
+                            {order.count} x {order.name}
                           </div>
-                          <div>{order.price * counter} ₼</div>
+                          <div>{order.price * order.count} ₼</div>
                         </div>
                       </Typography>
                     </AccordionSummary>
@@ -742,14 +748,11 @@ export default function Menu() {
                       <Typography sx={{ width: "92%", flexShrink: 0 }}>
                         <div className="basket-item-bottom">
                           <div className="counter-basket">
-                            <button
-                              onClick={() => handleDecrement()}
-                              disabled={counter <= 1}
-                            >
+                            <button onClick={() => handleDecrement(index)}>
                               <span id="count">-</span>
                             </button>
-                            <div className="countNmbr">{counter}</div>
-                            <button onClick={() => handleIncrement()}>
+                            <div className="countNmbr">{order.count}</div>
+                            <button onClick={() => handleIncrement(index)}>
                               <span id="count">+</span>
                             </button>
                           </div>

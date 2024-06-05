@@ -25,11 +25,10 @@ export default function Search() {
   const [activeProduct, setActiveProduct] = useState(null);
   const counter = useSelector((state) => state.counterStore.counter);
   const dispatch = useDispatch();
+  const [theOrders, setTheOrders] = useState([]);
 
   useEffect(() => {
-    fetch(
-      "https://icon-karaoke-and-lounge-back.onrender.com/api/categories-with-items"
-    )
+    fetch("http://localhost:3000/api/categories-with-items")
       .then((response) => response.json())
       .then((data) => {
         setCategories(data);
@@ -78,9 +77,11 @@ export default function Search() {
     setModalPrdctOpen(false);
   };
   const addOrders = (item) => {
-    setTheOrders(prevOrders => [...prevOrders, item]);
-    setModalPrdctOpen(false);
-  }
+    const orderedItem = { ...item, count: 1 }; // Məhsulun sayını vəziyyətini 1 et
+    setTheOrders((prevOrders) => [...prevOrders, orderedItem]); // Yeni sifarişi əlavə et
+    setModalPrdctOpen(false); // Məhsul modalını bağla
+  };
+
   return (
     <div>
       <div id="mySearchModal" className={`search-modal ${theme}`}>
@@ -191,10 +192,10 @@ export default function Search() {
                   </div>
                   <div className="add">
                     {activeProduct && (
-                       <button
-                       className="addBasket"
-                       onClick={() => addOrders(activeProduct)}
-                     >
+                      <button
+                        className="addBasket"
+                        onClick={() => addOrders(activeProduct)}
+                      >
                         Səbətə əlavə et {activeProduct.price * counter} ₼
                       </button>
                     )}
