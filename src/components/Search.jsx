@@ -25,10 +25,11 @@ export default function Search() {
   const [activeProduct, setActiveProduct] = useState(null);
   const counter = useSelector((state) => state.counterStore.counter);
   const dispatch = useDispatch();
-  const [theOrders, setTheOrders] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/categories-with-items")
+    fetch(
+      "https://icon-karaoke-and-lounge-back.onrender.com/api/categories-with-items"
+    )
       .then((response) => response.json())
       .then((data) => {
         setCategories(data);
@@ -76,10 +77,19 @@ export default function Search() {
   const closePrdctModal = () => {
     setModalPrdctOpen(false);
   };
+
+  const [theOrders, setTheOrders] = useState(() => {
+    const storedOrders = localStorage.getItem("cartItems");
+    return storedOrders ? JSON.parse(storedOrders) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(theOrders));
+  }, [theOrders]);
   const addOrders = (item) => {
-    const orderedItem = { ...item, count: 1 }; // Məhsulun sayını vəziyyətini 1 et
-    setTheOrders((prevOrders) => [...prevOrders, orderedItem]); // Yeni sifarişi əlavə et
-    setModalPrdctOpen(false); // Məhsul modalını bağla
+    const orderedItem = { ...item, count: 1 };
+    setTheOrders((prevOrders) => [...prevOrders, orderedItem]);
+    setModalPrdctOpen(false);
   };
 
   return (

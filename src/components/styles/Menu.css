@@ -664,11 +664,15 @@
   width: 520px;
   border-radius: 10px 10px 0 0;
   position: relative;
-  animation: slideDown 0.5s forwards, slideUp 0.5s forwards;
+  animation: slideUp 0.5s forwards;
   overflow-y: auto;
   color: #000;
   margin-top: 0;
   max-height: 95vh;
+}
+
+.close {
+  animation: slideDown 0.5s forwards;
 }
 hr {
   opacity: 0.3;
@@ -1136,6 +1140,7 @@ button {
 @media (max-width: 800px) {
   .container {
     flex-direction: column;
+    width: 100%;
   }
 
   .search-modal-input,
