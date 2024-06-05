@@ -29,7 +29,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useThemeManager } from "./theme";
 import { useDispatch, useSelector } from "react-redux";
-import { decrement, increment, setCounter } from "../store/slices/counterSlice";
+import { decrement, increment } from "../store/slices/counterSlice";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { Explore } from "@mui/icons-material";
 
@@ -54,23 +54,19 @@ export default function Menu() {
   const openModal = (product) => {
     setActiveProduct(product);
     setModalOpen(true);
-    dispatch(setCounter(1));
   };
 
   const closeModal = () => {
     setModalOpen(false);
-    dispatch(setCounter(1));
   };
 
   const openPrdctModal = (product) => {
     setActiveProduct(product);
     setModalPrdctOpen(true);
-    dispatch(setCounter(1));
   };
 
   const closePrdctModal = () => {
     setModalPrdctOpen(false);
-    dispatch(setCounter(1));
   };
 
   const openModalEmpty = () => {
@@ -145,9 +141,7 @@ export default function Menu() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch(
-      "https://icon-karaoke-and-lounge-back.onrender.com/api/categories-with-items"
-    )
+    fetch("http://localhost:3000/api/categories-with-items")
       .then((response) => response.json())
       .then((data) => {
         setCategories(data);
@@ -205,41 +199,32 @@ export default function Menu() {
     setActiveButtons(newActiveButtons);
   };
 
-  let lastScrollTop = 0;
+  let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  const footer1 = document.querySelector(".footer1");
+  const footer2 = document.querySelector(".footer2");
 
-  const handleScroll = () => {
-    const footer1 = document.querySelector(".footer1");
-    const footer2 = document.querySelector(".footer2");
-
-    if (footer1 && footer2) {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      if (scrollTop > lastScrollTop) {
-        footer1.style.bottom = "-100px";
-        footer2.style.bottom = "10px";
+  window.addEventListener(
+    "scroll",
+    function () {
+      let currentScrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      if (currentScrollTop === lastScrollTop) {
+        console.log("Sayfanın konumu değişmedi.");
       } else {
-        footer1.style.bottom = "10px";
-        footer2.style.bottom = "-100px";
+        console.log("Sayfanın konumu değişti.");
+        if (currentScrollTop < lastScrollTop) {
+          footer1.style.display = "block";
+          footer2.style.display = "none";
+        } else {
+          footer1.style.display = "none";
+          footer2.style.display = "block";
+        }
+        lastScrollTop = currentScrollTop;
       }
-      lastScrollTop = scrollTop;
-    }
-  };
+    },
+    false
+  );
 
-  window.addEventListener("scroll", handleScroll);
-
-  useEffect(() => {
-    const footer1 = document.querySelector(".footer1");
-    const footer2 = document.querySelector(".footer2");
-
-    if (footer1 && footer2) {
-      footer1.style.bottom = "10px";
-      footer2.style.bottom = "-100px";
-    }
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -263,9 +248,6 @@ export default function Menu() {
     };
   }, [prevScrollPos]);
 
-  // Inside your Menu component
-
-  // Step 3: Retrieve cart items from localStorage when the component mounts
   useEffect(() => {
     const storedOrders = localStorage.getItem("cartItems");
     if (storedOrders) {
@@ -282,20 +264,7 @@ export default function Menu() {
   }, [theOrders]);
 
   const addOrders = (item) => {
-    // Check if the item is already in the basket
-    const existingItemIndex = theOrders.findIndex(
-      (order) => order._id === item._id
-    );
-
-    // If the item is already in the basket, increase its count
-    if (existingItemIndex !== -1) {
-      const updatedOrders = [...theOrders];
-      updatedOrders[existingItemIndex].count += 1; // Increase count
-      setTheOrders(updatedOrders);
-    } else {
-      // If the item is not in the basket, add it with count 1
-      setTheOrders((prevOrders) => [...prevOrders, { ...item, count: 1 }]);
-    }
+    setTheOrders((prevOrders) => [...prevOrders, item]);
     setModalPrdctOpen(false);
   };
 
@@ -303,6 +272,10 @@ export default function Menu() {
     const updatedOrders = [...theOrders];
     updatedOrders.splice(index, 1);
     setTheOrders(updatedOrders);
+
+    if (updatedOrders.length < 1) {
+      closeModal();
+    }
   };
 
   const removeAllOrders = () => {
@@ -510,15 +483,13 @@ export default function Menu() {
                   <div className="basket-main">
                     <div className="counter">
                       <button
-                        onClick={() => dispatch(decrement(activeProduct))}
+                        onClick={() => dispatch(decrement())}
                         disabled={counter <= 1}
                       >
                         <span id="count">-</span>
                       </button>
                       <div className="countNmbr">{counter}</div>
-                      <button
-                        onClick={() => dispatch(increment(activeProduct))}
-                      >
+                      <button onClick={() => dispatch(increment())}>
                         <span id="count">+</span>
                       </button>
                     </div>
