@@ -333,3 +333,40 @@ button {
   justify-content: center;
   color: #000;
 }
+
+/* 750px ekran ölçüsündən kiçik ekranlar üçün responsivlik */
+@media (max-width: 750px) {
+  .modal-search-content {
+    width: 100%;
+    padding: 0 10px; /* Paddingi azaltmaq */
+  }
+
+  .main-search-input[type="text"] {
+    width: calc(100% - 24px); /* Paddinglər hesablanır */
+  }
+
+  .search-modal-input {
+    width: 100%;
+  }
+
+  .back-text {
+    margin-left: 5px; /* Geri düyməsinin mətninin boşluğunu azaltmaq */
+  }
+
+  .namePrice {
+    margin-left: 10px; /* Məhsul adı və qiyməti arasındakı məsafəni azaltmaq */
+  }
+
+  .foodImg {
+    width: 100px; /* Məhsul şəklinin ölçüsünü azaltmaq */
+    height: 56px;
+  }
+
+  .basket-main {
+    margin-left: 5px; /* Səbət düymələrinin məsafəsini azaltmaq */
+  }
+
+  .addBasket {
+    width: calc(100% - 20px); /* Paddinglər hesablanır */
+  }
+}

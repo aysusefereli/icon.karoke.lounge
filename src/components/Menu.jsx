@@ -126,6 +126,12 @@ export default function Menu() {
   const thetheme = useTheme();
   const [personName, setPersonName] = React.useState([]);
 
+  const resetFilters = () => {
+    setActiveButtons([false, false, false, false, false]);
+    setPersonName([]);
+    setSliderValue([1, 25]);
+  };
+
   const handleChange = (event) => {
     const {
       target: { value },
@@ -140,7 +146,9 @@ export default function Menu() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/categories-with-items")
+    fetch(
+      "https://icon-karaoke-and-lounge-back.onrender.com/api/categories-with-items"
+    )
       .then((response) => response.json())
       .then((data) => {
         setCategories(data);
@@ -668,7 +676,10 @@ export default function Menu() {
                 </Box>
               </div>
               <div className="filter-section-buttons">
-                <button className="filter-section-delete-button">
+                <button
+                  className="filter-section-delete-button"
+                  onClick={resetFilters}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     height="24px"
