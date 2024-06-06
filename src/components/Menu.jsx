@@ -29,7 +29,13 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useThemeManager } from "./theme";
 import { useDispatch, useSelector } from "react-redux";
-import { decrement, increment } from "../store/slices/counterSlice";
+import {
+  addToOrders,
+  clearOrders,
+  decrement,
+  increment,
+  removeFromOrders,
+} from "../store/slices/counterSlice";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { Explore } from "@mui/icons-material";
 
@@ -43,6 +49,8 @@ export default function Menu() {
   const [modalPrdctOpen, setModalPrdctOpen] = useState(false);
   const [activeProduct, setActiveProduct] = useState(null);
   const counter = useSelector((state) => state.counterStore.counter);
+  const orders = useSelector((state) => state.counterStore.basket);
+  const ordersCount = orders.length;
   const dispatch = useDispatch();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -153,6 +161,7 @@ export default function Menu() {
       .then((data) => {
         setCategories(data);
       });
+    dispatch(addToOrders());
   }, []);
 
   const open4Modal = () => {
@@ -511,7 +520,7 @@ export default function Menu() {
                       {activeProduct && (
                         <button
                           className="addBasket"
-                          onClick={() => addOrders(activeProduct)}
+                          onClick={() => dispatch(addToOrders(activeProduct))}
                         >
                           Səbətə əlavə et {activeProduct.price * counter} ₼
                         </button>
@@ -736,59 +745,45 @@ export default function Menu() {
               <div className="choice-basket">Səbətdəki məhsullar</div>
               {theOrders.length > 0 &&
                 theOrders.map((order, index) => (
-                  <Accordion
-                    key={index}
-                    expanded={expanded[`panel${index}`]}
-                    onChange={handleChangePanel(`panel${index}`)}
-                  >
-                    <AccordionSummary
-                      expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel1bh-content"
-                      id="panel1bh-header"
-                    >
-                      <Typography sx={{ width: "95%", flexShrink: 0 }}>
-                        <div key={index} className="basket-item-top">
-                          <div>
-                            {order.count} x {order.name}
-                          </div>
-                          <div>{order.price * order.count} ₼</div>
+                  <Accordion key={index}>
+                    <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                      <div className="basket-item-top">
+                        <div>
+                          {order.count} x {order.name}
                         </div>
-                      </Typography>
+                        <div>{order.price * order.count} ₼</div>
+                      </div>
                     </AccordionSummary>
                     <AccordionDetails>
-                      <Typography sx={{ width: "92%", flexShrink: 0 }}>
-                        <div className="basket-item-bottom">
-                          <div className="counter-basket">
-                            <button onClick={() => handleDecrement(index)}>
-                              <span id="count">-</span>
-                            </button>
-                            <div className="countNmbr">{order.count}</div>
-                            <button onClick={() => handleIncrement(index)}>
-                              <span id="count">+</span>
-                            </button>
-                          </div>
-                          <div onClick={() => removeOrder(index)}>
-                            <svg
-                              className="basket-item-remove"
-                              xmlns="http://www.w3.org/2000/svg"
-                              height="24px"
-                              viewBox="0 -960 960 960"
-                              width="20px"
-                              fill="#ff0000"
-                            >
-                              <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
-                            </svg>
-                          </div>
+                      <div className="basket-item-bottom">
+                        <div className="counter-basket">
+                          <button onClick={() => handleDecrement(index)}>
+                            <span id="count">-</span>
+                          </button>
+                          <div className="countNmbr">{order.count}</div>
+                          <button onClick={() => handleIncrement(index)}>
+                            <span id="count">+</span>
+                          </button>
                         </div>
-                      </Typography>
+                        <div onClick={() => dispatch(removeFromOrders(orders))}>
+                          <svg
+                            className="basket-item-remove"
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="24px"
+                            viewBox="0 -960 960 960"
+                            width="20px"
+                            fill="#ff0000"
+                          >
+                            <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
+                          </svg>
+                        </div>
+                      </div>
                     </AccordionDetails>
                   </Accordion>
                 ))}
 
               <div className="basket-main">
-                <div className="basket-main-left">
-                  <div></div>
-                </div>
+                <div className="basket-main-left"></div>
                 <div className="basket-main-right"></div>
               </div>
               <div className="notes">
@@ -800,18 +795,10 @@ export default function Menu() {
               </div>
               <div className="footerBtns">
                 <button
-                  onClick={() => removeAllOrders()}
+                  onClick={() => dispatch(clearOrders())}
                   className="filter-section-delete-button2"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="24px"
-                    viewBox="0 -960 960 960"
-                    width="24px"
-                    fill="#ff0000"
-                  >
-                    <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
-                  </svg>
+                  Sepeti təmizlə
                 </button>
                 <button className="wp-order" onClick={handleWhatsAppOrder}>
                   <FontAwesomeIcon className="faWhatsapp" icon={faWhatsapp} />
