@@ -1,4 +1,4 @@
-* {
+/* * {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background-color: var(--background-color);
@@ -668,4 +668,93 @@ hr {
 }
 .PhoneInput {
   border: 1px solid #cacaca47;
+} */
+.mainPage{
+background-image: url("https://s3-alpha-sig.figma.com/img/db11/ee8b/bc66056e8d40cc48093e80d13127315c?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=bPtXIgfcvRrk0LAaY7Mi-pYRuZoS-P~7APEZsbjo-GnGXWCn9YxZ-mJUQoDd3x7aYDPgDfT9Q2Y-r80QZb-BmHlp6eH-fHIlVS~w34NBgb9UQXl19F-DbZM7hREu3~ZST0PX0zRjrZgdfLO55dqLRaAtP17L5a7h9oxNMvYCN11cKrB07gHMd4EofCruULkemWLWpc~TkR3REl0wls8U7dNsKvw45AnphcZlsItDPCbOilRwT0RqBEn2dNNHKGjLiPACWSFfiZmO47AON8E7AZJcODnUYhSH0~aXOzpdUFVCDVndgqAU2tEEOS3nRgKjGepVshfboXpP0Es8msM29g__");
+background-size: cover;
+height: 1000px;
+position: relative;
+
+}
+
+.header{
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 100px;
+  z-index: 1000001;
+  width: 1300px;
+}
+.header-logo{
+  align-items: center;
+}
+.header-left-side, .header-right-side{
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+.header-left-side-top, .header-right-side-top{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+ 
+}
+.header-right-side-top{
+  justify-content: end;
+}
+.time, .adress, .language{
+  display: flex;
+  align-items: end;
+  gap: 5px;
+ 
+}
+.language, .log-in, .basket, .phone{
+  fill: #D9B852;
+  color: #D9B852;
+}
+.header p{
+  color: #fff;
+}
+.main-section{
+  width: 1300px;
+  position: absolute;
+  top: 200px;
+  left: 150px;
+  z-index: 10001;
+}
+
+.menu-text {
+  font-family: 'NOIR et BLANC Medium Bold';
+  font-size: 420px;
+  font-weight: 400;
+  line-height: 504px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: transparent; /* Yazının içini şeffaf yapar */
+  -webkit-text-stroke-width: 1px; /* Kenar çizgisi genişliğini belirler */
+  -webkit-text-stroke-color: #D9B852; /* Kenar çizgisi rengini belirler */
+}
+
+.bc-opacity{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1550px;
+  height: 1000px;
+  background-color: #000;
+  opacity: 0.4;
+  z-index: 0;
+}
+.buttons{
+  display: flex;
+  justify-content: space-evenly;
+}
+.buttons button{
+  padding: 20px 40px;
+  background-color: #D9B852;
+  color: #fff;
+  width: 200px;
+  height: 59px;
 }

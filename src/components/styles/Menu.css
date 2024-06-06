@@ -441,7 +441,7 @@
   padding: 10px;
   font-size: 1.25rem;
   line-height: 1.75rem;
-  width: 50%;
+  width: 700px;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 0.15s;
@@ -464,6 +464,7 @@
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 0.15s;
   box-shadow: 0 0 0 #0000, 0 0 0 #0000, 0 25px 50px -12px hsl(0, 0%, 0%);
+
 }
 .order-count {
   color: #000;
@@ -638,6 +639,7 @@
   width: 150px;
   height: 84px;
   border-radius: 12px;
+  object-fit: cover;
 }
 
 .image {
@@ -1079,7 +1081,7 @@ button {
   .wp-order:hover {
     background-color: #595959;
   }
-  /* productlist */
+
   .productImg {
     background-color: hsl(222.2 84% 4.9%);
   }
@@ -1155,6 +1157,7 @@ button {
   .countNmbr {
     color: #000;
   }
+
 }
 
 @media (max-width: 640px) {
@@ -1186,6 +1189,9 @@ button {
     max-width: 300px;
     white-space: nowrap;
   }
+    .footer1{
+      width: 500px;
+    }
 }
 
 @media (max-width: 500px) {
@@ -1202,6 +1208,10 @@ button {
     max-width: 398px;
   }
   .filter-section-confirm-button {
+    width: 80%;
+    max-width: 300px;
+  }
+  .footer1{
     width: 80%;
     max-width: 300px;
   }

@@ -266,7 +266,7 @@ export default function Menu() {
     setTheOrders((prevOrders) => [...prevOrders, { ...item, count: 1 }]);
     setModalPrdctOpen(false);
   };
-
+  
   const removeOrder = (index) => {
     const updatedOrders = [...theOrders];
     updatedOrders.splice(index, 1);
@@ -284,7 +284,7 @@ export default function Menu() {
 
   let totalPrice = 0;
   theOrders.forEach((order) => {
-    totalPrice += order.price * counter;
+    totalPrice += order.price * order.count;
   });
 
   const handleIncrement = (index) => {
@@ -304,7 +304,7 @@ export default function Menu() {
   const handleWhatsAppOrder = () => {
     const orderDetails = theOrders
       .map((order, index) => {
-        return `${index + 1} ${order.name} - ${order.price * counter} AZN, `;
+        return `${index + 1} ${order.name} - ${order.price * order.count} AZN, `;
       })
       .join("");
 
@@ -323,7 +323,7 @@ export default function Menu() {
 
     window.open(whatsappLink, "_blank");
   };
-
+  
   return (
     <div className={`main-container ${theme}`}>
       <div className="container">
@@ -466,7 +466,7 @@ export default function Menu() {
             </div>
           ))}
           {modalPrdctOpen && (
-            <div id="myModal" className="modal">
+            <div id="myModal" className="modal" >
               <div className="modal-content-product">
                 <span className="close" onClick={closePrdctModal}>
                   &times;
@@ -549,7 +549,7 @@ export default function Menu() {
         </div>
       </div>
       {isModal4Open && (
-        <div id="myModal" className="modal">
+        <div id="myModal" className="modal"  >
           <div className="modal-content4">
             <span className="close" onClick={close4Modal}>
               &times;
@@ -691,7 +691,7 @@ export default function Menu() {
         </div>
       )}
       {isModalOpenEmpty && (
-        <div id="myModal" className="modal">
+        <div id="myModal" className="modal" >
           <div className="modal-content5">
             <span className="close" onClick={closeModalEmpty}>
               &times;
