@@ -142,13 +142,13 @@ export default function MainPage({ switchTheme, theme }) {
         </div>
         <div className="header-right-side">
           <div className="header-right-side-top">
-            <button className="log-in">
+            <button id="log-in" className="user" onClick={open2Modal}>
               <FontAwesomeIcon icon={faUser} />
             </button>
             <button className="basket">
               <FontAwesomeIcon icon={faCartShopping} />
             </button>
-            <button className="language">
+            <button className="language" onClick={openModal}>
               {" "}
               <span color="#D9B852"> AZ</span>
               <svg
@@ -180,6 +180,62 @@ export default function MainPage({ switchTheme, theme }) {
           </span>
         </div>
       </div>
+      {isModal2Open && (
+        <div id="myModal" className="modal2">
+          <div className="modal-content2">
+            <span className="close2" onClick={close2Modal}>
+              &times;
+            </span>
+            <div className="modal_info2">
+              <div className="choice2">Giriş et</div>
+              <form onSubmit={handlePhoneSubmit}>
+                <PhoneInput
+                  className="phoneInput"
+                  international
+                  countryCallingCodeEditable={false}
+                  defaultCountry="AZ"
+                  value={phoneValue}
+                  onChange={setPhoneValue}
+                />
+                <p className="phoneNumber">
+                  Telefon nömrənizi doğrulamaq üçün kod göndərəcəyik
+                </p>
+                <div className="continue">
+                  <button className="continueBtn" type="submit">
+                    Davam et
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isModalOpen && (
+        <div id="myModal" className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={closeModal}>
+              &times;
+            </span>
+            <div className="vaul-scrollable">
+              <div className="rounded-top"></div>
+            </div>
+            <div className="modal_info">
+              <div className="choice">Dil seçimi</div>
+              <div className="country">
+                <button className="flag">
+                  <img
+                    className="flagIcon"
+                    src="assets/azerbaijan.png"
+                    alt="Azerbaijan Flag"
+                  />
+                  <span className="language">Azərbaycanca</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* <div>
         <div>

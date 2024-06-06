@@ -6,7 +6,7 @@
 
 body {
   background-color: var(--background-color);
-}
+} */
 
 .mainPage {
   display: flex;
@@ -136,8 +136,6 @@ body {
 .user {
   width: 100px;
   height: 40px;
-  border: 1px solid hsl(210 40% 96.1%);
-  background-color: hsl(210 40% 96.1%);
   border-radius: 10%;
   display: flex;
   flex-direction: row;
@@ -149,17 +147,6 @@ body {
   background-color: #1e293b;
   border: 1px solid #1e293b;
   color: white;
-}
-
-[data-theme="dark"] .user:hover {
-  background-color: #1e293b;
-  border: 1px solid #1e293b;
-  color: white;
-}
-
-.user:hover {
-  background-color: hsl(210 80% 97.1%);
-  cursor: pointer;
 }
 
 .userIcon {
@@ -608,7 +595,8 @@ hr {
 [data-theme="dark"] .menu-link:hover {
   background-color: #505152;
 }
-@media only screen and (max-width: 768px) {
+
+/* @media only screen and (max-width: 768px) {
   .icon_img {
     width: 100%;
     height: auto;
@@ -629,7 +617,7 @@ hr {
   .footer a {
     margin: 5px 0;
   }
-}
+} */
 
 .phoneInput {
   border: 1px solid;
@@ -668,7 +656,7 @@ hr {
 }
 .PhoneInput {
   border: 1px solid #cacaca47;
-} */
+}
 .mainPage {
   background-image: url("https://s3-alpha-sig.figma.com/img/db11/ee8b/bc66056e8d40cc48093e80d13127315c?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=bPtXIgfcvRrk0LAaY7Mi-pYRuZoS-P~7APEZsbjo-GnGXWCn9YxZ-mJUQoDd3x7aYDPgDfT9Q2Y-r80QZb-BmHlp6eH-fHIlVS~w34NBgb9UQXl19F-DbZM7hREu3~ZST0PX0zRjrZgdfLO55dqLRaAtP17L5a7h9oxNMvYCN11cKrB07gHMd4EofCruULkemWLWpc~TkR3REl0wls8U7dNsKvw45AnphcZlsItDPCbOilRwT0RqBEn2dNNHKGjLiPACWSFfiZmO47AON8E7AZJcODnUYhSH0~aXOzpdUFVCDVndgqAU2tEEOS3nRgKjGepVshfboXpP0Es8msM29g__");
   background-size: cover;
@@ -711,7 +699,7 @@ hr {
   gap: 5px;
 }
 .language,
-.log-in,
+#log-in,
 .basket,
 .phone {
   fill: #d9b852;
@@ -725,7 +713,7 @@ hr {
   position: absolute;
   top: 200px;
   left: 150px;
-  z-index: 10001;
+  z-index: 10;
 }
 
 .menu-text {
@@ -736,9 +724,9 @@ hr {
   width: 100%;
   display: flex;
   align-items: center;
-  color: transparent; /* Yazının içini şeffaf yapar */
-  -webkit-text-stroke-width: 1px; /* Kenar çizgisi genişliğini belirler */
-  -webkit-text-stroke-color: #d9b852; /* Kenar çizgisi rengini belirler */
+  color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #d9b852;
 }
 
 .bc-opacity {

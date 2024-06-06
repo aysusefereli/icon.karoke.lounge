@@ -164,6 +164,42 @@ export default function Menu() {
     dispatch(addToOrders());
   }, []);
 
+  const addToFavorites = (product) => {
+    fetch(
+      "https://icon-karaoke-and-lounge-back.onrender.com/api/categories-with-items",
+      {
+        method: "POST", // Favorilere ekleme işlemi genellikle POST isteği ile yapılır
+        headers: {
+          "Content-Type": "application/json", // Sunucuya gönderilen veri tipini belirtiyoruz
+        },
+        body: JSON.stringify(product), // Favorilere eklenecek ürünü JSON formatına dönüştürerek gönderiyoruz
+      }
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Favorilere ekleme işlemi başarısız oldu."); // Sunucudan başarısız bir yanıt alınırsa hata fırlatılır
+        }
+        return response.json(); // Sunucudan gelen yanıt JSON formatındaysa bu yanıtı işleme alırız
+      })
+      .then((data) => {
+        // Sunucudan gelen yanıta göre gerekli işlemleri yapabiliriz
+        console.log(
+          "Favorilere ekleme işlemi başarıyla gerçekleştirildi:",
+          data
+        );
+        // Redux store'da favorilere eklendiğine dair bir aksiyon gönderebiliriz
+        dispatch(addToOrders(data));
+      })
+      .catch((error) => {
+        console.error(
+          "Favorilere ekleme işlemi sırasında bir hata oluştu:",
+          error
+        );
+        // Hata durumunda gerekli işlemleri yapabiliriz, örneğin kullanıcıya hata mesajı gösterebiliriz
+        dispatch(addToOrders(error.message));
+      });
+  };
+
   const open4Modal = () => {
     setModal4Open(true);
   };
@@ -279,25 +315,25 @@ export default function Menu() {
     localStorage.setItem("cartItems", JSON.stringify(theOrders));
   }, [theOrders]);
 
-  const addOrders = (item) => {
-    setTheOrders((prevOrders) => [...prevOrders, { ...item, count: 1 }]);
-    setModalPrdctOpen(false);
-  };
-  
-  const removeOrder = (index) => {
-    const updatedOrders = [...theOrders];
-    updatedOrders.splice(index, 1);
-    setTheOrders(updatedOrders);
+  // const addOrders = (item) => {
+  //   setTheOrders((prevOrders) => [...prevOrders, { ...item, count: 1 }]);
+  //   setModalPrdctOpen(false);
+  // };
 
-    if (updatedOrders.length < 1) {
-      closeModal();
-    }
-  };
+  // const removeOrder = (index) => {
+  //   const updatedOrders = [...theOrders];
+  //   updatedOrders.splice(index, 1);
+  //   setTheOrders(updatedOrders);
 
-  const removeAllOrders = () => {
-    setTheOrders([]);
-    setModalOpen(false);
-  };
+  //   if (updatedOrders.length < 1) {
+  //     closeModal();
+  //   }
+  // };
+
+  // const removeAllOrders = () => {
+  //   setTheOrders([]);
+  //   setModalOpen(false);
+  // };
 
   let totalPrice = 0;
   theOrders.forEach((order) => {
@@ -321,7 +357,9 @@ export default function Menu() {
   const handleWhatsAppOrder = () => {
     const orderDetails = theOrders
       .map((order, index) => {
-        return `${index + 1} ${order.name} - ${order.price * order.count} AZN, `;
+        return `${index + 1} ${order.name} - ${
+          order.price * order.count
+        } AZN, `;
       })
       .join("");
 
@@ -340,7 +378,7 @@ export default function Menu() {
 
     window.open(whatsappLink, "_blank");
   };
-  
+
   return (
     <div className={`main-container ${theme}`}>
       <div className="container">
@@ -483,7 +521,7 @@ export default function Menu() {
             </div>
           ))}
           {modalPrdctOpen && (
-            <div id="myModal" className="modal" >
+            <div id="myModal" className="modal">
               <div className="modal-content-product">
                 <span className="close" onClick={closePrdctModal}>
                   &times;
@@ -566,7 +604,7 @@ export default function Menu() {
         </div>
       </div>
       {isModal4Open && (
-        <div id="myModal" className="modal"  >
+        <div id="myModal" className="modal">
           <div className="modal-content4">
             <span className="close" onClick={close4Modal}>
               &times;
@@ -711,7 +749,7 @@ export default function Menu() {
         </div>
       )}
       {isModalOpenEmpty && (
-        <div id="myModal" className="modal" >
+        <div id="myModal" className="modal">
           <div className="modal-content5">
             <span className="close" onClick={closeModalEmpty}>
               &times;
@@ -749,9 +787,11 @@ export default function Menu() {
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                       <div className="basket-item-top">
                         <div>
-                          {order.count} x {order.name}
+                          {order.count} x {order.name} {""}
                         </div>
-                        <div>{order.price * order.count} ₼</div>
+                        <div>
+                          {order.price * order.count} {""} ₼
+                        </div>
                       </div>
                     </AccordionSummary>
                     <AccordionDetails>
@@ -798,11 +838,19 @@ export default function Menu() {
                   onClick={() => dispatch(clearOrders())}
                   className="filter-section-delete-button2"
                 >
-                  Sepeti təmizlə
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                    fill="#ff0000"
+                  >
+                    <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
+                  </svg>
                 </button>
                 <button className="wp-order" onClick={handleWhatsAppOrder}>
                   <FontAwesomeIcon className="faWhatsapp" icon={faWhatsapp} />
-                  <p>WhatsApp sifarişi {totalPrice}₼</p>
+                  <p>WhatsApp sifarişi {totalPrice} ₼</p>
                 </button>
               </div>
             </div>
