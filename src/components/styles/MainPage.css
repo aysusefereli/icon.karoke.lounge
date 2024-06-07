@@ -2,10 +2,7 @@
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background-color: var(--background-color);
-}
-
-
-
+} */
 
 .az_moon {
   display: flex;
@@ -119,13 +116,13 @@
 .user {
   width: 100px;
   height: 40px;
-  border: 1px solid hsl(210 40% 96.1%);
-  background-color: hsl(210 40% 96.1%);
+
   border-radius: 10%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
+  color: rgb(217, 184, 82);
 }
 
 [data-theme="dark"] .user {
@@ -140,26 +137,10 @@
   color: white;
 }
 
-.user:hover {
-  background-color: hsl(210 80% 97.1%);
-  cursor: pointer;
-}
-
 .userIcon {
   width: 18px;
   height: 18px;
-  color: #000000;
-  background-color: hsl(210 80% 97.1%);
-}
-
-[data-theme="dark"] .userIcon {
-  color: white;
-  background-color: #1e293b;
-}
-
-[data-theme="dark"] .userIcon:hover {
-  color: white;
-  background-color: #1e293b;
+  color: rgb(217, 184, 82);
 }
 
 .giris {
@@ -237,7 +218,7 @@
   justify-content: center;
   align-items: flex-end;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 50;
+  z-index: 100;
   transition: 0.5s;
 }
 
@@ -437,7 +418,7 @@
   background-color: hsl(222.2 84% 4.9%);
 }
 
-.language {
+.languages {
   margin-left: 18px;
 }
 
@@ -570,7 +551,7 @@
   background-color: hsl(222.2 84% 4.9%);
 }
 
-[data-theme="dark"] .language {
+[data-theme="dark"] .languages {
   color: #f8fafc;
   background-color: hsl(222.2 84% 4.9%);
 }
@@ -646,7 +627,7 @@
 }
 .PhoneInput {
   border: 1px solid #cacaca47;
-} */
+}
 .mainPage {
   background-image: url("https://s3-alpha-sig.figma.com/img/db11/ee8b/bc66056e8d40cc48093e80d13127315c?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=bPtXIgfcvRrk0LAaY7Mi-pYRuZoS-P~7APEZsbjo-GnGXWCn9YxZ-mJUQoDd3x7aYDPgDfT9Q2Y-r80QZb-BmHlp6eH-fHIlVS~w34NBgb9UQXl19F-DbZM7hREu3~ZST0PX0zRjrZgdfLO55dqLRaAtP17L5a7h9oxNMvYCN11cKrB07gHMd4EofCruULkemWLWpc~TkR3REl0wls8U7dNsKvw45AnphcZlsItDPCbOilRwT0RqBEn2dNNHKGjLiPACWSFfiZmO47AON8E7AZJcODnUYhSH0~aXOzpdUFVCDVndgqAU2tEEOS3nRgKjGepVshfboXpP0Es8msM29g__");
   background-size: cover;
@@ -659,7 +640,7 @@
   display: flex;
   justify-content: space-between;
   padding: 40px 100px;
-  z-index: 1000001;
+  z-index: 50;
   width: 1300px;
 }
 .header-logo {
@@ -703,7 +684,7 @@
   position: absolute;
   top: 200px;
   left: 150px;
-  z-index: 10001;
+  z-index: 10;
 }
 
 .menu-text {

@@ -229,7 +229,7 @@ export default function MainPage({ switchTheme, theme }) {
                     src="assets/azerbaijan.png"
                     alt="Azerbaijan Flag"
                   />
-                  <span className="language">Azərbaycanca</span>
+                  <span className="languages">Azərbaycanca</span>
                 </button>
               </div>
             </div>
