@@ -695,9 +695,9 @@
   width: 100%;
   display: flex;
   align-items: center;
-  color: transparent; /* Yazının içini şeffaf yapar */
-  -webkit-text-stroke-width: 1px; /* Kenar çizgisi genişliğini belirler */
-  -webkit-text-stroke-color: #d9b852; /* Kenar çizgisi rengini belirler */
+  color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #d9b852;
 }
 
 .bc-opacity {

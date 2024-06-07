@@ -1309,7 +1309,7 @@ hr {
   gap: 0px;
   opacity: 0px;
   display: flex;
-  margin-top: 480px;
+  margin-top: 50px;
   margin-right: 20px;
 }
 .cart {
@@ -1318,28 +1318,33 @@ hr {
   height: 300px;
   margin: 10px;
   border-radius: 20px;
+  z-index: 1000000;
 }
 
-.basket2 {
-  float: right;
-  color: #d9b852;
-  width: 83px;
-  height: 70px;
-  gap: 0px;
-  opacity: 0px;
-  position: relative;
-  bottom: 20px;
+.food {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+  margin-top: 100px;
 }
 
 .pagination {
   margin-top: 30px;
   display: flex;
   justify-content: center;
+  z-index: 100000;
+  position: relative;
 }
 .pagination button {
-  color: #d9b852;
-}
-.pagination button:hover {
-  background-color: #d9b852;
-  color: white;
+  color: black;
+  width: Fixed (32px) px;
+  height: Fixed (32px) px;
+  padding: 10px 0px 0px 0px;
+  gap: 10px;
+  border-radius: 8px;
+  border: 1px 0px 0px 0px;
+  border-color: #f1f1f1;
+  opacity: 0px;
+  background-color: #ffffffdb;
 }

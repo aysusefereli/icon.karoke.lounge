@@ -196,7 +196,7 @@ export default function Menu() {
       .then((response) => response.json())
       .then((data) => {
         setCategories(data);
-        setActiveTab(data || {});
+        setActiveTab(data.length > 0 ? data[0] : null);
       });
     dispatch(addToOrders());
   }, []);
@@ -227,26 +227,24 @@ export default function Menu() {
     fetch(
       "https://icon-karaoke-and-lounge-back.onrender.com/api/categories-with-items",
       {
-        method: "POST", // Favorilere ekleme işlemi genellikle POST isteği ile yapılır
+        method: "POST",
         headers: {
-          "Content-Type": "application/json", // Sunucuya gönderilen veri tipini belirtiyoruz
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(product), // Favorilere eklenecek ürünü JSON formatına dönüştürerek gönderiyoruz
+        body: JSON.stringify(product),
       }
     )
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Favorilere ekleme işlemi başarısız oldu."); // Sunucudan başarısız bir yanıt alınırsa hata fırlatılır
+          throw new Error("Favorilere ekleme işlemi başarısız oldu.");
         }
-        return response.json(); // Sunucudan gelen yanıt JSON formatındaysa bu yanıtı işleme alırız
+        return response.json();
       })
       .then((data) => {
-        // Sunucudan gelen yanıta göre gerekli işlemleri yapabiliriz
         console.log(
           "Favorilere ekleme işlemi başarıyla gerçekleştirildi:",
           data
         );
-        // Redux store'da favorilere eklendiğine dair bir aksiyon gönderebiliriz
         dispatch(addToOrders(data));
       })
       .catch((error) => {
@@ -254,7 +252,6 @@ export default function Menu() {
           "Favorilere ekleme işlemi sırasında bir hata oluştu:",
           error
         );
-        // Hata durumunda gerekli işlemleri yapabiliriz, örneğin kullanıcıya hata mesajı gösterebiliriz
         dispatch(addToOrders(error.message));
       });
   };
@@ -506,40 +503,45 @@ export default function Menu() {
           >
             {activeTab === category && (
               <div className="food">
-                {category.items.map((item) => (
-                  <div className="cart" key={item._id}>
-                    <button
-                      className="foodBtn"
-                      onClick={() => openPrdctModal(item)}
-                    >
-                      {item.image ? (
-                        <span className="image">
-                          <img
-                            className="foodImg"
-                            src={item.image}
-                            alt={item.name}
-                          />
-                        </span>
-                      ) : (
-                        <div className="noImage"></div>
-                      )}
-                      <div className="namePrice">
-                        <span className="foodName">{item.name}</span>
-                        <span className="price">{item.price} ₼</span>
-                      </div>
-                    </button>
-                  </div>
-                ))}
+                {category.items
+                  .slice(
+                    (currentPage - 1) * categoriesPerPage,
+                    currentPage * categoriesPerPage
+                  )
+                  .map((item) => (
+                    <div className="cart" key={item._id}>
+                      <button
+                        className="foodBtn"
+                        onClick={() => openPrdctModal(item)}
+                      >
+                        {item.image ? (
+                          <span className="image">
+                            <img
+                              className="foodImg"
+                              src={item.image}
+                              alt={item.name}
+                            />
+                          </span>
+                        ) : (
+                          <div className="noImage"></div>
+                        )}
+                        <div className="namePrice">
+                          <span className="foodName">{item.name}</span>
+                          <span className="price">{item.price} ₼</span>
+                        </div>
+                      </button>
+                    </div>
+                  ))}
               </div>
             )}
           </div>
         ))}
       </div>
 
-      {/* <div className="pagination">
+      <div className="pagination">
         <Stack spacing={2}>
           <Pagination
-            count={30}
+            count={10}
             variant="outlined"
             onChange={(event, page) => {
               handlePageClick(page);
@@ -547,7 +549,7 @@ export default function Menu() {
             }}
           />
         </Stack>
-      </div> */}
+      </div>
 
       <div className="basket2">
         <img src="./assets/shopping-cart.png" />
