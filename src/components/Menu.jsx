@@ -378,50 +378,108 @@ export default function Menu() {
 
     window.open(whatsappLink, "_blank");
   };
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
+
+  // Mevcut sayfadaki öğeleri hesaplayın
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = categories.slice(indexOfFirstItem, indexOfLastItem);
+
+  // Sayfa değiştirme işlevi
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  // Toplam sayfa sayısını hesaplayın
+  const totalPages = Math.ceil(categories.length / itemsPerPage);
 
   return (
     <div className={`main-container ${theme}`}>
-        <div className="menu-header">
-        <hr />
-        <div className="menu-header-text">Menu</div>
-        <hr />
+    <div className="menu-header">
+      <hr />
+      <div className="menu-header-text">Menu</div>
+      <hr />
+    </div>
+    <div className="mealsOptions">
+      <Swiper
+        slidesPerView={"auto"}
+        spaceBetween={10}
+        freeMode={true}
+        keyboard={{
+          enabled: true,
+          onlyInViewport: false,
+        }}
+        mousewheel={{
+          forceToAxis: true,
+        }}
+        simulateTouch={true}
+        touchReleaseOnEdges={true}
+        modules={[FreeMode, Keyboard, Mousewheel]}
+        className={`mySwiper ${theme === "light" ? "light-theme" : "dark-theme"}`}
+      >
+        {categories.map((category) => (
+          <SwiperSlide key={category.id} className="swiper-slide-auto">
+            <button className="meal" onClick={() => scrollToSection(category.name)}>
+              {category?.name}
+            </button>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
+    <div className="powder-leftside">
+      <img
+        width={"800px"}
+        height={"800px"}
+        src="https://s3-alpha-sig.figma.com/img/0ec5/c85c/6e3736fa2c26ac30ff1aa089570db94f?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=mbQVtgps~onLZMkYwqs7BRBURzu~Bif6~ECXDrUsEN7z-9wAJwO-IuKqM5PDBfDZkxT7N49z9uK2vhMkzgosuU6aWk~sgYy4AlGrFKDKvuZ-eqLWTXfBdXW5qp1VtHbydATemMlQcN2lPLGUoPKJQndR4ws7fiVA7yhnRa6ytZmURyyQr0WSx9EMZdRWomeY6AIhWoeiaHelOTUKaDBZrN3JFbunoR7m5AKmFm8YQtRf5CNSew5R3agZ7sWk~NyyWcat3KHHq7~uyqd6Y7YY247z2YXsVXfAgyt-1pGFqBoEcWfIr62w8z~C4l6X8OSokWtC1GqbKvo0I1YMi7hT8A__"
+        alt=""
+      />
+    </div>
+    <div className="powder-rightside">
+      <img
+        width={"700px"}
+        height={"700px"}
+        src="https://s3-alpha-sig.figma.com/img/0ec5/c85c/6e3736fa2c26ac30ff1aa089570db94f?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=mbQVtgps~onLZMkYwqs7BRBURzu~Bif6~ECXDrUsEN7z-9wAJwO-IuKqM5PDBfDZkxT7N49z9uK2vhMkzgosuU6aWk~sgYy4AlGrFKDKvuZ-eqLWTXfBdXW5qp1VtHbydATemMlQcN2lPLGUoPKJQndR4ws7fiVA7yhnRa6ytZmURyyQr0WSx9EMZdRWomeY6AIhWoeiaHelOTUKaDBZrN3JFbunoR7m5AKmFm8YQtRf5CNSew5R3agZ7sWk~NyyWcat3KHHq7~uyqd6Y7YY247z2YXsVXfAgyt-1pGFqBoEcWfIr62w8z~C4l6X8OSokWtC1GqbKvo0I1YMi7hT8A__"
+        alt=""
+      />
+    </div>
+    <div className="productsList">
+      {currentItems.map((category) => (
+        <div className="category" key={category._id}>
+          <div className="food">
+            {category.items.map((item) => (
+              <div className="cart" key={item._id}>
+                <button className="foodBtn" onClick={() => openPrdctModal(item)}>
+                  {item.image ? (
+                    <span className="image">
+                      <img className="foodImg" src={item.image} alt={item.name} />
+                    </span>
+                  ) : (
+                    <div className="noImage"></div>
+                  )}
+                  <div className="namePrice">
+                    <span className="foodName">{item.name}</span>
+                    <span className="price">{item.price} ₼</span>
+                  </div>
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="mealsOptions">
-              <Swiper
-                slidesPerView={"auto"}
-                spaceBetween={10}
-                freeMode={true}
-                keyboard={{
-                  enabled: true,
-                  onlyInViewport: false,
-                }}
-                mousewheel={{
-                  forceToAxis: true,
-                }}
-                simulateTouch={true}
-                touchReleaseOnEdges={true}
-                modules={[FreeMode, Keyboard, Mousewheel]}
-                className={`mySwiper ${
-                  theme === "light" ? "light-theme" : "dark-theme"
-                }`}
-              >
-                {categories.map((category) => (
-                  <SwiperSlide key={category.id} className="swiper-slide-auto">
-                    <button
-                      className="meal"
-                      onClick={() => scrollToSection(category.name)}
-                    >
-                      {category?.name}
-                    </button>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </div>
-            <div className="powder-leftside">
-                <img width={"800px"} height={"800px"} src="https://s3-alpha-sig.figma.com/img/0ec5/c85c/6e3736fa2c26ac30ff1aa089570db94f?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=mbQVtgps~onLZMkYwqs7BRBURzu~Bif6~ECXDrUsEN7z-9wAJwO-IuKqM5PDBfDZkxT7N49z9uK2vhMkzgosuU6aWk~sgYy4AlGrFKDKvuZ-eqLWTXfBdXW5qp1VtHbydATemMlQcN2lPLGUoPKJQndR4ws7fiVA7yhnRa6ytZmURyyQr0WSx9EMZdRWomeY6AIhWoeiaHelOTUKaDBZrN3JFbunoR7m5AKmFm8YQtRf5CNSew5R3agZ7sWk~NyyWcat3KHHq7~uyqd6Y7YY247z2YXsVXfAgyt-1pGFqBoEcWfIr62w8z~C4l6X8OSokWtC1GqbKvo0I1YMi7hT8A__" alt="" />
-            </div>
-            <div className="powder-rightside">
-                <img width={"700px"} height={"700px"}  src="https://s3-alpha-sig.figma.com/img/0ec5/c85c/6e3736fa2c26ac30ff1aa089570db94f?Expires=1718582400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=mbQVtgps~onLZMkYwqs7BRBURzu~Bif6~ECXDrUsEN7z-9wAJwO-IuKqM5PDBfDZkxT7N49z9uK2vhMkzgosuU6aWk~sgYy4AlGrFKDKvuZ-eqLWTXfBdXW5qp1VtHbydATemMlQcN2lPLGUoPKJQndR4ws7fiVA7yhnRa6ytZmURyyQr0WSx9EMZdRWomeY6AIhWoeiaHelOTUKaDBZrN3JFbunoR7m5AKmFm8YQtRf5CNSew5R3agZ7sWk~NyyWcat3KHHq7~uyqd6Y7YY247z2YXsVXfAgyt-1pGFqBoEcWfIr62w8z~C4l6X8OSokWtC1GqbKvo0I1YMi7hT8A__" alt="" /></div>
+      ))}
+    </div>
+
+      <div className="pagination">
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index + 1}
+            onClick={() => paginate(index + 1)}
+            className={currentPage === index + 1 ? "active" : ""}
+          >
+            {index + 1}
+          </button>
+        ))}
+      </div>
+
+                   
       {/* <div className="container">
         <div className={`border-container ${visible ? "" : "hide"}`}>
           <div className="header-border">

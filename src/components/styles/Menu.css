@@ -1296,8 +1296,15 @@ hr{
 .powder-rightside{
   position: absolute;
   z-index: 10001;
-  top: 150px;
+  top: 200px;
   right: 0;
   transform: rotate(270deg);
 
+}
+.cart{
+  background-color: #d9b852;
+  width: 240px;
+  height: 300px;
+  margin: 10px;
+  border-radius: 20px;
 }
