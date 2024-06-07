@@ -1,4 +1,4 @@
-.main-container.light {
+/* .main-container.light {
   background-color: #fff;
   color: #000;
 }
@@ -676,9 +676,7 @@
 .close {
   animation: slideDown 0.5s forwards;
 }
-hr {
-  opacity: 0.3;
-}
+
 .modal_info {
   margin-top: 0;
 }
@@ -1220,4 +1218,86 @@ button {
     width: 80%;
     max-width: 300px;
   }
+} */
+body{
+  background-color: #000;
+  position: relative;
+}
+.menu-header{
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 100px;
+  z-index: 1000001;
+  width: 1300px;
+  align-items: center;
+}
+.menu-header-text{
+  display: flex;
+  align-items: center;
+  font-family: NOIR et BLANC Italic;
+  font-size: 100px;
+  font-weight: 100;
+  color: #d9b852;
+  font-style: italic;
+}
+
+hr{
+  border: 0.5px solid #ffffffba;
+  width: 400px;
+}
+
+.mealsOptions {
+  padding: 0 20px;
+  color: #fff;
+}
+
+.mySwiper {
+  max-width: 900px;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  color: #fff;
+}
+.swiper-slide-auto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto !important;
+  color: #fff;
+  fill: #fff;
+}
+
+.meal {
+  padding-right: 20px;
+  padding-left: 20px;
+  border-radius: 12%;
+  height: 35px;
+  width: 100%;
+  white-space: nowrap;
+  cursor: pointer;
+  font-family: Baskerville;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 36.61px;
+  color: #d9b852;
+
+}
+.powder-leftside{
+  position: absolute;
+  z-index: 10001;
+  top: -100px;
+  left: 0;
+  transform: rotate(90deg);
+}
+.powder-rightside{
+  position: absolute;
+  z-index: 10001;
+  top: 150px;
+  right: 0;
+  transform: rotate(270deg);
+
 }
