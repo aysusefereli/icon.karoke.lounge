@@ -54,6 +54,9 @@ export default function Menu() {
   const ordersCount = orders.length;
   const dispatch = useDispatch();
   const [expanded, setExpanded] = React.useState(false);
+  const [activeTab, setActiveTab] = useState({});
+  const [tabButtonStatus, setTabButtonStatus] = useState(false);
+
   const [categories, setCategories] = useState([]);
   const [nextPage, setNextPage] = useState("");
 
@@ -193,9 +196,32 @@ export default function Menu() {
       .then((response) => response.json())
       .then((data) => {
         setCategories(data);
+        setActiveTab(data || {});
       });
     dispatch(addToOrders());
   }, []);
+
+  const tabClickHandler = (name) => {
+    const selectedItem = categories.find((category) => category.name === name);
+    if (selectedItem) {
+      setActiveTab(selectedItem);
+    }
+  };
+
+  const tabButtonsHandler = () =>
+    setTabButtonStatus((prevStatus) => !prevStatus);
+
+  const isActive = (name) => {
+    return activeTab.name === name;
+  };
+
+  const getFilteredItems = () => {
+    const activeCategoryId = activeTab.name;
+    return (
+      categories.find((category) => category.name === activeCategoryId)
+        ?.items || []
+    );
+  };
 
   const addToFavorites = (product) => {
     fetch(
@@ -441,8 +467,14 @@ export default function Menu() {
           {categories.map((category) => (
             <SwiperSlide key={category.id} className="swiper-slide-auto">
               <button
-                className="meal"
-                onClick={() => scrollToSection(category.name)}
+                className={`meal tabs-button ${
+                  isActive(category.name) ? "tabs-active" : ""
+                }`}
+                onClick={() => {
+                  scrollToSection(category.name);
+                  tabClickHandler(category.name);
+                  tabButtonsHandler();
+                }}
               >
                 {category?.name}
               </button>
@@ -467,34 +499,39 @@ export default function Menu() {
         />
       </div>
       <div className="productsList">
-        {currentItems.map((category) => (
-          <div className="category" key={category._id}>
-            <div className="food">
-              {category.items.map((item) => (
-                <div className="cart" key={item._id}>
-                  <button
-                    className="foodBtn"
-                    onClick={() => openPrdctModal(item)}
-                  >
-                    {item.image ? (
-                      <span className="image">
-                        <img
-                          className="foodImg"
-                          src={item.image}
-                          alt={item.name}
-                        />
-                      </span>
-                    ) : (
-                      <div className="noImage"></div>
-                    )}
-                    <div className="namePrice">
-                      <span className="foodName">{item.name}</span>
-                      <span className="price">{item.price} ₼</span>
-                    </div>
-                  </button>
-                </div>
-              ))}
-            </div>
+        {categories.map((category) => (
+          <div
+            className={`category ${activeTab === category ? "active" : ""}`}
+            key={category._id}
+          >
+            {activeTab === category && (
+              <div className="food">
+                {category.items.map((item) => (
+                  <div className="cart" key={item._id}>
+                    <button
+                      className="foodBtn"
+                      onClick={() => openPrdctModal(item)}
+                    >
+                      {item.image ? (
+                        <span className="image">
+                          <img
+                            className="foodImg"
+                            src={item.image}
+                            alt={item.name}
+                          />
+                        </span>
+                      ) : (
+                        <div className="noImage"></div>
+                      )}
+                      <div className="namePrice">
+                        <span className="foodName">{item.name}</span>
+                        <span className="price">{item.price} ₼</span>
+                      </div>
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </div>

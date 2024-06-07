@@ -1247,6 +1247,9 @@ hr {
 .mealsOptions {
   padding: 0 20px;
   color: #fff;
+  z-index: 100000;
+  position: absolute;
+  left: 18%;
 }
 
 .mySwiper {
@@ -1283,6 +1286,7 @@ hr {
   line-height: 36.61px;
   color: #d9b852;
 }
+
 .powder-leftside {
   position: absolute;
   z-index: 10001;
