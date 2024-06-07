@@ -38,6 +38,7 @@ import {
 } from "../store/slices/counterSlice";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { Explore } from "@mui/icons-material";
+import { Pagination, Stack } from "@mui/material";
 
 export default function Menu() {
   const [filteredItems, setFilteredItems] = useState([]);
@@ -53,6 +54,40 @@ export default function Menu() {
   const ordersCount = orders.length;
   const dispatch = useDispatch();
   const [expanded, setExpanded] = React.useState(false);
+  const [categories, setCategories] = useState([]);
+  const [nextPage, setNextPage] = useState("");
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [categoriesPerPage, setCategoriesPerPage] = useState(4);
+
+  const indexOfLastCategories = currentPage * categoriesPerPage;
+  const indexOfFirstCategories = indexOfLastCategories - categoriesPerPage;
+  const currentItems = categories.slice(
+    indexOfFirstCategories,
+    indexOfLastCategories
+  );
+
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(categories.length / categoriesPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  const handlePageClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    console.log(`Page changed to: ${pageNumber}`);
+  };
+
+  const handleNextPage = () => {
+    if (nextPage && currentPage < 10) {
+      setCurrentPage((prevPage) => prevPage + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prevPage) => prevPage - 1);
+    }
+  };
 
   const handleChangePanel = (panel) => (event, isExpanded) => {
     setExpanded({ ...expanded, [panel]: isExpanded });
@@ -150,8 +185,6 @@ export default function Menu() {
   const handleSliderChange = (event, newValue) => {
     setSliderValue(newValue);
   };
-
-  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     fetch(
@@ -378,19 +411,6 @@ export default function Menu() {
 
     window.open(whatsappLink, "_blank");
   };
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4;
-
-  // Mevcut sayfadaki öğeleri hesaplayın
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = categories.slice(indexOfFirstItem, indexOfLastItem);
-
-  // Sayfa değiştirme işlevi
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  // Toplam sayfa sayısını hesaplayın
-  const totalPages = Math.ceil(categories.length / itemsPerPage);
 
   return (
     <div className={`main-container ${theme}`}>
@@ -480,15 +500,20 @@ export default function Menu() {
       </div>
 
       <div className="pagination">
-        {Array.from({ length: totalPages }, (_, index) => (
-          <button
-            key={index + 1}
-            onClick={() => paginate(index + 1)}
-            className={currentPage === index + 1 ? "active" : ""}
-          >
-            {index + 1}
-          </button>
-        ))}
+        <Stack spacing={2}>
+          <Pagination
+            count={30}
+            variant="outlined"
+            onChange={(event, page) => {
+              handlePageClick(page);
+              scrollToTop();
+            }}
+          />
+        </Stack>
+      </div>
+
+      <div className="basket2">
+        <img src="./assets/shopping-cart.png" />
       </div>
 
       {/* <div className="container">

@@ -1308,10 +1308,34 @@ hr {
   margin-top: 480px;
   margin-right: 20px;
 }
-.cart{
+.cart {
   background-color: #d9b852;
   width: 240px;
   height: 300px;
   margin: 10px;
   border-radius: 20px;
+}
+
+.basket2 {
+  float: right;
+  color: #d9b852;
+  width: 83px;
+  height: 70px;
+  gap: 0px;
+  opacity: 0px;
+  position: relative;
+  bottom: 20px;
+}
+
+.pagination {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+.pagination button {
+  color: #d9b852;
+}
+.pagination button:hover {
+  background-color: #d9b852;
+  color: white;
 }
