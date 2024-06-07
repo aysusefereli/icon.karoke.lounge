@@ -499,7 +499,7 @@ export default function Menu() {
         ))}
       </div>
 
-      <div className="pagination">
+      {/* <div className="pagination">
         <Stack spacing={2}>
           <Pagination
             count={30}
@@ -510,7 +510,7 @@ export default function Menu() {
             }}
           />
         </Stack>
-      </div>
+      </div> */}
 
       <div className="basket2">
         <img src="./assets/shopping-cart.png" />
